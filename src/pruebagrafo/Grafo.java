@@ -13,7 +13,7 @@ public class Grafo {
 
     public Grafo(int t) {
         this.numVertices = 0; 
-        this.max = t;
+        this.max = t; 
         this.listaVertices = new Vertice[t];
     }
     
@@ -25,7 +25,7 @@ public class Grafo {
     }
     
     public void agregarArista(){
-        //lol
+        //lol edit 
     }
     
     
