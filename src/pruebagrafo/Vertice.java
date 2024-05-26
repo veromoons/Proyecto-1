@@ -7,28 +7,28 @@ package pruebagrafo;
  */
 public class Vertice {
     
-    private int id; 
+    private int numVertice; 
     private char letra;
-    Lista listaAdy;
+    private Lista listaAdy;
 
-    public Vertice(char leetra) {
-        this.id = id;
-        this.letra = leetra;
+    public Vertice(char l) {
+        this.numVertice = -1;
+        this.letra = l;
         this.listaAdy = new Lista();
     }
 
     /**
      * @return the id
      */
-    public int getId() {
-        return id;
+    public int setNumVertice() {
+        return numVertice;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setNumVertice(int num) {
+        this.numVertice = num;
     }
 
     /**
@@ -43,6 +43,13 @@ public class Vertice {
      */
     public void setLetra(char letra) {
         this.letra = letra;
+    }
+
+    /**
+     * @return the listaAdy
+     */
+    public Lista getListaAdy() {
+        return listaAdy;
     }
     
     
