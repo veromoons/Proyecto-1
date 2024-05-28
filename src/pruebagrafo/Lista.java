@@ -45,9 +45,16 @@ public class Lista {
         return null;
     }
     
-    public void insertarUltModif(char l){              //aqui busco dentro de la funcion
-        Nodo ult=buscarUltimo();                    //mejorarlo, que solo busque ultimo luego del if de saber que no esta vacia
-        Nodo nuevo = new Nodo(l); 
+    public void preinsertarPrimero(Arista arc){  //se le pasa la arista (que es la posicion del siguiente)
+        Nodo nuevo = new Nodo(arc);                 
+        nuevo.setNext(first);               
+        first=nuevo;
+        iN++;
+    }
+    
+    public void insertarUltimo(Arista arc){              
+        Nodo ult=buscarUltimo();                    
+        Nodo nuevo = new Nodo(arc); 
         if(ult == null){
            first = nuevo;
         }else{

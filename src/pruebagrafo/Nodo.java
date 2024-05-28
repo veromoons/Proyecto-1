@@ -7,26 +7,12 @@ package pruebagrafo;
  */
 public class Nodo {
     
-    private char info;
+    private Arista info;
     private Nodo next;
     
-    public Nodo(char l) { 
-        this.info = l; 
+    public Nodo(Arista info) { 
+        this.info = info; 
         this.next = null; 
-    }
-
-    /**
-     * @return the info
-     */
-    public char getInfo() {
-        return info;
-    }
-
-    /**
-     * @param info the info to set
-     */
-    public void setInfo(char info) {
-        this.info = info;
     }
 
     /**
@@ -42,6 +28,21 @@ public class Nodo {
     public void setNext(Nodo next) {
         this.next = next;
     }
+
+    /**
+     * @return the info
+     */
+    public Arista getInfo() {
+        return info;
+    }
+
+    /**
+     * @param info the info to set
+     */
+    public void setInfo(Arista info) {
+        this.info = info;
+    }
+
     
-    
+
 }

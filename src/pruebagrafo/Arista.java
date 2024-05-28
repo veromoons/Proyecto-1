@@ -7,9 +7,9 @@ package pruebagrafo;
  */
 public class Arista {
     
-    char destino;
+    int destino;
 
-    public Arista(char d) {
+    public Arista(int d) {
         this.destino = d;
     }
     
