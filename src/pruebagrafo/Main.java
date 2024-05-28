@@ -21,9 +21,18 @@ public class Main {
         };
 
         nuevoGrafo.crearGrafo(sopaPrueba);
-
-
-
+        
+        //prueba de si se anade bien todo al grafo
+        for (int i = 0; i < 16; i++) {
+            Vertice vertice = nuevoGrafo.getListaVertices()[i];
+            System.out.print("Vertice " + vertice.getNumVertice() + " (" + vertice.getLetra() + "): ");
+            Nodo aux = vertice.getListaAdy().primero();
+            while (aux != null) {                       //iteramos en la lista de adyacentes (en los nodos que contienen aristas que son a su vez el numero del vertice adyacente o destino y la letra del mismo),
+                System.out.print(aux.getInfo().getLetraDestino() + " "); 
+                aux = aux.getNext();
+            }
+            System.out.println();
+        }
     }
+   }
 
-}

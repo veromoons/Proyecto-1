@@ -20,10 +20,10 @@ public class Lista {
     public Nodo buscarUltimo(){
 
         Nodo aux = first;
-        if (first==ultimo()){
+        if (primero()==null){
             return null;
         }
-        while(aux.getNext()!=ultimo()){
+        while(aux.getNext()!=null){
                 aux=aux.getNext();
         }
         return aux;

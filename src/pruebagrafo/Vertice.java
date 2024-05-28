@@ -18,17 +18,17 @@ public class Vertice {
     }
 
     /**
-     * @return the id
+     * @return the numVertice
      */
-    public int setNumVertice() {
+    public int getNumVertice() {
         return numVertice;
     }
 
     /**
-     * @param id the id to set
+     * @param numVertice the numVertice to set
      */
-    public void setNumVertice(int num) {
-        this.numVertice = num;
+    public void setNumVertice(int numVertice) {
+        this.numVertice = numVertice;
     }
 
     /**
@@ -51,8 +51,16 @@ public class Vertice {
     public Lista getListaAdy() {
         return listaAdy;
     }
+
+    /**
+     * @param listaAdy the listaAdy to set
+     */
+    public void setListaAdy(Lista listaAdy) {
+        this.listaAdy = listaAdy;
+    }
+
     
     
-    
-    
+
 }
+    

@@ -24,16 +24,32 @@ public class Grafo {
         numVertices++;                      //las posiciones entonces de listaVertices va de 0 al 15 para manejar crearGrafo tipo matriz con i y j
     }
     
+    public boolean existeArista(int a, int b){
+        Nodo aux = this.listaVertices[a].getListaAdy().primero();
+        boolean encontrado=false;
+        while(aux!=null && encontrado==false){
+            if (b==aux.getInfo().getDestino()){
+                encontrado=true;
+            }else{
+                encontrado=false;
+            }
+            aux=aux.getNext();
+        }
+        return encontrado;
+    }
+    
     public void agregarArista(int origen, int destino){
-         if (origen < 0 || origen >= numVertices || destino < 0 || destino >= numVertices) {
+         if (origen < 0 || origen >= numVertices || destino < 0 || destino >= numVertices) { //ahora q lo veo es medio innecesario idk
             throw new IllegalArgumentException("Uno o ambos vértices no existen.");
         }
-         
-        Arista ab = new Arista(origen);
-        Arista ba = new Arista(destino);
-        listaVertices[origen].getListaAdy().preinsertarPrimero(ab);
-        listaVertices[destino].getListaAdy().preinsertarPrimero(ba);        //se preinserta en la lista ya que sgeun el libro: La inserción se hace como primer nodo para que el tiempo sea constante, O(1).
         
+        if (existeArista(origen,destino)==false){
+            
+            Arista ab = new Arista(destino, this.listaVertices[destino].getLetra());
+            Arista ba = new Arista(origen, this.listaVertices[origen].getLetra());
+            listaVertices[origen].getListaAdy().preinsertarPrimero(ab);
+            listaVertices[destino].getListaAdy().preinsertarPrimero(ba);        //se preinserta en la lista ya que sgeun el libro: La inserción se hace como primer nodo para que el tiempo sea constante, O(1)
+        }
     }
     
     public void crearGrafo(char[][] tableroLetras) {
