@@ -52,16 +52,19 @@ public class ListaSimple {
         }
         iN++;   
     }
-    public void imprimir_lista(){
+    public String imprimir_lista(){
+        String imprimir = "";
         if (this.iN == 1){
-            System.out.println(getFirst().getInfo());}
+            imprimir += getFirst().getInfo() + "\n";
+        }
         else{
             NodoListaSimple temp = getFirst();
             while (temp != null){
-            System.out.println(temp.getInfo());
+            imprimir += temp.getInfo() + "\n";
             temp = temp.getNext();
             }
     }
+        return imprimir;
     }
     
     
