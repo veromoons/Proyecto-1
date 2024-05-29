@@ -105,7 +105,9 @@ public class Ventana1 extends javax.swing.JFrame {
         LeerTxt txt = new LeerTxt();
         txt.crearLista(abre);
         txt.crearArray(abre);
-        
+        Ventana2 v2 = new Ventana2(txt.getDic());
+        this.setVisible(false);
+        v2.setVisible(true);
     }//GEN-LAST:event_escojerarchivoActionPerformed
 
     /**

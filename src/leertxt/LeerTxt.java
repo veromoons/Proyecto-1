@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
+import pruebagrafo.Diccionario;
 import pruebagrafo.ListaSimple;
 
 /**
@@ -16,6 +17,7 @@ import pruebagrafo.ListaSimple;
  */
 public class LeerTxt {
     private ListaSimple lista;
+    private Diccionario dic;
     private char [][] array;
     
     
@@ -37,12 +39,15 @@ public void crearLista(File abre){
                         lista.insertarUltimo(palabras_split[i]);  
             }
                 br.close();
-                JOptionPane.showMessageDialog(null, "Informacion guardada");
+                //JOptionPane.showMessageDialog(null, "Informacion guardada");
                 //lista.imprimir_lista(); para probar si se estan guardando las palabras
+                // guardar diccionario
+                Diccionario dic = new Diccionario(this.lista);
+                setDic(dic);
             }
         }
        catch (Exception err){
-           JOptionPane.showMessageDialog(null, "error");
+           JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No es posible guardar las palabras");
        }
         
     }
@@ -75,12 +80,12 @@ public void crearLista(File abre){
                           
             }
                 br.close();
-                JOptionPane.showMessageDialog(null, "Informacion guardada");
+                //JOptionPane.showMessageDialog(null, "Informacion guardada");
                 
             }
         
        catch (Exception err){
-           JOptionPane.showMessageDialog(null, "error");
+           JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No fue posible guardar las letras.");
        }
         
     }
@@ -116,6 +121,14 @@ public void crearLista(File abre){
     }
 
     public LeerTxt() {
+    }
+
+    public void setDic(Diccionario dic) {
+        this.dic = dic;
+    }
+
+    public Diccionario getDic() {
+        return dic;
     }
 
 
