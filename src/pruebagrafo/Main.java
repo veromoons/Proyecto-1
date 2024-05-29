@@ -10,14 +10,17 @@ public class Main {
     public static Grafo nuevoGrafo = new Grafo(16);
 
     public static void main(String[] args) {
+       
+        
+        String[] palabrasPrueba={"LOL", "AZUL", "PETALO", "ROSA", "MORA", "AMARILLO"};
 
         
         //prueba para el metodo crearGrafo, comentando agregarVertice al final
         char[][] sopaPrueba = { 
-            {'A', 'B', 'C', 'D'}, 
-            {'E', 'F', 'G', 'H'}, 
-            {'I', 'J', 'K', 'L'}, 
-            {'M', 'N', 'O', 'P'} 
+            {'L', 'R', 'O', 'S'}, 
+            {'E', 'O', 'L', 'A'}, 
+            {'I', 'M', 'R', 'A'}, 
+            {'M', 'O', 'O', 'P'} 
         };
 
         nuevoGrafo.crearGrafo(sopaPrueba);

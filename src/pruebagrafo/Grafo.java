@@ -19,8 +19,8 @@ public class Grafo {
     
     public void agregarVertice(char letra){             
         Vertice v = new Vertice(letra); 
-        v.setNumVertice(numVertices);               //se hizo un id numerico para c/vertice (del 0 al 15)
-        listaVertices[numVertices] = v;
+        v.setNumVertice(getNumVertices());               //se hizo un id numerico para c/vertice (del 0 al 15)
+        listaVertices[getNumVertices()] = v;
         numVertices++;                      //las posiciones entonces de listaVertices va de 0 al 15 para manejar crearGrafo tipo matriz con i y j
     }
     
@@ -39,7 +39,7 @@ public class Grafo {
     }
     
     public void agregarArista(int origen, int destino){
-         if (origen < 0 || origen >= numVertices || destino < 0 || destino >= numVertices) { //ahora q lo veo es medio innecesario idk
+         if (origen < 0 || origen >= getNumVertices() || destino < 0 || destino >= getNumVertices()) { //ahora q lo veo es medio innecesario idk
             throw new IllegalArgumentException("Uno o ambos vértices no existen.");
         }
         
@@ -124,6 +124,13 @@ public class Grafo {
      */
     public void setListaVertices(Vertice[] listaVertices) {
         this.listaVertices = listaVertices;
+    }
+
+    /**
+     * @return the numVertices
+     */
+    public int getNumVertices() {
+        return numVertices;
     }
     
     
