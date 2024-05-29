@@ -1,6 +1,9 @@
 
 package pruebagrafo;
 
+import Interfaces.Ventana1;
+
+
 /**
  *
  * @author verol
@@ -13,6 +16,7 @@ public class Main {
 
         
         //prueba para el metodo crearGrafo, comentando agregarVertice al final
+
         char[][] sopaPrueba = { 
             {'A', 'B', 'C', 'D'}, 
             {'E', 'F', 'G', 'H'}, 
@@ -22,6 +26,9 @@ public class Main {
 
         nuevoGrafo.crearGrafo(sopaPrueba);
 
+        
+        Ventana1 v1 = new Ventana1();
+        v1.setVisible(true);
 
 
     }
