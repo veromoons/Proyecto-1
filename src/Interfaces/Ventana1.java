@@ -37,6 +37,9 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         escojerarchivo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,13 +69,28 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        escojerarchivo.setText("Escojer archivo");
+        escojerarchivo.setFont(new java.awt.Font("Eras Medium ITC", 0, 12)); // NOI18N
+        escojerarchivo.setText("Cargar archivo");
         escojerarchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 escojerarchivoActionPerformed(evt);
             }
         });
-        jPanel4.add(escojerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 140, 40));
+        jPanel4.add(escojerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 140, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("SOPA DE LETRAS");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, -20, 220, 110));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Presione el botón para cargar el archivo con el diccionario y las palabras");
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+
+        jLabel1.setBackground(new java.awt.Color(153, 204, 255));
+        jLabel1.setForeground(new java.awt.Color(153, 204, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\berna\\OneDrive\\Desktop\\Imagen1.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 460));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -87,6 +105,7 @@ public class Ventana1 extends javax.swing.JFrame {
         LeerTxt txt = new LeerTxt();
         txt.crearLista(abre);
         txt.crearArray(abre);
+        
     }//GEN-LAST:event_escojerarchivoActionPerformed
 
     /**
@@ -126,6 +145,9 @@ public class Ventana1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton escojerarchivo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

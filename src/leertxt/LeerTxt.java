@@ -38,7 +38,7 @@ public void crearLista(File abre){
             }
                 br.close();
                 JOptionPane.showMessageDialog(null, "Informacion guardada");
-                lista.imprimir_lista();
+                //lista.imprimir_lista(); para probar si se estan guardando las palabras
             }
         }
        catch (Exception err){
@@ -68,7 +68,7 @@ public void crearLista(File abre){
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++){
                         this.array[i][j] = letras_split[cont].charAt(0);
-                        //System.out.println(letras_split[cont]);
+                        //System.out.println(letras_split[cont]); para probar si se estan guardando las letras
                         cont ++;
                     }
                 }
