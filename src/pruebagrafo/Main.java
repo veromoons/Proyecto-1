@@ -1,6 +1,8 @@
 
 package pruebagrafo;
 
+
+
 /**
  *
  * @author verol
@@ -16,6 +18,7 @@ public class Main {
 
         
         //prueba para el metodo crearGrafo, comentando agregarVertice al final
+
         char[][] sopaPrueba = { 
             {'L', 'R', 'O', 'S'}, 
             {'E', 'O', 'L', 'A'}, 
@@ -36,6 +39,10 @@ public class Main {
             }
             System.out.println();
         }
+
+
+      
+
     }
    }
 
