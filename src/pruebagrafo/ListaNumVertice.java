@@ -9,20 +9,20 @@ package pruebagrafo;
  *
  * @author verol
  */
-public class ListaPrueba {
+public class ListaNumVertice {
     //Atributos
-    private NodoPrueba first;
+    private NodoNumVertice first;
     private int iN;
 
     //Constructor
-    public ListaPrueba() {             
+    public ListaNumVertice() {             
         this.first = null;
         this.iN = 0;
     }
     
-    public NodoPrueba buscarUltimo(){
+    public NodoNumVertice buscarUltimo(){
 
-        NodoPrueba aux = first;
+        NodoNumVertice aux = first;
         if (primero()==null){
             return null;
         }
@@ -40,24 +40,24 @@ public class ListaPrueba {
         }
     }
 
-    public NodoPrueba primero(){ 
+    public NodoNumVertice primero(){ 
         return first;
     }
 
-    public NodoPrueba ultimo(){
+    public NodoNumVertice ultimo(){
         return null;
     }
     
     public void preinsertarPrimero(int numV){  //se le pasa la arista (que es la posicion del siguiente)
-        NodoPrueba nuevo = new NodoPrueba(numV);                 
+        NodoNumVertice nuevo = new NodoNumVertice(numV);                 
         nuevo.setNext(first);               
         first=nuevo;
         iN++;
     }
     
     public void insertarUltimo(int numV){              
-        NodoPrueba ultimo = buscarUltimo(); 
-        NodoPrueba nuevo = new NodoPrueba(numV); 
+        NodoNumVertice ultimo = buscarUltimo(); 
+        NodoNumVertice nuevo = new NodoNumVertice(numV); 
         if (esVacia()) {
             first = nuevo;
         } else {
@@ -66,11 +66,11 @@ public class ListaPrueba {
         iN++;   
     }
     
-    public NodoPrueba eliminarPrimero(){
+    public NodoNumVertice eliminarPrimero(){
         if (esVacia()) {
             return null;
         }
-        NodoPrueba aux= null;
+        NodoNumVertice aux= null;
         aux = first;
         first = aux.getNext();
         aux.setNext(null);
@@ -88,14 +88,14 @@ public class ListaPrueba {
     /**
      * @return the first
      */
-    public NodoPrueba getFirst() {
+    public NodoNumVertice getFirst() {
         return first;
     }
 
     /**
      * @param first the first to set
      */
-    public void setFirst(NodoPrueba first) {
+    public void setFirst(NodoNumVertice first) {
         this.first = first;
     }
 

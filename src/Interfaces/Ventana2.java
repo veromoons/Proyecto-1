@@ -5,6 +5,7 @@
 package Interfaces;
 
 import pruebagrafo.Diccionario;
+import pruebagrafo.Grafo;
 
 /**
  *
@@ -12,14 +13,18 @@ import pruebagrafo.Diccionario;
  */
 public class Ventana2 extends javax.swing.JFrame {
     static Diccionario dic;
+    static Grafo grafo;
     /**
      * Creates new form Ventana2
      */
-    public Ventana2(Diccionario dic) {
+    public Ventana2(Diccionario dic, Grafo grafo) {
         initComponents();
         this.setLocationRelativeTo(null); 
         this.setResizable(true);
         this.dic = dic;
+        this.grafo = grafo;
+        tablero.setText(grafo.mostrarGrafo());
+        diccionario.setText(this.dic.getDiccionario().imprimir_lista());
         
     }
 
@@ -38,7 +43,10 @@ public class Ventana2 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         diccionario = new javax.swing.JTextArea();
-        mostrardiccionario = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablero = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        openbuscarpalabras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(730, 490));
@@ -47,8 +55,9 @@ public class Ventana2 extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(730, 490));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Tablero");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("TABLERO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("DICCIONARIO");
@@ -56,27 +65,39 @@ public class Ventana2 extends javax.swing.JFrame {
 
         diccionario.setColumns(20);
         diccionario.setRows(5);
+        diccionario.setFocusable(false);
         jScrollPane1.setViewportView(diccionario);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, 170));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, 180));
 
-        mostrardiccionario.setText("Mostrar diccionario");
-        mostrardiccionario.addActionListener(new java.awt.event.ActionListener() {
+        tablero.setColumns(20);
+        tablero.setRows(5);
+        jScrollPane2.setViewportView(tablero);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 220, 180));
+
+        jButton1.setText("Buscar 1 palabra");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, -1, -1));
+
+        openbuscarpalabras.setText("Buscar todas las palabras");
+        openbuscarpalabras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrardiccionarioActionPerformed(evt);
+                openbuscarpalabrasActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrardiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
+        jPanel1.add(openbuscarpalabras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mostrardiccionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrardiccionarioActionPerformed
+    private void openbuscarpalabrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openbuscarpalabrasActionPerformed
         // TODO add your handling code here:
-        diccionario.setText(this.dic.getDiccionario().imprimir_lista());
-    }//GEN-LAST:event_mostrardiccionarioActionPerformed
+        Ventana3 v3 = new Ventana3(grafo);
+        v3.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_openbuscarpalabrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,7 +129,7 @@ public class Ventana2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana2(dic).setVisible(true);
+                new Ventana2(dic, grafo).setVisible(true);
             }
         });
     }
@@ -116,10 +137,13 @@ public class Ventana2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextArea diccionario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton mostrardiccionario;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton openbuscarpalabras;
+    private javax.swing.JTextArea tablero;
     // End of variables declaration//GEN-END:variables
 }

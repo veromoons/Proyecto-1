@@ -7,11 +7,16 @@ package Interfaces;
 import java.io.File;
 import javax.swing.JFileChooser;
 import leertxt.LeerTxt;
+import static pruebagrafo.Main.nuevoGrafo;  // de aqui a abajo nuevo
+import pruebagrafo.Nodo;
+import pruebagrafo.Vertice;
+
 
 /**
  *
  * @author berna
  */
+
 public class Ventana1 extends javax.swing.JFrame {
 
     /**
@@ -39,7 +44,6 @@ public class Ventana1 extends javax.swing.JFrame {
         escojerarchivo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,12 +90,6 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel3.setText("Presione el botón para cargar el archivo con el diccionario y las palabras");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(153, 204, 255));
-        jLabel1.setForeground(new java.awt.Color(153, 204, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\berna\\OneDrive\\Desktop\\Imagen1.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 460));
-
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         pack();
@@ -105,9 +103,26 @@ public class Ventana1 extends javax.swing.JFrame {
         LeerTxt txt = new LeerTxt();
         txt.crearLista(abre);
         txt.crearArray(abre);
-        Ventana2 v2 = new Ventana2(txt.getDic());
+        
+        
+        nuevoGrafo.crearGrafo(txt.getArray());
+        nuevoGrafo.mostrarGrafo();
+        
+        Ventana2 v2 = new Ventana2(txt.getDic(), nuevoGrafo);
         this.setVisible(false);
         v2.setVisible(true);
+        
+        //prueba de si se anade bien todo al grafo
+//        for (int i = 0; i < 16; i++) {
+//            Vertice vertice = nuevoGrafo.getListaVertices()[i];
+//            System.out.print("Vertice " + vertice.getNumVertice() + " (" + vertice.getLetra() + "): ");
+//            Nodo aux = vertice.getListaAdy().primero();
+//            while (aux != null) {                       //iteramos en la lista de adyacentes (en los nodos que contienen aristas que son a su vez el numero del vertice adyacente o destino y la letra del mismo),
+//                System.out.print(aux.getInfo().getLetraDestino() + " "); 
+//                aux = aux.getNext();
+//            }
+//            System.out.println();
+//        }
     }//GEN-LAST:event_escojerarchivoActionPerformed
 
     /**
@@ -147,7 +162,6 @@ public class Ventana1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton escojerarchivo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

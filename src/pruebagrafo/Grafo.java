@@ -2,6 +2,7 @@
 package pruebagrafo;
 
 
+
 /**
  *
  * @author verol
@@ -104,7 +105,7 @@ public class Grafo {
         return false;
     }
 
-    private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) {
+    private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) {  //VA EN CLASE SOLUCION
         if (indice == palabra.length()) {
             return true;
         }
@@ -121,7 +122,25 @@ public class Grafo {
         visitado[i][j] = false;
         return false;
     }
-        
+    public String mostrarGrafo(){
+        String tablero = "";
+        for (int i = 0; i < 4; i++) {
+            tablero += "  " + this.listaVertices[i].getLetra() + "  ";
+        }
+        tablero += "\n\n" ;
+        for (int i = 4; i < 8; i++) {
+            tablero += "  " + this.listaVertices[i].getLetra() + "  ";
+        }
+        tablero += "\n\n";
+        for (int i = 8; i < 12; i++) {
+            tablero += "  " + this.listaVertices[i].getLetra() + "  ";
+        }
+        tablero += "\n\n";
+        for (int i = 12; i < 16; i++) {
+            tablero += "  " + this.listaVertices[i].getLetra() + "  ";
+        }
+        return tablero;    
+    }    
    
     
 

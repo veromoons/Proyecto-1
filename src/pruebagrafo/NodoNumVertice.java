@@ -9,11 +9,11 @@ package pruebagrafo;
  *
  * @author verol
  */
-public class NodoPrueba {
+public class NodoNumVertice {
     private int info;
-    private NodoPrueba next;
+    private NodoNumVertice next;
     
-    public NodoPrueba (int info) { 
+    public NodoNumVertice (int info) { 
         this.info = info; 
         this.next = null; 
     }
@@ -21,14 +21,14 @@ public class NodoPrueba {
     /**
      * @return the next
      */
-    public NodoPrueba getNext() {
+    public NodoNumVertice getNext() {
         return next;
     }
 
     /**
      * @param next the next to set
      */
-    public void setNext(NodoPrueba next) {
+    public void setNext(NodoNumVertice next) {
         this.next = next;
     }
 
