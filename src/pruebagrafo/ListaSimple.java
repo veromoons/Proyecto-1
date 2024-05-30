@@ -80,6 +80,18 @@ public class ListaSimple {
         return aux;
     }
     
+    public NodoListaSimple eliminarPrimero(){
+        if (esVacia()) {
+            return null;
+        }
+        NodoListaSimple aux= null;
+        aux = first;
+        first = aux.getNext();
+        aux.setNext(null);
+        iN--;
+        return aux;
+    }
+    
     
     
     

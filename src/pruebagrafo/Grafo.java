@@ -104,7 +104,7 @@ public class Grafo {
         return false;
     }
 
-    private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) {
+    private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) {  //VA EN CLASE SOLUCION
         if (indice == palabra.length()) {
             return true;
         }

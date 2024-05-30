@@ -56,6 +56,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
         diccionario.setColumns(20);
         diccionario.setRows(5);
+        diccionario.setFocusable(false);
         jScrollPane1.setViewportView(diccionario);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, 170));
@@ -66,7 +67,7 @@ public class Ventana2 extends javax.swing.JFrame {
                 mostrardiccionarioActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrardiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
+        jPanel1.add(mostrardiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 410));
 
