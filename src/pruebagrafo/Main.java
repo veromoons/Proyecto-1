@@ -1,9 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pruebagrafo;
+
+
+import Interfaces.Ventana1;
+
+
+import leertxt.LeerTxt;
+import Interfaces.Ventana1;
+
+
 
 /**
  *
@@ -11,8 +16,43 @@ package pruebagrafo;
  */
 public class Main {
 
+    public static Grafo nuevoGrafo = new Grafo(16);
+
     public static void main(String[] args) {
+       
+        //util para pruebas para dsf y bsf
+        String[] palabrasPrueba={"LOL", "AZUL", "PETALO", "ROSA", "MORA", "AMARILLO"};
+
+        char[][] sopaPrueba = { 
+            {'L', 'R', 'O', 'S'}, 
+            {'E', 'O', 'L', 'A'}, 
+            {'I', 'M', 'R', 'A'}, 
+            {'M', 'O', 'O', 'P'} 
+        };
         
-    }
+
+        //prueba de si se anade bien todo al grafo
+        /*for (int i = 0; i < 16; i++) {
+            Vertice vertice = nuevoGrafo.getListaVertices()[i];
+            System.out.print("Vertice " + vertice.getNumVertice() + " (" + vertice.getLetra() + "): ");
+            Nodo aux = vertice.getListaAdy().primero();
+            while (aux != null) {                       //iteramos en la lista de adyacentes (en los nodos que contienen aristas que son a su vez el numero del vertice adyacente o destino y la letra del mismo),
+                System.out.print(aux.getInfo().getLetraDestino() + " "); 
+                aux = aux.getNext();
+            }
+            System.out.println();*/
+        
+
+
     
+
+    
+   
+
+         Ventana1 v1 = new Ventana1();
+         v1.setVisible(true);
+         
+    }
 }
+
+
