@@ -1,6 +1,8 @@
 
 package pruebagrafo;
 
+import Interfaces.Ventana1;
+
 
 
 /**
@@ -41,7 +43,8 @@ public class Main {
         }
 
 
-      
+      Ventana1 v1 = new Ventana1();
+      v1.setVisible(true);
 
     }
    }
