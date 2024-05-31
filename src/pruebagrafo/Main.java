@@ -1,14 +1,7 @@
 
 package pruebagrafo;
 
-
 import Interfaces.Ventana1;
-
-
-import leertxt.LeerTxt;
-import Interfaces.Ventana1;
-
-
 
 /**
  *
@@ -16,19 +9,49 @@ import Interfaces.Ventana1;
  */
 public class Main {
 
-    public static Grafo nuevoGrafo = new Grafo(16);
+    public static Grafo grafo = new Grafo(16);
 
     public static void main(String[] args) {
-       
-        //util para pruebas para dsf y bsf
-        String[] palabrasPrueba={"LOL", "AZUL", "PETALO", "ROSA", "MORA", "AMARILLO"};
 
-        char[][] sopaPrueba = { 
-            {'L', 'R', 'O', 'S'}, 
-            {'E', 'O', 'L', 'A'}, 
-            {'I', 'M', 'R', 'A'}, 
-            {'M', 'O', 'O', 'P'} 
-        };
+        Ventana1 v1 = new Ventana1();
+        v1.setVisible(true);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+//        //util para pruebas para dsf y bsf
+//        String[] palabrasPrueba={"LOL", "AZUL", "PETALO", "ROSA", "MORA", "AMARILLO"};
+//
+//        char[][] sopaPrueba = { 
+//            {'L', 'R', 'O', 'S'}, 
+//            {'E', 'O', 'L', 'A'}, 
+//            {'I', 'M', 'R', 'A'}, 
+//            {'M', 'O', 'O', 'P'} 
+//        };
         
 
         //prueba de si se anade bien todo al grafo
@@ -41,16 +64,7 @@ public class Main {
                 aux = aux.getNext();
             }
             System.out.println();*/
-        
-
-
-    
-
-    
-   
-
-         Ventana1 v1 = new Ventana1();
-         v1.setVisible(true);
+       
          
     }
 }

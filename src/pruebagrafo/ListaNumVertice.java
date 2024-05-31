@@ -78,6 +78,23 @@ public class ListaNumVertice {
         return aux;
     }
     
+    public void destructor(){
+        NodoNumVertice temp;              
+        while (first != null){
+            temp = first;
+            first = first.getNext();
+            temp.setNext(null);
+        }
+        iN=0;
+    }
+    
+    public void recorrer(){
+        NodoNumVertice aux=first;
+        while(aux!=null){          
+            System.out.print(aux.getInfo()+", ");
+            aux=aux.getNext();
+        }
+    }
 
     
     

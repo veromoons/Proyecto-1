@@ -45,7 +45,7 @@ public class Ventana2 extends javax.swing.JFrame {
         diccionario = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablero = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        buscarPalabraNuevaBFS = new javax.swing.JButton();
         openbuscarpalabras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,17 +72,18 @@ public class Ventana2 extends javax.swing.JFrame {
 
         tablero.setColumns(20);
         tablero.setRows(5);
+        tablero.setFocusable(false);
         jScrollPane2.setViewportView(tablero);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 220, 180));
 
-        jButton1.setText("Buscar 1 palabra");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buscarPalabraNuevaBFS.setText("Buscar palabra nueva");
+        buscarPalabraNuevaBFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buscarPalabraNuevaBFSActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, -1, -1));
+        jPanel1.add(buscarPalabraNuevaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, -1, -1));
 
         openbuscarpalabras.setText("Buscar todas las palabras");
         openbuscarpalabras.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +91,7 @@ public class Ventana2 extends javax.swing.JFrame {
                 openbuscarpalabrasActionPerformed(evt);
             }
         });
-        jPanel1.add(openbuscarpalabras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
+        jPanel1.add(openbuscarpalabras, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 410));
 
@@ -98,15 +99,16 @@ public class Ventana2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openbuscarpalabrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openbuscarpalabrasActionPerformed
-        // TODO add your handling code here:
-        Ventana3 v3 = new Ventana3(grafo);
-        v3.setVisible(true);
-        this.setVisible(false);
+             
+        //AQUI HACER LLAMADA A DFS PERO QUE busque del diccionario !!!!
+        
     }//GEN-LAST:event_openbuscarpalabrasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
+        Ventana3 v3=new Ventana3(grafo);
+        v3.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_buscarPalabraNuevaBFSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +146,9 @@ public class Ventana2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarPalabraNuevaBFS;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextArea diccionario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

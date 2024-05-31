@@ -64,6 +64,14 @@ public class Lista {
         iN++;   
     }
     
+    public void recorrer(){
+        Nodo aux=first;
+        while(aux!=null){          
+            System.out.print(aux.getInfo()+", ");
+            aux=aux.getNext();
+        }
+    }
+    
     
     
     

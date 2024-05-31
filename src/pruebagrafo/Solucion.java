@@ -6,89 +6,94 @@ package pruebagrafo;
  * @author verol
  */
 public class Solucion {
-    
-        //prueba BSF
-//    public void bfs(Grafo grafo, String palabra, int verticeInicial){
-//        boolean[] visitados = new boolean[grafo.getNumVertices()]; //lista de F F F F al inicio para c/vertice
-//        ListaNumVertice cola = new ListaNumVertice();  //se va a guardar el vertice actual inicialmente
-//       
-//        
-//        for (int v=0; v<grafo.getNumVertices(); v++){
-//            if (grafo.getListaVertices()[v].getLetra()==palabra.charAt(0)){
-//                visitados[v]=true;  //el inicial ya se marca visitado
-//                cola.insertarUltimo(v);  //se inserta este en el que nos fijaremos
-//                while (!cola.esVacia()){
-//                    
-//                    NodoNumVertice vert = cola.eliminarPrimero();
-//                    for (int adyacente: )
-//                        
-//                }
-//               
-//           }
-//        }   
-//    }
+     
+    public boolean bfs(String palabra, int verticeInicial,Grafo grafo){   
+        boolean encontrada= false;
+        for (int v = 0; v < grafo.getNumVertices(); v++) {
+            boolean[] visitados = new boolean[grafo.getNumVertices()]; // Lista de visitados reiniciada para cada vértice inicial
+            ListaNumVertice cola = new ListaNumVertice(); // Cola para los adyacentes a evaluar
+            ListaNumVertice colaAux = new ListaNumVertice(); // Cola para la secuencia de la palabra encontrada
+            int posicionLetra = 0; // Posición de la letra actual en la palabra buscada
 
-//    public void bfs(Grafo grafo, String palabra) {
-//        boolean palabraEncontrada = false;
-//        
-//        for (int v = 0; v < grafo.getNumVertices(); v++) {
-//            if (grafo.getListaVertices()[v].getLetra() == palabra.charAt(0)) {
-//                boolean[] visitados = new boolean[grafo.getNumVertices()]; // Reset visitados para cada nueva búsqueda
-//                if (buscarPalabra(grafo, palabra, v, visitados)) {
-//                    palabraEncontrada = true;
-//                    break;
-//                }
-//            }
-//        }
-//        
-//        if (palabraEncontrada) {
-//            System.out.println("La palabra " + palabra + " fue encontrada en el grafo.");
-//        } else {
-//            System.out.println("La palabra " + palabra + " no fue encontrada en el grafo.");
-//        }
-//    }
-//
-//    private boolean buscarPalabra(Grafo grafo, String palabra, int verticeInicial, boolean[] visitados) {
-//        ListaNumVertice cola = new ListaNumVertice();
-//        cola.insertarUltimo(verticeInicial);
-//        visitados[verticeInicial] = true;
-//        
-//        int pos = 1;  // Posición en la palabra que estamos buscando
-//        while (!cola.esVacia()) {
-//            NodoNumVertice actual = cola.eliminarPrimero();
-//            int numVertice = actual.getInfo();
-//            
-//            if (pos == palabra.length()) {
-//                return true;  // Si se encontró toda la palabra
-//            }
-//
-//            Nodo aux = grafo.getListaVertices()[numVertice].getListaAdy().primero();
-//            while (aux != null) {
-//                int adyacente = aux.getInfo().getDestino();
-//                
-//                if (!visitados[adyacente] && grafo.getListaVertices()[adyacente].getLetra() == palabra.charAt(pos)) {
-//                    cola.insertarUltimo(adyacente);
-//                    visitados[adyacente] = true;
-//                    pos++;
-//                    
-//                    // Verificar si se encontró toda la palabra después de cada inserción exitosa
-//                    if (pos == palabra.length()) {
-//                        return true;
-//                    }
-//                }
-//                
-//                aux = aux.getNext();
-//            }
-//        }
-//        return false;  // Si no se encontró la palabra
-//    }
+            cola.preinsertarPrimero(v); // Añadir el vértice inicial a la cola
+
+            while (colaAux.getiN() != palabra.length() && cola.getiN() != 0) {
+                NodoNumVertice aux = cola.getFirst();
+
+              //  System.out.println("aux es: " + aux.getInfo());
+              //  System.out.println(grafo.getListaVertices()[aux.getInfo()]);
+
+                if (grafo.getListaVertices()[aux.getInfo()].getLetra() == palabra.charAt(posicionLetra)) {
+                    visitados[aux.getInfo()] = true; 
+                    posicionLetra++; 
+                    colaAux.preinsertarPrimero(aux.getInfo()); // Añadir el vértice actual a la secuencia
+                    cola.destructor(); // Vaciar la cola para los adyacentes del vértice actual
+
+                    Nodo pAux = grafo.getListaVertices()[aux.getInfo()].getListaAdy().getFirst(); // Primer adyacente del vértice actual
+                   // System.out.print("adyacentes en if: ");
+                    //grafo.getListaVertices()[aux.getInfo()].getListaAdy().recorrer();
+
+                    for (int ady = 0; ady < grafo.getListaVertices()[aux.getInfo()].getListaAdy().getiN(); ady++) {
+                        if (!visitados[pAux.getInfo().getDestino()]) {
+                            cola.preinsertarPrimero(pAux.getInfo().getDestino()); // Añadir los adyacentes a la cola
+                        }
+                        pAux = pAux.getNext(); // Siguiente adyacente
+                    }
+                   // System.out.println("entro a if");
+                } else {
+                   // System.out.println("entro a else");
+                    //cola.recorrer();
+                    cola.eliminarPrimero(); // Eliminar el primer elemento de la cola si no coincide con la letra actual
+                }
+                //System.out.println(colaAux.getiN() == palabra.length());
+            }
+
+            if (colaAux.getiN() == palabra.length()) {
+                encontrada=true;
+               // System.out.println("Palabra encontrada");
+                //colaAux.recorrer();
+                break;
+            } else {
+                encontrada=false;
+               // System.out.println("Palabra no encontrada");
+            }
+
+        }
+        return encontrada;
     }
     
+     public boolean buscarPalabraDFS(String palabra) {
+        boolean[][] visitado = new boolean[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (dfs(i, j, palabra, 0, visitado)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) { 
+        if (indice == palabra.length()) {
+            return true;
+        }
+        if (i < 0 || i >= 4 || j < 0 || j >= 4 || visitado[i][j] ||  Main.grafo.getListaVertices()[i * 4 + j].getLetra() != palabra.charAt(indice)) {  //en recursividad, se trabaja con variables locales, cada llamada tiene acceso a las variables locales definidas en el ámbito de esa llamada
+            return false;
+        }
+        visitado[i][j] = true;
+        int[][] direcciones = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+        for (int[] d : direcciones) {
+            if (dfs(i + d[0], j + d[1], palabra, indice + 1, visitado)) {
+                return true;
+            }
+        }
+        visitado[i][j] = false;
+        return false;
+    }
     
-
-
-//       String palabra= "hola";
-//        for(int i=0; i<palabra.length(); i++){
-//            System.out.println(palabra.charAt(i));
-//        }
+}
+        
+        
+        
+   

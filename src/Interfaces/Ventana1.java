@@ -7,9 +7,7 @@ package Interfaces;
 import java.io.File;
 import javax.swing.JFileChooser;
 import leertxt.LeerTxt;
-import static pruebagrafo.Main.nuevoGrafo;  // de aqui a abajo nuevo
-import pruebagrafo.Nodo;
-import pruebagrafo.Vertice;
+import static pruebagrafo.Main.grafo;
 
 
 /**
@@ -41,7 +39,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        escojerarchivo = new javax.swing.JButton();
+        escogerarchivo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -73,29 +71,29 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        escojerarchivo.setFont(new java.awt.Font("Eras Medium ITC", 0, 12)); // NOI18N
-        escojerarchivo.setText("Cargar archivo");
-        escojerarchivo.addActionListener(new java.awt.event.ActionListener() {
+        escogerarchivo.setFont(new java.awt.Font("Eras Medium ITC", 0, 12)); // NOI18N
+        escogerarchivo.setText("Cargar archivo");
+        escogerarchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                escojerarchivoActionPerformed(evt);
+                escogerarchivoActionPerformed(evt);
             }
         });
-        jPanel4.add(escojerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 140, 30));
+        jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 140, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("SOPA DE LETRAS");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, -20, 220, 110));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 220, 110));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Presione el botón para cargar el archivo con el diccionario y las palabras");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void escojerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escojerarchivoActionPerformed
+    private void escogerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerarchivoActionPerformed
         // TODO add your handling code here:
         JFileChooser file=new JFileChooser();
         file.showOpenDialog(this);
@@ -105,10 +103,10 @@ public class Ventana1 extends javax.swing.JFrame {
         txt.crearArray(abre);
         
         
-        nuevoGrafo.crearGrafo(txt.getArray());
-        nuevoGrafo.mostrarGrafo();
+        grafo.crearGrafo(txt.getArray());
+        grafo.mostrarGrafo();
         
-        Ventana2 v2 = new Ventana2(txt.getDic(), nuevoGrafo);
+        Ventana2 v2 = new Ventana2(txt.getDic(),grafo);
         this.setVisible(false);
         v2.setVisible(true);
         
@@ -123,7 +121,7 @@ public class Ventana1 extends javax.swing.JFrame {
 //            }
 //            System.out.println();
 //        }
-    }//GEN-LAST:event_escojerarchivoActionPerformed
+    }//GEN-LAST:event_escogerarchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +159,7 @@ public class Ventana1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton escojerarchivo;
+    private javax.swing.JButton escogerarchivo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

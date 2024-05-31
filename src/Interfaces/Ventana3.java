@@ -6,6 +6,7 @@ package Interfaces;
 
 import javax.swing.JOptionPane;
 import pruebagrafo.Grafo;
+import pruebagrafo.Solucion;
 
 /**
  *
@@ -33,48 +34,55 @@ public class Ventana3 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablero = new javax.swing.JTextArea();
-        busquedadfs = new javax.swing.JButton();
-        busquedabfs = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        buscarNuevaPalabraBFS = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        palabraABuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablero.setColumns(20);
         tablero.setRows(5);
         jScrollPane1.setViewportView(tablero);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 210, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 210, 210));
 
-        busquedadfs.setText("Búsqueda DFS");
-        busquedadfs.addActionListener(new java.awt.event.ActionListener() {
+        buscarNuevaPalabraBFS.setText("Buscar palabra");
+        buscarNuevaPalabraBFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                busquedadfsActionPerformed(evt);
+                buscarNuevaPalabraBFSActionPerformed(evt);
             }
         });
-        getContentPane().add(busquedadfs, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, -1));
+        jPanel1.add(buscarNuevaPalabraBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
-        busquedabfs.setText("Búsqueda BFS");
-        getContentPane().add(busquedabfs, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+        jLabel1.setText("Palabra a buscar:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+        jPanel1.add(palabraABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 130, -1));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 440));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void busquedadfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedadfsActionPerformed
-        // TODO add your handling code here:
-         String palabraBuscada = JOptionPane.showInputDialog("Ingrese la palabra a buscar:");
-    boolean palabraEncontrada = grafo.buscarPalabraDFS(palabraBuscada);
-    if (palabraEncontrada) {
-        JOptionPane.showMessageDialog(this, "La palabra \"" + palabraBuscada + "\" ha sido encontrada en el tablero.");
-    } else {
-        JOptionPane.showMessageDialog(this, "La palabra \"" + palabraBuscada + "\" no ha sido encontrada en el tablero.");
-    }
-    }//GEN-LAST:event_busquedadfsActionPerformed
+    private void buscarNuevaPalabraBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNuevaPalabraBFSActionPerformed
+        String palabraBuscada = palabraABuscar.getText().toUpperCase();
+        if (palabraBuscada.length()>=3){
+            Solucion solucion = new Solucion();
+            boolean encontrada= solucion.bfs(palabraBuscada,0, grafo);
+            if (encontrada) {
+                JOptionPane.showMessageDialog(this, "La palabra \"" + palabraBuscada + "\" ha sido encontrada en el tablero.");
+            } else {
+                JOptionPane.showMessageDialog(this, "La palabra \"" + palabraBuscada + "\" no ha sido encontrada en el tablero.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"La letra ingresada tiene menos de 3 letras. Ingrese una palabra válida.");
+        }
+    }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,10 +120,11 @@ public class Ventana3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton busquedabfs;
-    private javax.swing.JButton busquedadfs;
+    private javax.swing.JButton buscarNuevaPalabraBFS;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField palabraABuscar;
     private javax.swing.JTextArea tablero;
     // End of variables declaration//GEN-END:variables
 }
