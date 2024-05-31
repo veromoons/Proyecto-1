@@ -11,6 +11,7 @@ import static pruebagrafo.Main.nuevoGrafo;  // de aqui a abajo nuevo
 import pruebagrafo.Nodo;
 import pruebagrafo.Vertice;
 
+
 /**
  *
  * @author berna
@@ -102,11 +103,14 @@ public class Ventana1 extends javax.swing.JFrame {
         LeerTxt txt = new LeerTxt();
         txt.crearLista(abre);
         txt.crearArray(abre);
-        Ventana2 v2 = new Ventana2(txt.getDic());
-        this.setVisible(false);
-        v2.setVisible(true);
+        
         
         nuevoGrafo.crearGrafo(txt.getArray());
+        nuevoGrafo.mostrarGrafo();
+        
+        Ventana2 v2 = new Ventana2(txt.getDic(), nuevoGrafo);
+        this.setVisible(false);
+        v2.setVisible(true);
         
         //prueba de si se anade bien todo al grafo
 //        for (int i = 0; i < 16; i++) {
