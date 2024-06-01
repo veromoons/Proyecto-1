@@ -7,7 +7,7 @@ package pruebagrafo;
  */
 public class Solucion {
      
-    public boolean bfs(String palabra, int verticeInicial,Grafo grafo){   
+    public boolean bfsPorPalabra(String palabra, int verticeInicial,Grafo grafo){   
         boolean encontrada= false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
             boolean[] visitados = new boolean[grafo.getNumVertices()]; // Lista de visitados reiniciada para cada vértice inicial
