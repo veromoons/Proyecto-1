@@ -7,6 +7,7 @@ package pruebagrafo;
  */
 public class Solucion {
      
+
     public boolean bfsPorPalabra(String palabra, int verticeInicial,Grafo grafo){   
         boolean encontrada= false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
@@ -62,7 +63,10 @@ public class Solucion {
         return encontrada;
     }
     
-     public boolean buscarPalabraDFS(String palabra) {
+    public boolean buscarPalabraDFS(String palabra) {
+        
+        
+        
         boolean[][] visitado = new boolean[4][4];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -72,7 +76,10 @@ public class Solucion {
             }
         }
         return false;
+        
+       
     }
+     
 
     private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) { 
         if (indice == palabra.length()) {

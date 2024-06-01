@@ -42,7 +42,8 @@ public class ListaSimple {
         iN++;
     }
     
-    public void insertarUltimo(String palabra){              
+    public void insertarUltimo(String palabra){  
+        
         NodoListaSimple ult=buscarUltimo();                    
         NodoListaSimple nuevo = new NodoListaSimple(palabra); 
         if(ult == null){
@@ -91,10 +92,8 @@ public class ListaSimple {
         iN--;
         return aux;
     }
-    
-    
-    
-    
+
+       
 
     /**
      * @return the first

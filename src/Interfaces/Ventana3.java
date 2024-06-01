@@ -82,9 +82,29 @@ public class Ventana3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarNuevaPalabraBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNuevaPalabraBFSActionPerformed
-        String palabraBuscada = palabraABuscar.getText().toUpperCase();
-        if (palabraBuscada.length()>=3){
+        
+         String palabraBuscada = palabraABuscar.getText().toUpperCase();
+    
+    // Verificar la longitud mínima de la palabra
+    if (palabraBuscada.length() < 3) {
+        JOptionPane.showMessageDialog(this, "La palabra debe tener al menos 3 letras.");
+        return;
+    }
+    
+    // Verificar caracteres no permitidos
+    if (!palabraBuscada.matches("[A-Z]+")) {
+        JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios o números.");
+        return;
+    }
+    
+    // Verificar letras con acentos
+    if (palabraBuscada.matches("[ÁÉÍÓÚÑ]+")) {
+        JOptionPane.showMessageDialog(this, "La palabra no puede tener letras con acentos.");
+        return;
+    }
+        
             Solucion solucion = new Solucion();
+
             
             //medir el tiempo de inicio
             long startTime = System.currentTimeMillis();
@@ -103,9 +123,8 @@ public class Ventana3 extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "La palabra \"" + palabraBuscada + "\" no ha sido encontrada en el tablero. Tiempo de ejecución: " + executionTime + " ms");
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"La letra ingresada tiene menos de 3 letras. Ingrese una palabra válida.");
-        }
+      
+      
     }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
 
     private void tEjecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEjecActionPerformed
@@ -140,7 +159,7 @@ public class Ventana3 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() { 
             public void run() {
                 new Ventana3(grafo).setVisible(true);
             }
@@ -157,4 +176,14 @@ public class Ventana3 extends javax.swing.JFrame {
     private javax.swing.JTextField tEjec;
     private javax.swing.JTextArea tablero;
     // End of variables declaration//GEN-END:variables
+
+    private static class campoPalabra {
+
+        private static String getText() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public campoPalabra() {
+        }
+    }
 }
