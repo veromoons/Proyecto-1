@@ -3,89 +3,77 @@ package pruebagrafo;
 
 /**
  *
- * @author verol
+ * 
  */
-public class Solucion {
-     
+public class Solucion { 
+    private String[] palabraValidada;
+    private int cantidadPalabras;
 
-    public boolean bfsPorPalabra(String palabra, int verticeInicial,Grafo grafo){   
-        boolean encontrada= false;
+    public Solucion(Grafo grafo) {
+        palabraValidada = new String[0];
+        cantidadPalabras = 0;
+    }
+
+    public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
+        boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
-            boolean[] visitados = new boolean[grafo.getNumVertices()]; // Lista de visitados reiniciada para cada vértice inicial
-            ListaNumVertice cola = new ListaNumVertice(); // Cola para los adyacentes a evaluar
-            ListaNumVertice colaAux = new ListaNumVertice(); // Cola para la secuencia de la palabra encontrada
-            int posicionLetra = 0; // Posición de la letra actual en la palabra buscada
+            boolean[] visitados = new boolean[grafo.getNumVertices()]; 
+            ListaNumVertice cola = new ListaNumVertice(); 
+            ListaNumVertice colaAux = new ListaNumVertice(); 
+            int posicionLetra = 0; 
 
-            cola.preinsertarPrimero(v); // Añadir el vértice inicial a la cola
+            cola.preinsertarPrimero(v); 
 
             while (colaAux.getiN() != palabra.length() && cola.getiN() != 0) {
                 NodoNumVertice aux = cola.getFirst();
 
-              //  System.out.println("aux es: " + aux.getInfo());
-              //  System.out.println(grafo.getListaVertices()[aux.getInfo()]);
-
                 if (grafo.getListaVertices()[aux.getInfo()].getLetra() == palabra.charAt(posicionLetra)) {
                     visitados[aux.getInfo()] = true; 
                     posicionLetra++; 
-                    colaAux.preinsertarPrimero(aux.getInfo()); // Añadir el vértice actual a la secuencia
-                    cola.destructor(); // Vaciar la cola para los adyacentes del vértice actual
+                    colaAux.preinsertarPrimero(aux.getInfo()); 
+                    cola.destructor(); 
 
-                    Nodo pAux = grafo.getListaVertices()[aux.getInfo()].getListaAdy().getFirst(); // Primer adyacente del vértice actual
-                   // System.out.print("adyacentes en if: ");
-                    //grafo.getListaVertices()[aux.getInfo()].getListaAdy().recorrer();
+                    Nodo pAux = grafo.getListaVertices()[aux.getInfo()].getListaAdy().getFirst(); 
 
                     for (int ady = 0; ady < grafo.getListaVertices()[aux.getInfo()].getListaAdy().getiN(); ady++) {
                         if (!visitados[pAux.getInfo().getDestino()]) {
-                            cola.preinsertarPrimero(pAux.getInfo().getDestino()); // Añadir los adyacentes a la cola
+                            cola.preinsertarPrimero(pAux.getInfo().getDestino()); 
                         }
-                        pAux = pAux.getNext(); // Siguiente adyacente
+                        pAux = pAux.getNext(); 
                     }
-                   // System.out.println("entro a if");
                 } else {
-                   // System.out.println("entro a else");
-                    //cola.recorrer();
-                    cola.eliminarPrimero(); // Eliminar el primer elemento de la cola si no coincide con la letra actual
+                    cola.eliminarPrimero(); 
                 }
-                //System.out.println(colaAux.getiN() == palabra.length());
             }
 
             if (colaAux.getiN() == palabra.length()) {
-                encontrada=true;
-               // System.out.println("Palabra encontrada");
-                //colaAux.recorrer();
+                encontrada = true;
                 break;
             } else {
-                encontrada=false;
-               // System.out.println("Palabra no encontrada");
+                encontrada = false;
             }
-
         }
         return encontrada;
     }
-    
+
     public boolean buscarPalabraDFS(String palabra) {
-        
-        
-        
         boolean[][] visitado = new boolean[4][4];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (dfs(i, j, palabra, 0, visitado)) {
+                    agregarPalabraValidada(palabra);
                     return true;
                 }
             }
         }
         return false;
-        
-       
     }
-     
 
     private boolean dfs(int i, int j, String palabra, int indice, boolean[][] visitado) { 
         if (indice == palabra.length()) {
             return true;
         }
-        if (i < 0 || i >= 4 || j < 0 || j >= 4 || visitado[i][j] ||  Main.grafo.getListaVertices()[i * 4 + j].getLetra() != palabra.charAt(indice)) {  //en recursividad, se trabaja con variables locales, cada llamada tiene acceso a las variables locales definidas en el ámbito de esa llamada
+        if (i < 0 || i >= 4 || j < 0 || j >= 4 || visitado[i][j] || Main.grafo.getListaVertices()[i * 4 + j].getLetra() != palabra.charAt(indice)) {
             return false;
         }
         visitado[i][j] = true;
@@ -98,9 +86,28 @@ public class Solucion {
         visitado[i][j] = false;
         return false;
     }
-    
+
+    private void agregarPalabraValidada(String palabra) {
+        String[] nuevoDiccionario = new String[cantidadPalabras + 1];
+        for (int i = 0; i < cantidadPalabras; i++) {
+            nuevoDiccionario[i] = palabraValidada[i];
+        }
+        nuevoDiccionario[cantidadPalabras] = palabra;
+        palabraValidada = nuevoDiccionario;
+        cantidadPalabras++;
+    }
+
+    public String[] getPalabraValidada() {
+        return palabraValidada;
+    }
+
+    public void buscarPalabrasValidadasDFS(Diccionario diccionario) {
+        NodoListaSimple palabraActual = diccionario.obtenerLista().getFirst();
+        while (palabraActual != null) {
+            buscarPalabraDFS(palabraActual.getInfo().toString());
+            palabraActual = palabraActual.getNext();
+        }
+    }
 }
-        
-        
-        
+
    

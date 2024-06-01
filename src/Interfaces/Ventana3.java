@@ -93,17 +93,13 @@ public class Ventana3 extends javax.swing.JFrame {
     
     // Verificar caracteres no permitidos
     if (!palabraBuscada.matches("[A-Z]+")) {
-        JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios o números.");
+        JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios, números, o acentos.");
         return;
     }
     
     // Verificar letras con acentos
-    if (palabraBuscada.matches("[ÁÉÍÓÚÑ]+")) {
-        JOptionPane.showMessageDialog(this, "La palabra no puede tener letras con acentos.");
-        return;
-    }
-            
-            Solucion solucion = new Solucion();
+       
+            Solucion solucion = new Solucion(grafo);
 
             
             //medir el tiempo de inicio

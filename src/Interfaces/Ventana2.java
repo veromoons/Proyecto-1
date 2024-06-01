@@ -100,7 +100,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabrasDiccionarioActionPerformed
              
-        Ventana4 v4=new Ventana4();
+       Ventana4 v4 = new Ventana4(dic, grafo);
         v4.setVisible(true);
         
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
