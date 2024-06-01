@@ -70,18 +70,36 @@ public class Ventana3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarNuevaPalabraBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNuevaPalabraBFSActionPerformed
-        String palabraBuscada = palabraABuscar.getText().toUpperCase();
-        if (palabraBuscada.length()>=3){
+        
+         String palabra = palabraABuscar.getText().toUpperCase();
+    
+    // Verificar la longitud mínima de la palabra
+    if (palabra.length() < 3) {
+        JOptionPane.showMessageDialog(this, "La palabra debe tener al menos 3 letras.");
+        return;
+    }
+    
+    // Verificar caracteres no permitidos
+    if (!palabra.matches("[A-Z]+")) {
+        JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios o números.");
+        return;
+    }
+    
+    // Verificar letras con acentos
+    if (palabra.matches("[A-ZÁÉÍÓÚÑ]+")) {
+        JOptionPane.showMessageDialog(this, "La palabra no puede tener letras con acentos.");
+        return;
+    }
+        
             Solucion solucion = new Solucion();
-            boolean encontrada= solucion.bfs(palabraBuscada,0, grafo);
+            boolean encontrada= solucion.bfs(palabra,0, grafo);
             if (encontrada) {
-                JOptionPane.showMessageDialog(this, "La palabra \"" + palabraBuscada + "\" ha sido encontrada en el tablero.");
+                JOptionPane.showMessageDialog(this, "La palabra \"" + palabra + "\" ha sido encontrada en el tablero.");
             } else {
-                JOptionPane.showMessageDialog(this, "La palabra \"" + palabraBuscada + "\" no ha sido encontrada en el tablero.");
+                JOptionPane.showMessageDialog(this, "La palabra \"" + palabra + "\" no ha sido encontrada en el tablero.");
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"La letra ingresada tiene menos de 3 letras. Ingrese una palabra válida.");
-        }
+      
+      
     }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
 
     /**
@@ -112,7 +130,7 @@ public class Ventana3 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() { 
             public void run() {
                 new Ventana3(grafo).setVisible(true);
             }
@@ -127,4 +145,14 @@ public class Ventana3 extends javax.swing.JFrame {
     private javax.swing.JTextField palabraABuscar;
     private javax.swing.JTextArea tablero;
     // End of variables declaration//GEN-END:variables
+
+    private static class campoPalabra {
+
+        private static String getText() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public campoPalabra() {
+        }
+    }
 }
