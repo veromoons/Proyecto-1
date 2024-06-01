@@ -102,7 +102,7 @@ public class Ventana3 extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "La palabra no puede tener letras con acentos.");
         return;
     }
-        
+            
             Solucion solucion = new Solucion();
 
             
