@@ -1,11 +1,16 @@
 
 package pruebagrafo;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.Viewer;
 
 /**
  *
  * @author verol
  */
 public class Solucion {
+    private ListaNumVertice palabrabfs;
+    
      
     public boolean bfs(String palabra, int verticeInicial,Grafo grafo){ 
         
@@ -51,6 +56,7 @@ public class Solucion {
 
             if (colaAux.getiN() == palabra.length()) {
                 encontrada=true;
+                this.palabrabfs = colaAux;
                // System.out.println("Palabra encontrada");
                 //colaAux.recorrer();
                 break;
@@ -99,6 +105,158 @@ public class Solucion {
         return false;
     }
     
+    public void mostrarGrafo(Grafo grafo){
+        Graph grafo_mostrar = new MultiGraph("Grafo");
+        Node[] arrayNodos = new Node[16];
+        for (int i = 0; i < arrayNodos.length; i++) {
+            String id = "";
+            id += i;
+            arrayNodos[i] = grafo_mostrar.addNode(id);
+            arrayNodos[i].setAttribute(id, grafo.getListaVertices()[i].getLetra());
+            
+        }
+        int id = 0;
+        for (Node node : grafo_mostrar){
+            node.setAttribute("ui.label", node.getAttribute(Integer.toString(id)));
+            id ++;
+       
+        }
+      String sId = "";
+        int dimension = 4;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                int actual = i * dimension + j;
+                int[][] direcciones = {
+                    {-1, -1}, {-1, 0}, {-1, 1},
+                    {0, -1},         {0, 1}, //0,0  
+                    {1, -1}, {1, 0}, {1, 1}
+                };
+
+                for (int[] d : direcciones) { 
+                    int nuevai = i + d[0]; 
+                    int nuevaj = j + d[1];
+                    int nuevoIndice = nuevai * dimension + nuevaj;
+
+                    
+                    if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
+                        //agregarArista(actual, nuevoIndice);  
+                        sId += actual + "-";
+                        sId += nuevoIndice;
+                        //System.out.println(id);
+                        try{
+                          grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoIndice]);  
+                        }
+                        catch (Exception e){
+                            
+                        }
+                        sId = "";
+        }
+        
+    }
+    
+}
+        }
+        
+        /*String styleSheet =
+            "node {" +
+            " fill-color: yellow;" + "}" +
+        "size: 15px, 20px" + "}" +
+            "shape: square" + "}"    ;
+        */
+        grafo_mostrar.setAttribute("ui.stylesheet", "node{\n" +
+                "    size: 50px, 50px;\n" +
+                "    fill-color: yellow;\n" +
+                "    text-mode: normal; \n" +
+                "}");
+        
+        System.setProperty("org.graphstream.ui","swing");
+        //grafo_mostrar.setAttribute("ui.stylesheet", styleSheet);
+        Viewer viewer = grafo_mostrar.display();
+        viewer.disableAutoLayout();
+        viewer.enableAutoLayout();
+    }
+     public void mostrarRecorrido(Grafo grafo, ListaNumVertice verticesPalabra){
+        Graph grafo_mostrar = new MultiGraph("Grafo");
+        Node[] arrayNodos = new Node[16];
+        for (int i = 0; i < arrayNodos.length; i++) {
+            String id = "";
+            id += i;
+            arrayNodos[i] = grafo_mostrar.addNode(id);
+            arrayNodos[i].setAttribute(id, grafo.getListaVertices()[i].getLetra());
+            
+        }
+        int id = 0;
+        for (Node node : grafo_mostrar){
+            node.setAttribute("ui.label", node.getAttribute(Integer.toString(id)));
+            id ++;
+       
+        }
+      String sId = "";
+        int dimension = 4;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                int actual = i * dimension + j;
+                int[][] direcciones = {
+                    {-1, -1}, {-1, 0}, {-1, 1},
+                    {0, -1},         {0, 1}, //0,0  
+                    {1, -1}, {1, 0}, {1, 1}
+                };
+
+                for (int[] d : direcciones) { 
+                    int nuevai = i + d[0]; 
+                    int nuevaj = j + d[1];
+                    int nuevoIndice = nuevai * dimension + nuevaj;
+
+                    
+                    if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
+                        //agregarArista(actual, nuevoIndice);  
+                        sId += actual + "-";
+                        sId += nuevoIndice;
+                        //System.out.println(id);
+                        try{
+                          grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoIndice]);  
+                        }
+                        catch (Exception e){
+                            
+                        }
+                        sId = "";
+        }
+        
+    }
+    
+}
+        }
+        
+        /*String styleSheet =
+            "node {" +
+            " fill-color: yellow;" + "}" +
+        "size: 15px, 20px" + "}" +
+            "shape: square" + "}"    ;
+        */
+        grafo_mostrar.setAttribute("ui.stylesheet", "node{\n" +
+                "    size: 50px, 50px;\n" +
+                "    fill-color: yellow;\n" +
+                "    text-mode: normal; \n" +
+                "}");
+        int numVertice;
+         for (int i = 0; i < verticesPalabra.getiN(); i++) {
+             numVertice = verticesPalabra.getFirst().getInfo();
+             arrayNodos[numVertice].setAttribute("ui.stylesheet", "node{\n" +
+                "    size: 50px, 50px;\n" +
+                "    fill-color: red;\n" +
+                "    text-mode: normal; \n" +
+                "}");
+         }
+        System.setProperty("org.graphstream.ui","swing");
+        //grafo_mostrar.setAttribute("ui.stylesheet", styleSheet);
+        Viewer viewer = grafo_mostrar.display();
+        viewer.disableAutoLayout();
+        viewer.enableAutoLayout();
+    }
+
+    public Solucion() {
+    }
+     
 }
         
         
