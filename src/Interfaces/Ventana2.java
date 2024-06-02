@@ -46,7 +46,7 @@ public class Ventana2 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablero = new javax.swing.JTextArea();
         buscarPalabraNuevaBFS = new javax.swing.JButton();
-        openbuscarpalabras = new javax.swing.JButton();
+        buscarPalabrasDiccionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(730, 490));
@@ -85,24 +85,25 @@ public class Ventana2 extends javax.swing.JFrame {
         });
         jPanel1.add(buscarPalabraNuevaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, -1, -1));
 
-        openbuscarpalabras.setText("Buscar todas las palabras");
-        openbuscarpalabras.addActionListener(new java.awt.event.ActionListener() {
+        buscarPalabrasDiccionario.setText("Buscar todas las palabras");
+        buscarPalabrasDiccionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openbuscarpalabrasActionPerformed(evt);
+                buscarPalabrasDiccionarioActionPerformed(evt);
             }
         });
-        jPanel1.add(openbuscarpalabras, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
+        jPanel1.add(buscarPalabrasDiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void openbuscarpalabrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openbuscarpalabrasActionPerformed
+    private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabrasDiccionarioActionPerformed
              
-        //AQUI HACER LLAMADA A DFS PERO QUE busque del diccionario !!!!
+       Ventana4 v4 = new Ventana4(dic, grafo);
+        v4.setVisible(true);
         
-    }//GEN-LAST:event_openbuscarpalabrasActionPerformed
+    }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
 
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
         Ventana3 v3=new Ventana3(grafo);
@@ -147,6 +148,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarPalabraNuevaBFS;
+    private javax.swing.JButton buscarPalabrasDiccionario;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextArea diccionario;
     private javax.swing.JLabel jLabel1;
@@ -154,7 +156,6 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton openbuscarpalabras;
     private javax.swing.JTextArea tablero;
     // End of variables declaration//GEN-END:variables
 }

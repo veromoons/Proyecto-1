@@ -10,22 +10,34 @@ package pruebagrafo;
  */
 public class Diccionario {
     private ListaSimple diccionario;
+    private ListaSimple listaPalabras;
+    
+    public Diccionario() {
+        listaPalabras = new ListaSimple();
+    }
+
+    public ListaSimple obtenerLista() {
+        return listaPalabras;
+    }
+  
 
     public Diccionario(ListaSimple diccionario) {
         this.diccionario = diccionario;
     }
+    
+   
     /**
      * @return the diccionario
      */
     public ListaSimple getDiccionario() {
         return diccionario;
     }
+    
+    
 
     /**
      * @param diccionario the diccionario to set
      */
-    public void setDiccionario(ListaSimple diccionario) {
-        this.diccionario = diccionario;
-    }
+ 
     
 }

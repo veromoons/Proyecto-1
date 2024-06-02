@@ -6,6 +6,7 @@ package Interfaces;
 
 import javax.swing.JOptionPane;
 import pruebagrafo.Grafo;
+import pruebagrafo.NodoNumVertice;
 import pruebagrafo.Solucion;
 
 /**
@@ -40,6 +41,8 @@ public class Ventana3 extends javax.swing.JFrame {
         buscarNuevaPalabraBFS = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         palabraABuscar = new javax.swing.JTextField();
+        tEjec = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,11 +61,21 @@ public class Ventana3 extends javax.swing.JFrame {
                 buscarNuevaPalabraBFSActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNuevaPalabraBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+        jPanel1.add(buscarNuevaPalabraBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel1.setText("Palabra a buscar:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
         jPanel1.add(palabraABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 130, -1));
+
+        tEjec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tEjecActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tEjec, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 30, -1));
+
+        jLabel2.setText("ms");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 360));
 
@@ -71,36 +84,50 @@ public class Ventana3 extends javax.swing.JFrame {
 
     private void buscarNuevaPalabraBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNuevaPalabraBFSActionPerformed
         
-         String palabra = palabraABuscar.getText().toUpperCase();
+         String palabraBuscada = palabraABuscar.getText().toUpperCase();
     
     // Verificar la longitud mínima de la palabra
-    if (palabra.length() < 3) {
+    if (palabraBuscada.length() < 3) {
         JOptionPane.showMessageDialog(this, "La palabra debe tener al menos 3 letras.");
         return;
     }
     
     // Verificar caracteres no permitidos
-    if (!palabra.matches("[A-Z]+")) {
-        JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios o números.");
+    if (!palabraBuscada.matches("[A-Z]+")) {
+        JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios, números, o acentos.");
         return;
     }
     
     // Verificar letras con acentos
-    if (palabra.matches("[A-ZÁÉÍÓÚÑ]+")) {
-        JOptionPane.showMessageDialog(this, "La palabra no puede tener letras con acentos.");
-        return;
-    }
-        
-            Solucion solucion = new Solucion();
-            boolean encontrada= solucion.bfs(palabra,0, grafo);
+       
+            Solucion solucion = new Solucion(grafo);
+
+            
+            //medir el tiempo de inicio
+            long startTime = System.currentTimeMillis();
+            
+            //corre la funcion de busqueda BSF por palabra
+            boolean encontrada= solucion.bfs(palabraBuscada,0, grafo);
+            
+            //medir el tiempo de fin
+            long endTime = System.currentTimeMillis();
+            //calcular el tiempo de ejecución en milisegundos
+            long executionTime = endTime - startTime;
+            tEjec.setText(Long.toString(executionTime));
+            
             if (encontrada) {
-                JOptionPane.showMessageDialog(this, "La palabra \"" + palabra + "\" ha sido encontrada en el tablero.");
+                JOptionPane.showMessageDialog(null, "La palabra \"" + palabraBuscada + "\" ha sido encontrada en el tablero. Tiempo de ejecución: " + executionTime + " ms");
+                solucion.mostrarRecorrido(grafo, solucion.getPalabrabfs());
             } else {
-                JOptionPane.showMessageDialog(this, "La palabra \"" + palabra + "\" no ha sido encontrada en el tablero.");
+                JOptionPane.showMessageDialog(null, "La palabra \"" + palabraBuscada + "\" no ha sido encontrada en el tablero. Tiempo de ejecución: " + executionTime + " ms");
             }
       
       
     }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
+
+    private void tEjecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEjecActionPerformed
+        
+    }//GEN-LAST:event_tEjecActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,9 +167,11 @@ public class Ventana3 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarNuevaPalabraBFS;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField palabraABuscar;
+    private javax.swing.JTextField tEjec;
     private javax.swing.JTextArea tablero;
     // End of variables declaration//GEN-END:variables
 
