@@ -100,8 +100,9 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabrasDiccionarioActionPerformed
              
-       Ventana4 v4 = new Ventana4(dic, grafo);
+       Ventana4 v4 = new Ventana4(dic);
         v4.setVisible(true);
+        
         
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
 
@@ -141,7 +142,8 @@ public class Ventana2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana2(dic, grafo).setVisible(true);
+          
+            new Ventana2(dic, grafo).setVisible(true);
             }
         });
     }

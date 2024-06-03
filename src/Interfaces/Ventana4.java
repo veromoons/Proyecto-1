@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import pruebagrafo.Grafo;
 import pruebagrafo.Solucion;
 import pruebagrafo.Diccionario;
+import pruebagrafo.Main;
 /**
  *
  * @author verol
@@ -21,7 +22,7 @@ public class Ventana4 extends javax.swing.JFrame {
     /**
      * Creates new form VentanaInicio
      */
-    public Ventana4(Diccionario dic, Grafo grafo) {
+    public Ventana4(Diccionario dic) {
         initComponents();
         this.diccionario = dic;
         this.grafo = grafo;
@@ -81,14 +82,19 @@ public class Ventana4 extends javax.swing.JFrame {
 
     private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
         // TODO add your handling code here:
-        solucion.buscarPalabrasValidadasDFS(diccionario); // Llamar al método con el diccionario
+         Solucion solucion = new Solucion(Main.grafo);
+   
+        solucion.buscarPalabrasValidadasDFS(diccionario);
+
         String[] palabrasValidadas = solucion.getPalabraValidada();
-        StringBuilder sb = new StringBuilder();
-        for (String palabraValidada : palabrasValidadas) {
-            sb.append(palabraValidada).append("\n");
-        }
-        tablero.setText(sb.toString());
+    
+        tablero.setText("");
+  
+        for (String palabra : palabrasValidadas) {
+            tablero.append(palabra + "\n");
+
     }//GEN-LAST:event_busquedaDFSActionPerformed
+}
 
     /**
      * @param args the command line arguments
@@ -123,8 +129,13 @@ public class Ventana4 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+            Diccionario dic = new Diccionario();
+            
+            new Ventana4(dic).setVisible(true);    
+
+}
                 
-            }
+            
         });
     }
 
