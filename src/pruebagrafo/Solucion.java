@@ -32,8 +32,11 @@ public class Solucion {
             int capa = 0; 
             
             //NodoMascara primero = new NodoMascara(grafo.getListaVertices()[v]);
-            cola.preinsertarPrimero(grafo.getListaVertices()[v]);
-            capa++;
+            if (grafo.getListaVertices()[v].getLetra()==palabra.charAt(0)){
+                cola.preinsertarPrimero(grafo.getListaVertices()[v]);
+                capa++;
+            }
+            
             while (capa < palabra.length() && cola.getiN() != 0) {
 //                System.out.println(cola.primero().getInfo().getLetra());
 //                System.out.println(capa);
