@@ -165,6 +165,7 @@ public class Solucion {
         Viewer viewer = grafo_mostrar.display();
         viewer.disableAutoLayout();
         viewer.enableAutoLayout();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
      public void mostrarRecorrido(Grafo grafo, ListaNumVertice verticesPalabra){
         Graph grafo_mostrar = new MultiGraph("Grafo");
@@ -240,6 +241,8 @@ public class Solucion {
         Viewer viewer = grafo_mostrar.display();
         viewer.disableAutoLayout();
         viewer.enableAutoLayout();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+        
     }
 
     public Solucion() {
