@@ -24,45 +24,72 @@ public class Solucion {
         cantidadPalabras = 0;
         this.palabrabfs = null;
     }
-
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
-            boolean[] visitados = new boolean[grafo.getNumVertices()]; 
-            ListaNumVertice cola = new ListaNumVertice(); 
-            ListaNumVertice colaAux = new ListaNumVertice(); 
-            int posicionLetra = 0; 
-
-            cola.preinsertarPrimero(v); 
-
-            while (colaAux.getiN() != palabra.length() && cola.getiN() != 0) {
-                NodoNumVertice aux = cola.getFirst();
-
-                if (grafo.getListaVertices()[aux.getInfo()].getLetra() == palabra.charAt(posicionLetra)) {
-                    visitados[aux.getInfo()] = true; 
-                    posicionLetra++; 
-                    colaAux.preinsertarPrimero(aux.getInfo()); 
-                    cola.destructor(); 
-
-                    Nodo pAux = grafo.getListaVertices()[aux.getInfo()].getListaAdy().getFirst(); 
-
-                    for (int ady = 0; ady < grafo.getListaVertices()[aux.getInfo()].getListaAdy().getiN(); ady++) {
-                        if (!visitados[pAux.getInfo().getDestino()]) {
-                            cola.preinsertarPrimero(pAux.getInfo().getDestino()); 
-                        }
-                        pAux = pAux.getNext(); 
+            NodoMascara[] visitados = new NodoMascara[grafo.getNumVertices()]; 
+            ColaMascara cola = new ColaMascara(); 
+            int capa = 0; 
+            
+            //NodoMascara primero = new NodoMascara(grafo.getListaVertices()[v]);
+            cola.preinsertarPrimero(grafo.getListaVertices()[v]);
+            capa++;
+            while (capa < palabra.length() && cola.getiN() != 0) {
+//                System.out.println(cola.primero().getInfo().getLetra());
+//                System.out.println(capa);
+                NodoMascara aux = cola.primero();
+                cola.eliminarPrimero(); //aqui de una vez lo elimino
+                Nodo pAux = grafo.getListaVertices()[aux.getInfo().getNumVertice()].getListaAdy().getFirst();  //adyacente actual
+                
+                int contadorDeBuenas=0;
+                for (int ady = 0; ady < grafo.getListaVertices()[aux.getInfo().getNumVertice()].getListaAdy().getiN(); ady++) {
+                    //System.out.println(visitados[pAux.getInfo().getDestino()].getCapa()==capa);
+                    if (pAux.getInfo().getLetraDestino()==palabra.charAt(capa) && (visitados[pAux.getInfo().getDestino()]==null || visitados[pAux.getInfo().getDestino()].getCapa()==capa)) { //buscando hermanitos en los visitados
+                        NodoMascara nuevo = new NodoMascara(grafo.getListaVertices()[pAux.getInfo().getDestino()]);
+                        nuevo.setCapa(capa);
+                        nuevo.setAncestor(aux);
+                        cola.insertarUltimoCreado(nuevo);
+                        contadorDeBuenas++;
                     }
-                } else {
-                    cola.eliminarPrimero(); 
+                    pAux = pAux.getNext(); 
                 }
+                aux.setContador(contadorDeBuenas);
+                visitados[aux.getInfo().getNumVertice()]=aux; //AQUI haremos validacion para eliminar recorrido perdido
+                
+//                if(contadorDeBuenas>=1){
+//                    visitados[aux.getInfo().getNumVertice()]=aux; //AQUI haremos validacion para eliminar recorrido perdido
+//                }else{
+//                    NodoMascara puntero=aux.getAncestor();
+//                    while(puntero!=null && puntero.getContador()<2){
+//                        visitados[puntero.getInfo().getNumVertice()]=null;
+//                        puntero=puntero.getAncestor();
+//                    }
+//                }
+//              
+                if (cola.primero()==null || cola.primero().getCapa() >aux.getCapa()){
+                    capa++;
+                }
+                
             }
-
-            if (colaAux.getiN() == palabra.length()) {
+          /*  for (NodoMascara i: visitados){
+                    if(i!=null){
+                    System.out.println(i.getInfo().getNumVertice());
+                    System.out.println(visitados[i.getInfo().getNumVertice()].getContador());
+                        
+                    }else{
+                        System.out.println(i);
+                    System.out.println("null");
+                    }
+                }*/
+            if (cola.getiN()>0) {
                 encontrada=true;
-                this.palabrabfs = colaAux;
-               // System.out.println("Palabra encontrada");
-                //colaAux.recorrer();
-                encontrada = true;
+                NodoMascara puntero=cola.primero();
+                String palabraFinal="";
+                while(puntero!=null){
+                    palabraFinal=puntero.getInfo().getNumVertice()+","+palabraFinal;
+                    puntero=puntero.getAncestor();
+                }
+                System.out.println(palabraFinal);
                 break;
             } else {
                 encontrada = false;
@@ -70,6 +97,7 @@ public class Solucion {
         }
         return encontrada;
     }
+
 
     public boolean buscarPalabraDFS(String palabra) {
         boolean[][] visitado = new boolean[4][4];

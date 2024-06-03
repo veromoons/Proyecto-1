@@ -43,8 +43,11 @@ public class Ventana3 extends javax.swing.JFrame {
         palabraABuscar = new javax.swing.JTextField();
         tEjec = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        mostrarRecorrido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,6 +68,12 @@ public class Ventana3 extends javax.swing.JFrame {
 
         jLabel1.setText("Palabra a buscar:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        palabraABuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                palabraABuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(palabraABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 130, -1));
 
         tEjec.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +86,19 @@ public class Ventana3 extends javax.swing.JFrame {
         jLabel2.setText("ms");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 360));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit mas pequeno.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 10, -1, 30));
+
+        mostrarRecorrido.setText("Mostrar recorrido");
+        jPanel1.add(mostrarRecorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,19 +107,15 @@ public class Ventana3 extends javax.swing.JFrame {
         
          String palabraBuscada = palabraABuscar.getText().toUpperCase();
     
-    // Verificar la longitud mínima de la palabra
     if (palabraBuscada.length() < 3) {
         JOptionPane.showMessageDialog(this, "La palabra debe tener al menos 3 letras.");
         return;
     }
     
-    // Verificar caracteres no permitidos
     if (!palabraBuscada.matches("[A-Z]+")) {
         JOptionPane.showMessageDialog(this, "La palabra no puede tener símbolos, espacios, números, o acentos.");
         return;
     }
-    
-    // Verificar letras con acentos
        
             Solucion solucion = new Solucion(grafo);
 
@@ -121,6 +138,8 @@ public class Ventana3 extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "La palabra \"" + palabraBuscada + "\" no ha sido encontrada en el tablero. Tiempo de ejecución: " + executionTime + " ms");
             }
+            
+            palabraABuscar.setText("");
       
       
     }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
@@ -128,6 +147,14 @@ public class Ventana3 extends javax.swing.JFrame {
     private void tEjecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEjecActionPerformed
         
     }//GEN-LAST:event_tEjecActionPerformed
+
+    private void palabraABuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabraABuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_palabraABuscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,10 +193,12 @@ public class Ventana3 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarNuevaPalabraBFS;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mostrarRecorrido;
     private javax.swing.JTextField palabraABuscar;
     private javax.swing.JTextField tEjec;
     private javax.swing.JTextArea tablero;
