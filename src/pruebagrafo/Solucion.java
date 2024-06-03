@@ -17,7 +17,7 @@ import org.graphstream.ui.view.Viewer;
 public class Solucion { 
     private String[] palabraValidada;
     private int cantidadPalabras;
-    private ListaNumVertice palabrabfs;
+    private String palabrabfs;
 
     public Solucion(Grafo grafo) {
         palabraValidada = new String[0];
@@ -89,7 +89,8 @@ public class Solucion {
                     palabraFinal=puntero.getInfo().getNumVertice()+","+palabraFinal;
                     puntero=puntero.getAncestor();
                 }
-                System.out.println(palabraFinal);
+                //System.out.println(palabraFinal);
+                this.palabrabfs = palabraFinal;
                 break;
             } else {
                 encontrada = false;
@@ -195,7 +196,8 @@ public class Solucion {
         viewer.enableAutoLayout();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
-     public void mostrarRecorrido(Grafo grafo, ListaNumVertice verticesPalabra){
+     public void mostrarRecorrido(Grafo grafo, String verticesPalabra){
+         System.out.println(verticesPalabra);
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
         for (int i = 0; i < arrayNodos.length; i++) {
@@ -253,13 +255,12 @@ public class Solucion {
                 "    text-size: 40px; \n" +
                 "    shape: box; \n" +
                 "}");
+        String [] arrayVertices = verticesPalabra.split(",");
         int numVertice;
-        NodoNumVertice aux = verticesPalabra.getFirst();
-         while (aux != null) {
-             numVertice = aux.getInfo();
+         for (int i = 0; i < arrayVertices.length; i++) {
+             numVertice = Integer.parseInt(arrayVertices[i]);
              arrayNodos[numVertice].setAttribute("ui.color", Color.pink);
-             aux = aux.getNext();
-         }
+         }         
          for (int i = 0; i < arrayNodos.length; i++) {
              if (arrayNodos[i].getAttribute("ui.color") == null){
                  arrayNodos[i].setAttribute("ui.color", Color.white);
@@ -299,9 +300,11 @@ public class Solucion {
         }
     }
 
-    public ListaNumVertice getPalabrabfs() {
+    public String getPalabrabfs() {
         return palabrabfs;
     }
+
+    
     
 }
 

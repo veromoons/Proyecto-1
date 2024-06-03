@@ -5,6 +5,7 @@
 package Interfaces;
 
 import javax.swing.JOptionPane;
+import pruebagrafo.Diccionario;
 import pruebagrafo.Grafo;
 import pruebagrafo.NodoNumVertice;
 import pruebagrafo.Solucion;
@@ -15,15 +16,18 @@ import pruebagrafo.Solucion;
  */
 public class Ventana3 extends javax.swing.JFrame {
     static Grafo grafo;
+    static Ventana2 v2;
+    static Diccionario diccionario;
     /**
      * Creates new form Ventana3
      */
-    public Ventana3(Grafo grafo) {
+    public Ventana3(Grafo grafo, Diccionario diccionario) {
         initComponents();
         this.setLocationRelativeTo(null); 
         this.setResizable(true);
         this.grafo = grafo;
         this.tablero.setText(grafo.mostrarGrafo());
+        this.v2 = new Ventana2(diccionario, grafo);
     }
 
     /**
@@ -45,6 +49,7 @@ public class Ventana3 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         mostrarRecorrido = new javax.swing.JButton();
+        atrás = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -97,6 +102,14 @@ public class Ventana3 extends javax.swing.JFrame {
 
         mostrarRecorrido.setText("Mostrar recorrido");
         jPanel1.add(mostrarRecorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
+
+        atrás.setText("Atrás");
+        atrás.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrásActionPerformed(evt);
+            }
+        });
+        jPanel1.add(atrás, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 380));
 
@@ -156,6 +169,13 @@ public class Ventana3 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void atrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrásActionPerformed
+        // TODO add your handling code here:
+        v2.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_atrásActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,12 +206,13 @@ public class Ventana3 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() { 
             public void run() {
-                new Ventana3(grafo).setVisible(true);
+                new Ventana3(grafo, diccionario).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atrás;
     private javax.swing.JButton buscarNuevaPalabraBFS;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
