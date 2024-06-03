@@ -112,7 +112,7 @@ public class Ventana1 extends javax.swing.JFrame {
         
         
         grafo.crearGrafo(txt.getArray());
-        Solucion sol = new Solucion();
+        //Solucion sol = new Solucion();
         Ventana2 v2 = new Ventana2(txt.getDic(),grafo);
         this.setVisible(false);
         v2.setVisible(true);

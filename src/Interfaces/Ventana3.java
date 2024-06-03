@@ -48,7 +48,6 @@ public class Ventana3 extends javax.swing.JFrame {
         tEjec = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        mostrarRecorrido = new javax.swing.JButton();
         atrás = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,9 +98,6 @@ public class Ventana3 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 10, -1, 30));
-
-        mostrarRecorrido.setText("Mostrar recorrido");
-        jPanel1.add(mostrarRecorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
 
         atrás.setText("Atrás");
         atrás.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +215,6 @@ public class Ventana3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton mostrarRecorrido;
     private javax.swing.JTextField palabraABuscar;
     private javax.swing.JTextField tEjec;
     private javax.swing.JTextArea tablero;

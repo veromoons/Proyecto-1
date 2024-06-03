@@ -111,7 +111,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
         Solucion sol = new Solucion();
-        sol.mostrarGrafo(grafo);
+        sol.mostrarGrafo(this.grafo);
         
         
     }//GEN-LAST:event_mostrarTableroActionPerformed

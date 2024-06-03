@@ -128,16 +128,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="mostrarRecorrido">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mostrar recorrido"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="120" y="330" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JButton" name="atr&#xe1;s">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
