@@ -18,6 +18,7 @@ public class Ventana4 extends javax.swing.JFrame {
     private Solucion solucion;
     private Grafo grafo;
     private Diccionario diccionario;
+    static Ventana2 v2;
 
     /**
      * Creates new form VentanaInicio
@@ -27,6 +28,7 @@ public class Ventana4 extends javax.swing.JFrame {
         this.diccionario = dic;
         this.grafo = grafo;
         this.solucion = new Solucion(grafo); 
+        this.v2 = new Ventana2(diccionario, grafo);
     }
 
     /**
@@ -44,6 +46,7 @@ public class Ventana4 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablero = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,6 +78,14 @@ public class Ventana4 extends javax.swing.JFrame {
         jLabel1.setText("PALABRAS ENCONTRADAS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
+        atras.setText("Atras");
+        atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
@@ -99,6 +110,12 @@ public class Ventana4 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_busquedaDFSActionPerformed
 }
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        v2.setVisible(true);
+    }//GEN-LAST:event_atrasActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -144,6 +161,7 @@ public class Ventana4 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atras;
     private javax.swing.JButton busquedaBFS;
     private javax.swing.JButton busquedaDFS;
     private javax.swing.JLabel jLabel1;

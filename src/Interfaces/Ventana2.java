@@ -6,6 +6,8 @@ package Interfaces;
 
 import pruebagrafo.Diccionario;
 import pruebagrafo.Grafo;
+import static pruebagrafo.Main.grafo;
+import pruebagrafo.Solucion;
 
 /**
  *
@@ -54,7 +56,6 @@ public class Ventana2 extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(730, 490));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        diccionario.setBackground(new java.awt.Color(255, 255, 255));
         diccionario.setColumns(20);
         diccionario.setRows(5);
         diccionario.setBorder(null);
@@ -109,7 +110,8 @@ public class Ventana2 extends javax.swing.JFrame {
 
 
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
-      
+        Solucion sol = new Solucion();
+        sol.mostrarGrafo(grafo);
         
         
     }//GEN-LAST:event_mostrarTableroActionPerformed
@@ -122,7 +124,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
 
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
-        Ventana3 v3=new Ventana3(grafo);
+        Ventana3 v3=new Ventana3(grafo, dic);
         v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buscarPalabraNuevaBFSActionPerformed
