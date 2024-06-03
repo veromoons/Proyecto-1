@@ -107,24 +107,31 @@ public class Ventana2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
       
-        this.dispose();
+        
         
     }//GEN-LAST:event_mostrarTableroActionPerformed
+
+    private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
+             
+      Ventana4 v4 = new Ventana4(dic);
+      v4.setVisible(true);
+    }                                                         
+
 
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
         Ventana3 v3=new Ventana3(grafo);
         v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buscarPalabraNuevaBFSActionPerformed
-
+/*
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabrasDiccionarioActionPerformed
                
-       Ventana4 v4 = new Ventana4(dic, grafo);
-        v4.setVisible(true);
+       
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
-
+*/
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
@@ -159,7 +166,8 @@ public class Ventana2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana2(dic, grafo).setVisible(true);
+          
+            new Ventana2(dic, grafo).setVisible(true);
             }
         });
     }

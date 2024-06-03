@@ -11,11 +11,12 @@ package pruebagrafo;
 public class Diccionario {
     private ListaSimple diccionario;
     private ListaSimple listaPalabras;
-    
-    public Diccionario() {
-        listaPalabras = new ListaSimple();
-    }
 
+    public Diccionario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+  
     public ListaSimple obtenerLista() {
         return listaPalabras;
     }
@@ -23,6 +24,7 @@ public class Diccionario {
 
     public Diccionario(ListaSimple diccionario) {
         this.diccionario = diccionario;
+        this.listaPalabras = diccionario;
     }
     
    
@@ -32,8 +34,8 @@ public class Diccionario {
     public ListaSimple getDiccionario() {
         return diccionario;
     }
-    
-    
+
+
 
     /**
      * @param diccionario the diccionario to set
