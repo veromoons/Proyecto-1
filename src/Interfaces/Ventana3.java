@@ -56,11 +56,16 @@ public class Ventana3 extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablero.setBackground(new java.awt.Color(255, 255, 255));
         tablero.setColumns(20);
+        tablero.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         tablero.setRows(5);
+        tablero.setTabSize(12);
+        tablero.setBorder(null);
+        tablero.setFocusable(false);
         jScrollPane1.setViewportView(tablero);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 210, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 170, 210));
 
         buscarNuevaPalabraBFS.setText("Buscar palabra");
         buscarNuevaPalabraBFS.addActionListener(new java.awt.event.ActionListener() {
