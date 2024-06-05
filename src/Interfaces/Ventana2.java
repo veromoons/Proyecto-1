@@ -17,7 +17,7 @@ public class Ventana2 extends javax.swing.JFrame {
     static Diccionario dic;
     static Grafo grafo;
     /**
-     * Creates new form Ventana2
+     * Constructor
      */
     public Ventana2(Diccionario dic, Grafo grafo) {
         initComponents();
@@ -121,20 +121,25 @@ public class Ventana2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+     * Metodo para mostrar el tablero completo
+     * @param evt 
+     */
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
         Solucion sol = new Solucion();
         sol.mostrarGrafo(this.grafo);
-        this.setVisible(false);
+     
     }//GEN-LAST:event_mostrarTableroActionPerformed
-
-    private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
+    private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {
         Ventana4 v4 = new Ventana4(grafo,dic);
         v4.setVisible(true);
-        this.setVisible(false);
-    }                                                         
+        this.setVisible(false);  
+}                                                                                                                 
 
-
+    /**
+     * Metodo para abrir ventana 3
+     * @param evt 
+     */
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
         Ventana3 v3=new Ventana3(grafo, dic);
         v3.setVisible(true);
@@ -145,7 +150,10 @@ public class Ventana2 extends javax.swing.JFrame {
                
        
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
-*/
+*/  /**
+ * Metodo para cerrar la ventana
+ * @param evt 
+ */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed

@@ -15,7 +15,7 @@ import javax.swing.JFileChooser;
 import leertxt.LeerTxt;
 /**
  *
- * @author verol
+ * @author veronicaluna
  */
 public class Ventana4 extends javax.swing.JFrame {
     static Solucion solucion;
@@ -24,7 +24,7 @@ public class Ventana4 extends javax.swing.JFrame {
     static Ventana2 v2;
 
     /**
-     * Creates new form VentanaInicio
+     * Constructor
      */
     public Ventana4(Grafo grafo,Diccionario dic) {
         initComponents();
@@ -47,8 +47,8 @@ public class Ventana4 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        busquedaBFS = new javax.swing.JButton();
         busquedaDFS = new javax.swing.JButton();
+        busquedaBFS = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         palabrasDiccionarioEncontradas = new javax.swing.JTextArea();
         atras = new javax.swing.JButton();
@@ -64,6 +64,7 @@ public class Ventana4 extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+<<<<<<< HEAD
         busquedaBFS.setBackground(new java.awt.Color(255, 255, 255));
         busquedaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 2.png"))); // NOI18N
         busquedaBFS.setBorder(null);
@@ -80,11 +81,17 @@ public class Ventana4 extends javax.swing.JFrame {
         busquedaDFS.setBorder(null);
         busquedaDFS.setBorderPainted(false);
         busquedaDFS.setOpaque(false);
+=======
+        busquedaDFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 2.png"))); // NOI18N
+        busquedaDFS.setBorder(null);
+        busquedaDFS.setBorderPainted(false);
+>>>>>>> sofia
         busquedaDFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedaDFSActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(busquedaDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 140, 30));
 
         jScrollPane1.setHorizontalScrollBar(null);
@@ -103,6 +110,33 @@ public class Ventana4 extends javax.swing.JFrame {
         atras.setBorder(null);
         atras.setBorderPainted(false);
         atras.setOpaque(false);
+=======
+        jPanel1.add(busquedaDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 140, 30));
+
+        busquedaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 1.png"))); // NOI18N
+        busquedaBFS.setBorder(null);
+        busquedaBFS.setBorderPainted(false);
+        busquedaBFS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaBFSActionPerformed(evt);
+            }
+        });
+        jPanel1.add(busquedaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 140, 30));
+
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        palabrasDiccionarioEncontradas.setColumns(20);
+        palabrasDiccionarioEncontradas.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        palabrasDiccionarioEncontradas.setRows(5);
+        palabrasDiccionarioEncontradas.setFocusable(false);
+        jScrollPane1.setViewportView(palabrasDiccionarioEncontradas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 140, 180));
+
+        atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/atras boton.png"))); // NOI18N
+        atras.setBorder(null);
+        atras.setBorderPainted(false);
+>>>>>>> sofia
         atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasActionPerformed(evt);
@@ -119,17 +153,26 @@ public class Ventana4 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 0, 20, 20));
 
+<<<<<<< HEAD
         tEjecucion.setBackground(new java.awt.Color(255, 255, 255));
+=======
+>>>>>>> sofia
         tEjecucion.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
         tEjecucion.setFocusable(false);
         jPanel1.add(tEjecucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 50, -1));
 
+<<<<<<< HEAD
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+=======
+>>>>>>> sofia
         jLabel2.setText("ms");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
+<<<<<<< HEAD
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+=======
+>>>>>>> sofia
         jLabel3.setText("Tiempo de recorrido:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
@@ -143,8 +186,14 @@ public class Ventana4 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+                                         
+    /**
+     * Metodo para busqueda DFS
+     * @author veronicaluna
+     * @param evt 
+     */
     private void busquedaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaBFSActionPerformed
+
         Solucion soluc=new Solucion();
         
         //aqui mide el tiempo de inicio
@@ -169,7 +218,7 @@ public class Ventana4 extends javax.swing.JFrame {
         long startTime = System.currentTimeMillis();
         
         //aqui es donde corre la funcion de busqueda DFS para cada palabra del diccionario
-        palabrasDiccionarioEncontradas.setText(soluc2.busquedaDiccionarioDFS(this.diccionario.getDiccionario(),this.grafo));
+        palabrasDiccionarioEncontradas.setText("Palabras encontradas \ncon DFS \n" +soluc2.busquedaDiccionarioDFS(this.diccionario.getDiccionario(),this.grafo));
         
         //se mide el tiempo de fin
         long endTime = System.currentTimeMillis();
@@ -180,6 +229,10 @@ public class Ventana4 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_busquedaDFSActionPerformed
 
+    /**
+     * Metodo para regresar a la ventana anterior
+     * @param evt 
+     */
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -232,7 +285,7 @@ public class Ventana4 extends javax.swing.JFrame {
                 
             
         });
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;

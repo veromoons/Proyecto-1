@@ -9,10 +9,10 @@ public class Nodo {
     
     private Arista info;
     private Nodo next;
-    
-    public Nodo(Arista info) { 
-        this.info = info; 
-        this.next = null; 
+
+    public Nodo(Arista info) {
+        this.info = info;
+        this.next = null;
     }
 
     /**

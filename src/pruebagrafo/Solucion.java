@@ -9,7 +9,7 @@ import org.graphstream.ui.view.Viewer;
 
 
 /**
- *
+ * Clase para implementar procedimientos en la interfaz //no seee
  * 
  */
 
@@ -19,17 +19,27 @@ public class Solucion {
     private int cantidadPalabras;
     private String palabrabfs;
 
-    public Solucion(Grafo grafo) {  //QUITAR este parametro pq no hace nada con el
+    /**
+     * Constructor
+     * @param grafo 
+     */
+    public Solucion(Grafo grafo) {
+
         palabraValidada = new String[0];
         cantidadPalabras = 0;
-        this.palabrabfs = null;
+        this.palabrabfs = null;   
     }
-    
-    
+    /**
+     * Metodo para implementar la busqueda BFS
+     * @param palabra, palabra a buscar
+     * @param verticeInicial
+     * @param grafo
+     * @return 
+     */
     public String busquedaDiccionarioBFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
         int contador=0;
-        NodoListaSimple aux=diccionario.primero();
+        NodoListaSimple aux=diccionario.getFirst();
         while(contador<diccionario.getiN() && aux !=null){
             if (bfs(aux.getInfo(),0,grafo)){
                 encontradas+= aux.getInfo()+"\n";
@@ -39,7 +49,6 @@ public class Solucion {
         }
         return encontradas;
     }
-    
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
@@ -108,17 +117,15 @@ public class Solucion {
         }
         return encontrada;
     }
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * 
+     * @param palabra
+     * @return 
+     */
     public String busquedaDiccionarioDFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
         int contador=0;
-        NodoListaSimple aux=diccionario.primero();
+        NodoListaSimple aux=diccionario.getFirst();
         while(contador<diccionario.getiN() && aux !=null){
             if (buscarPalabraDFS(aux.getInfo())){
                 encontradas+= aux.getInfo()+"\n";
@@ -129,7 +136,6 @@ public class Solucion {
         return encontradas;
     }
  
-
     public boolean buscarPalabraDFS(String palabra) {
         boolean[][] visitado = new boolean[4][4]; //matriz bidimensional que simula el grafo, asi como se aplico en leerTXT
         for (int i = 0; i < 4; i++) {
@@ -167,14 +173,11 @@ public class Solucion {
         visitado[i][j] = false; //aqui hasta que se acabe el backtracking y haya marcado todos como T en visitados para que puedan volver a considerarse para la palabra
         return false; //esto es para la primera llamada que se hizo y se devuelve a buscarPalabraDFS que se quedo como pausado en esa primera llamada, y considera las siguientes letras
     }
-    
 
-    
-    
-    
-    
-    
-    
+    /**
+     * Metodo para mostrar el grafo en una ventana
+     * @param grafo
+     */
     public void mostrarGrafo(Grafo grafo){
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
@@ -240,8 +243,12 @@ public class Solucion {
         viewer.enableAutoLayout();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
+    /**
+     * Metodo para mostrar el recorrido de la palabra encontrada
+     * @param grafo
+     * @param verticesPalabra, string con los indices de las letras de la palabra encotrada
+     */
      public void mostrarRecorrido(Grafo grafo, String verticesPalabra){
-         System.out.println(verticesPalabra);
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
         for (int i = 0; i < arrayNodos.length; i++) {
@@ -275,10 +282,8 @@ public class Solucion {
 
                     
                     if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
-                        //agregarArista(actual, nuevoIndice);  
                         sId += actual + "-";
                         sId += nuevoIndice;
-                        //System.out.println(id);
                         try{
                           grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoIndice]);  
                         }
@@ -318,10 +323,6 @@ public class Solucion {
         
     }
 
-    public Solucion() {
-    }
-     
-
     private void agregarPalabraValidada(String palabra) {
         String[] nuevoDiccionario = new String[cantidadPalabras + 1];
         for (int i = 0; i < cantidadPalabras; i++) {
@@ -332,9 +333,6 @@ public class Solucion {
         cantidadPalabras++;
     }
 
-    public String[] getPalabraValidada() {
-        return palabraValidada;
-    }
 
     public void buscarPalabrasValidadasDFS(Diccionario diccionario) {
         NodoListaSimple palabraActual = diccionario.obtenerLista().getFirst();
@@ -343,13 +341,18 @@ public class Solucion {
             palabraActual = palabraActual.getNext();
         }
     }
-
+    
     public String getPalabrabfs() {
         return palabrabfs;
     }
-
     
+    public String[] getPalabraValidada() {
+        return palabraValidada;
+    }
     
+    public Solucion() {
+    }
+       
 }
 
    

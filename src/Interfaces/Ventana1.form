@@ -103,7 +103,10 @@
               <Border info="null"/>
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
+<<<<<<< HEAD
             <Property name="opaque" type="boolean" value="false"/>
+=======
+>>>>>>> sofia
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="escogerarchivoActionPerformed"/>

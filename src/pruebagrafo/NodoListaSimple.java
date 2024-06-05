@@ -6,25 +6,29 @@ package pruebagrafo;
 
 /**
  *
- * @author berna
+ * @author sofiagrateron
  */
 public class NodoListaSimple {
     private String info;
     private NodoListaSimple next;
-
+    /**
+     * Constructor
+     * @param info 
+     */
     public NodoListaSimple(String info) {
         this.info = info;
         this.next = null;
     }
 
-    /**
-     * @return the info
+    /** Metodo para obtener la informacion del nodo
+     * @return the info, palabra contenida en el nodo
      */
     public String getInfo() {
         return info;
     }
 
     /**
+     * Metodo para fijar la informacion de un nodo
      * @param info the info to set
      */
     public void setInfo(String info) {
@@ -32,6 +36,7 @@ public class NodoListaSimple {
     }
 
     /**
+     * Metodo para obtener el nodo siguiente al actual
      * @return the next
      */
     public NodoListaSimple getNext() {
@@ -39,6 +44,7 @@ public class NodoListaSimple {
     }
 
     /**
+     * Metodo para fijar el nodo siguiente al actual
      * @param next the next to set
      */
     public void setNext(NodoListaSimple next) {

@@ -6,18 +6,19 @@ package Interfaces;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import leertxt.LeerTxt;
 import static pruebagrafo.Main.grafo;
 
 /**
  *
- * @author berna
+ * @author sofiagrateron
  */
 
 public class Ventana1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ventana1
+     * Constructor
      */
     public Ventana1() {
         initComponents();
@@ -103,16 +104,26 @@ public class Ventana1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo para escojer el archivo, guardar la informacion y crear el grafo
+     * @param evt 
+     */
     private void escogerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerarchivoActionPerformed
         // TODO add your handling code here:
         JFileChooser file=new JFileChooser();
         file.showOpenDialog(this);
         File abre =file.getSelectedFile();
         LeerTxt txt = new LeerTxt();
-        txt.crearLista(abre);
-        txt.crearArray(abre);
-        
+        boolean lista = txt.crearLista(abre);
+        if (!lista){
+            JOptionPane.showMessageDialog(this, "Las palabras no pueden tener acentos. Intente de nuevo");
+            return;
+        }
+        boolean array = txt.crearArray(abre);
+        if(!array){
+            JOptionPane.showMessageDialog(this, "El documento no debe contener numeros, acentos ni simbolos. Intente de nuevo");
+            return;
+        }
         
         grafo.crearGrafo(txt.getArray());
         Ventana2 v2 = new Ventana2(txt.getDic(),grafo);
@@ -131,7 +142,10 @@ public class Ventana1 extends javax.swing.JFrame {
 //            System.out.println();
 //        }
     }//GEN-LAST:event_escogerarchivoActionPerformed
-
+    /**
+     * Metodo para cerrar la ventana
+     * @param evt 
+     */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
