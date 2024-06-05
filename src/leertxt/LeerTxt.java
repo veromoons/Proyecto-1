@@ -23,49 +23,52 @@ public class LeerTxt {
     /**
      * Constructor
      */
-    public LeerTxt() {
+public LeerTxt(){
     }
-    
+
     /**
-    * Metodo para extraer las palabras del txt y guardarlo en una lista
-    * @param abre, archivo escojido en el JFileChooser por el usuario
-    */
-public void crearLista(File abre){
-    this.setLista(new ListaSimple());
+     * Metodo para extraer las palabras del txt y guardarlo en una lista
+     * @param abre, archivo escojido en el JFileChooser por el usuario
+     */
+    public boolean crearLista(File abre) {
+        this.setLista(new ListaSimple());
         String line;
         String palabras_txt = "";
         
         try{
             FileReader fr = new FileReader(abre);
             BufferedReader br = new BufferedReader(fr);
-            while((line = br.readLine().toUpperCase()) != null && !line.equals("/dic")){
-                if (line.length() >2){
-                palabras_txt += line + "\n";
+            while((line = br.readLine().toUpperCase()) != null && !line.equals("/DIC")){
+                if (line.length() > 2){
+                    palabras_txt += line + "\n";
                 }
-                }           
+                else{
+                    return false;
+                }
+            }           
             if (!"".equals(palabras_txt)){
                 String [] palabras_split = palabras_txt.split("\n");
-                   for (int i = 1; i < palabras_split.length; i++) {
-                        lista.insertarUltimo(palabras_split[i]);  
-            }
+                for (int i = 1; i < palabras_split.length; i++) {
+                    lista.insertarUltimo(palabras_split[i]);
+                }
                 br.close();
-                //JOptionPane.showMessageDialog(null, "Informacion guardada");
-                //lista.imprimir_lista(); para probar si se estan guardando las palabras
                 // guardar diccionario
                 Diccionario dic = new Diccionario(this.lista);
                 setDic(dic);
             }
+            return true;
         }
-       catch (Exception err){
-           JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No es posible guardar las palabras");
-       }
-        
+        catch (Exception err){
+            JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No es posible guardar las palabras");
+        }
+        return false;
     }
     /**
      * Metodo para extraer las letras del txt y guardarlas en un array doble
      * @param abre, archivo escojido en el JFileChooser por el usuario
      */
-    public void crearArray(File abre){
+    public boolean crearArray(File abre){
+        String returnS = "";
         this.setArray(new char [4][4]);
         String line;
         String letras_txt = "";
@@ -83,6 +86,12 @@ public void crearLista(File abre){
                 }
             if (!"".equals(letras_txt)){
                 String [] letras_split = letras_txt.split(",");
+                for (int i = 0; i < letras_split.length; i++) {
+                    if (!letras_split[i].matches("[A-Z]+")){
+                        return false;
+                    }
+                            }
+                
                 int cont = 0;
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++){
@@ -94,14 +103,14 @@ public void crearLista(File abre){
                           
             }
                 br.close();
-                //JOptionPane.showMessageDialog(null, "Informacion guardada");
-                
+                return true;
+            
             }
         
        catch (Exception err){
            JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No fue posible guardar las letras.");
        }
-        
+      return false;  
     }
     /**
      * Metodo para obtener la lista de palabras

@@ -10,25 +10,31 @@ import pruebagrafo.Grafo;
 import pruebagrafo.Solucion;
 import pruebagrafo.Diccionario;
 import pruebagrafo.Main;
+import java.io.File;
+import javax.swing.JFileChooser;
+import leertxt.LeerTxt;
 /**
  *
  * @author veronicaluna
  */
 public class Ventana4 extends javax.swing.JFrame {
-    private Solucion solucion;
-    private Grafo grafo;
-    private Diccionario diccionario;
+    static Solucion solucion;
+    static Grafo grafo;
+    static Diccionario diccionario;
     static Ventana2 v2;
 
     /**
      * Constructor
      */
-    public Ventana4(Diccionario dic) {
+    public Ventana4(Grafo grafo,Diccionario dic) {
         initComponents();
+        palabrasDiccionarioEncontradas.setText("");  //PROBAAAAR
         this.diccionario = dic;
+        this.setLocationRelativeTo(null); 
         this.grafo = grafo;
         this.solucion = new Solucion(grafo); 
         this.v2 = new Ventana2(diccionario, grafo);
+        tEjecucion.setText("");
     }
 
     /**
@@ -41,79 +47,134 @@ public class Ventana4 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        busquedaBFS = new javax.swing.JButton();
         busquedaDFS = new javax.swing.JButton();
+        busquedaBFS = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablero = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        palabrasDiccionarioEncontradas = new javax.swing.JTextArea();
         atras = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        tEjecucion = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        busquedaBFS.setText("Búsqueda BFS");
-        busquedaBFS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                busquedaBFSActionPerformed(evt);
-            }
-        });
-        jPanel1.add(busquedaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
-
-        busquedaDFS.setText("Búsqueda DFS");
+        busquedaDFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 2.png"))); // NOI18N
+        busquedaDFS.setBorder(null);
+        busquedaDFS.setBorderPainted(false);
         busquedaDFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedaDFSActionPerformed(evt);
             }
         });
-        jPanel1.add(busquedaDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        jPanel1.add(busquedaDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 140, 30));
 
-        tablero.setColumns(20);
-        tablero.setRows(5);
-        jScrollPane1.setViewportView(tablero);
+        busquedaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 1.png"))); // NOI18N
+        busquedaBFS.setBorder(null);
+        busquedaBFS.setBorderPainted(false);
+        busquedaBFS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaBFSActionPerformed(evt);
+            }
+        });
+        jPanel1.add(busquedaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 140, 30));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 210, 150));
+        jScrollPane1.setHorizontalScrollBar(null);
 
-        jLabel1.setText("PALABRAS ENCONTRADAS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+        palabrasDiccionarioEncontradas.setColumns(20);
+        palabrasDiccionarioEncontradas.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        palabrasDiccionarioEncontradas.setRows(5);
+        palabrasDiccionarioEncontradas.setFocusable(false);
+        jScrollPane1.setViewportView(palabrasDiccionarioEncontradas);
 
-        atras.setText("Atras");
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 140, 180));
+
+        atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/atras boton.png"))); // NOI18N
+        atras.setBorder(null);
+        atras.setBorderPainted(false);
         atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasActionPerformed(evt);
             }
         });
-        jPanel1.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        jPanel1.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 50, 30));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit mas pequeno.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 0, 20, 20));
+
+        tEjecucion.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
+        tEjecucion.setFocusable(false);
+        jPanel1.add(tEjecucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 50, -1));
+
+        jLabel2.setText("ms");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
+        jLabel3.setText("Tiempo de recorrido:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (11).png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 470, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (10).png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void busquedaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaBFSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_busquedaBFSActionPerformed
+    private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
+        Solucion soluc=new Solucion();
+        
+        //aqui mide el tiempo de inicio
+        long startTime = System.currentTimeMillis();
+        
+        //aqui es donde corre la funcion de busqueda BFS para cada palabra del diccionario
+        palabrasDiccionarioEncontradas.setText("Palabras encontradas \ncon DFS \n" + soluc.busquedaDiccionarioDFS(this.diccionario.getDiccionario(),this.grafo));
+        
+        //se mide el tiempo de fin
+        long endTime = System.currentTimeMillis();
+        //calculo en miliseg
+        long executionTime = endTime - startTime;
+        
+        tEjecucion.setText(Long.toString(executionTime));
+        
+    }//GEN-LAST:event_busquedaDFSActionPerformed
     /**
      * Metodo para busqueda DFS
      * @author veronicaluna
      * @param evt 
      */
-    private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
-        // TODO add your handling code here:
-         Solucion solucion = new Solucion(Main.grafo);
-   
-        solucion.buscarPalabrasValidadasDFS(diccionario);
+    private void busquedaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaBFSActionPerformed
+        
+        Solucion soluc2=new Solucion();
+        //aqui mide el tiempo de inicio
+        long startTime = System.currentTimeMillis();
+        
+        //aqui es donde corre la funcion de busqueda DFS para cada palabra del diccionario
+        palabrasDiccionarioEncontradas.setText("Palabras encontradas\ncon BFS \n" + soluc2.busquedaDiccionarioBFS(this.diccionario.getDiccionario(),this.grafo));
+        
+        //se mide el tiempo de fin
+        long endTime = System.currentTimeMillis();
+        //calculo en miliseg
+        long executionTime = endTime - startTime;
+        
+        tEjecucion.setText(Long.toString(executionTime));
+        
+    }//GEN-LAST:event_busquedaBFSActionPerformed
 
-        String[] palabrasValidadas = solucion.getPalabraValidada();
-    
-        tablero.setText("");
-  
-        for (String palabra : palabrasValidadas) {
-            tablero.append(palabra + "\n");
-
-    }//GEN-LAST:event_busquedaDFSActionPerformed
-}
     /**
      * Metodo para regresar a la ventana anterior
      * @param evt 
@@ -123,6 +184,10 @@ public class Ventana4 extends javax.swing.JFrame {
         this.setVisible(false);
         v2.setVisible(true);
     }//GEN-LAST:event_atrasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     /**
@@ -160,21 +225,26 @@ public class Ventana4 extends javax.swing.JFrame {
             public void run() {
             Diccionario dic = new Diccionario();
             
-            new Ventana4(dic).setVisible(true);    
+            new Ventana4(grafo,dic).setVisible(true);    
 
 }
                 
             
         });
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;
     private javax.swing.JButton busquedaBFS;
     private javax.swing.JButton busquedaDFS;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea tablero;
+    private javax.swing.JTextArea palabrasDiccionarioEncontradas;
+    private javax.swing.JTextField tEjecucion;
     // End of variables declaration//GEN-END:variables
 }

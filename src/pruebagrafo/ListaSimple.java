@@ -18,6 +18,7 @@ public class ListaSimple {
         this.first = null;
         this.iN = 0;
     }
+
     /**
      * Metodo para revisar si la lista es vacia
      * @return verdadero si es vacia, falso si no lo es 

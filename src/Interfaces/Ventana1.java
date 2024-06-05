@@ -6,9 +6,9 @@ package Interfaces;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import leertxt.LeerTxt;
 import static pruebagrafo.Main.grafo;
-import pruebagrafo.Solucion;
 
 /**
  *
@@ -73,10 +73,13 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        escogerarchivo.setBackground(new java.awt.Color(255, 255, 255));
         escogerarchivo.setFont(new java.awt.Font("Eras Medium ITC", 0, 12)); // NOI18N
-        escogerarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana inicio sopa letras (5).png"))); // NOI18N
+        escogerarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 boton.png"))); // NOI18N
         escogerarchivo.setText("Cargar archivo");
         escogerarchivo.setBorder(null);
+        escogerarchivo.setBorderPainted(false);
+        escogerarchivo.setOpaque(false);
         escogerarchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 escogerarchivoActionPerformed(evt);
@@ -84,17 +87,18 @@ public class Ventana1 extends javax.swing.JFrame {
         });
         jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 190, 40));
 
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana inicio sopa letras (7).png"))); // NOI18N
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit.png"))); // NOI18N
         exit.setBorder(null);
+        exit.setBorderPainted(false);
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);
             }
         });
-        jPanel4.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, -1, 50));
+        jPanel4.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana inicio sopa letras (6).png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 420));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 fondo.png"))); // NOI18N
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 420));
 
@@ -110,12 +114,18 @@ public class Ventana1 extends javax.swing.JFrame {
         file.showOpenDialog(this);
         File abre =file.getSelectedFile();
         LeerTxt txt = new LeerTxt();
-        txt.crearLista(abre);
-        txt.crearArray(abre);
-        
+        boolean lista = txt.crearLista(abre);
+        if (!lista){
+            JOptionPane.showMessageDialog(this, "Las palabras no pueden tener acentos. Intente de nuevo");
+            return;
+        }
+        boolean array = txt.crearArray(abre);
+        if(!array){
+            JOptionPane.showMessageDialog(this, "El documento no debe contener numeros, acentos ni simbolos. Intente de nuevo");
+            return;
+        }
         
         grafo.crearGrafo(txt.getArray());
-        //Solucion sol = new Solucion();
         Ventana2 v2 = new Ventana2(txt.getDic(),grafo);
         this.setVisible(false);
         v2.setVisible(true);
@@ -137,7 +147,7 @@ public class Ventana1 extends javax.swing.JFrame {
      * @param evt 
      */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
     /**
