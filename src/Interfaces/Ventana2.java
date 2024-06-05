@@ -42,6 +42,7 @@ public class Ventana2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         diccionario = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
         buscarPalabraNuevaBFS = new javax.swing.JButton();
         mostrarTablero = new javax.swing.JButton();
         buscarPalabrasDiccionario = new javax.swing.JButton();
@@ -63,10 +64,14 @@ public class Ventana2 extends javax.swing.JFrame {
         diccionario.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         diccionario.setRows(5);
         diccionario.setBorder(null);
+        diccionario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         diccionario.setFocusable(false);
         jScrollPane1.setViewportView(diccionario);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 140, 160));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/muneco buscar.gif"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
         buscarPalabraNuevaBFS.setBackground(new java.awt.Color(255, 255, 255));
         buscarPalabraNuevaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (17).png"))); // NOI18N
@@ -194,6 +199,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mostrarTablero;

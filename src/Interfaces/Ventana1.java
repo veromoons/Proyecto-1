@@ -39,8 +39,9 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        escogerarchivo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
+        escogerarchivo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,6 +73,19 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gif click (1).gif"))); // NOI18N
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, -1, -1));
+
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit.png"))); // NOI18N
+        exit.setBorder(null);
+        exit.setBorderPainted(false);
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jPanel4.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
+
         escogerarchivo.setBackground(new java.awt.Color(255, 255, 255));
         escogerarchivo.setFont(new java.awt.Font("Eras Medium ITC", 0, 12)); // NOI18N
         escogerarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 boton.png"))); // NOI18N
@@ -85,16 +99,6 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
         jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 190, 40));
-
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit.png"))); // NOI18N
-        exit.setBorder(null);
-        exit.setBorderPainted(false);
-        exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitActionPerformed(evt);
-            }
-        });
-        jPanel4.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 fondo.png"))); // NOI18N
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
@@ -175,6 +179,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton escogerarchivo;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

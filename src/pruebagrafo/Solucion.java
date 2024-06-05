@@ -40,6 +40,7 @@ public class Solucion {
         return encontradas;
     }
     
+    //ERROR CON: TAMARA, repite una A ver el output o el recorrido en la interfaz, pero no falla con CHAOA por ej
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {

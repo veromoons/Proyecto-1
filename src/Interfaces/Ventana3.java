@@ -54,6 +54,9 @@ public class Ventana3 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,7 +76,7 @@ public class Ventana3 extends javax.swing.JFrame {
         tablero.setFocusable(false);
         jScrollPane1.setViewportView(tablero);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 150, 190));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, 180));
 
         buscarNuevaPalabraBFS.setBackground(new java.awt.Color(255, 255, 255));
         buscarNuevaPalabraBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (7).png"))); // NOI18N
@@ -85,7 +88,7 @@ public class Ventana3 extends javax.swing.JFrame {
                 buscarNuevaPalabraBFSActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNuevaPalabraBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, 40));
+        jPanel1.add(buscarNuevaPalabraBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, 40));
 
         palabraABuscar.setBackground(new java.awt.Color(255, 255, 255));
         palabraABuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +96,7 @@ public class Ventana3 extends javax.swing.JFrame {
                 palabraABuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(palabraABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 130, 30));
+        jPanel1.add(palabraABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 130, 30));
 
         tEjec.setBackground(new java.awt.Color(255, 255, 255));
         tEjec.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
@@ -103,11 +106,11 @@ public class Ventana3 extends javax.swing.JFrame {
                 tEjecActionPerformed(evt);
             }
         });
-        jPanel1.add(tEjec, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 50, -1));
+        jPanel1.add(tEjec, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 50, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ms");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit mas pequeno.png"))); // NOI18N
         jButton2.setBorder(null);
@@ -128,26 +131,37 @@ public class Ventana3 extends javax.swing.JFrame {
                 atrásActionPerformed(evt);
             }
         });
-        jPanel1.add(atrás, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 50, 40));
+        jPanel1.add(atrás, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 50, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (8).png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 140, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 140, 40));
 
-        jLabel3.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tiempo de recorrido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (3).png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 150, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 150, 30));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (11).png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, -1, -1));
+
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("Introduzca una palabra que desee buscar ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 20));
+
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("De ser una nueva palabra, tiene la opción de guardarla en el TXT");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 20));
+
+        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel9.setText("*Debe tener más de 3 letras, no incluir acentos, números o símbolos ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 20));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (10).png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -262,6 +276,9 @@ public class Ventana3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField palabraABuscar;

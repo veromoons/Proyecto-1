@@ -65,7 +65,7 @@ public class Ventana4 extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         busquedaBFS.setBackground(new java.awt.Color(255, 255, 255));
-        busquedaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 2.png"))); // NOI18N
+        busquedaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 1.png"))); // NOI18N
         busquedaBFS.setBorder(null);
         busquedaBFS.setBorderPainted(false);
         busquedaBFS.setOpaque(false);
@@ -74,9 +74,9 @@ public class Ventana4 extends javax.swing.JFrame {
                 busquedaBFSActionPerformed(evt);
             }
         });
-        jPanel1.add(busquedaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 140, 30));
+        jPanel1.add(busquedaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 140, 30));
 
-        busquedaDFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 1.png"))); // NOI18N
+        busquedaDFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 2.png"))); // NOI18N
         busquedaDFS.setBorder(null);
         busquedaDFS.setBorderPainted(false);
         busquedaDFS.setOpaque(false);
@@ -85,7 +85,7 @@ public class Ventana4 extends javax.swing.JFrame {
                 busquedaDFSActionPerformed(evt);
             }
         });
-        jPanel1.add(busquedaDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 140, 30));
+        jPanel1.add(busquedaDFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 140, 30));
 
         jScrollPane1.setHorizontalScrollBar(null);
 
@@ -122,11 +122,11 @@ public class Ventana4 extends javax.swing.JFrame {
         tEjecucion.setBackground(new java.awt.Color(255, 255, 255));
         tEjecucion.setFont(new java.awt.Font("Dubai Medium", 0, 12)); // NOI18N
         tEjecucion.setFocusable(false);
-        jPanel1.add(tEjecucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 50, -1));
+        jPanel1.add(tEjecucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 50, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ms");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
