@@ -1,8 +1,6 @@
 
 package pruebagrafo;
 
-
-
 /**
  *
  * @author verol
@@ -41,7 +39,7 @@ public class Grafo {
     }
     
     public void agregarArista(int origen, int destino){
-         if (origen < 0 || origen >= getNumVertices() || destino < 0 || destino >= getNumVertices()) { //ahora q lo veo es medio innecesario idk
+         if (origen < 0 || origen >= getNumVertices() || destino < 0 || destino >= getNumVertices()) { 
             throw new IllegalArgumentException("Uno o ambos vértices no existen.");
         }
         
@@ -55,37 +53,38 @@ public class Grafo {
     }
     
     public void crearGrafo(char[][] tableroLetras) {
-        int dimension = tableroLetras.length; //va a ser 4
+        int tamanoiyj = tableroLetras.length; //va a ser 4, ya que es 4x4 coinciden i y j o se puede poner 4 y ya, solo para generalizarlo y que sea mas friendly
 
         // agg vertices (letras) del array al grafo una a una
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
+        for (int i = 0; i < tamanoiyj; i++) {
+            for (int j = 0; j < tamanoiyj; j++) {
                 agregarVertice(tableroLetras[i][j]);
             }
         }
 
         // se itera en i (filas) y j (columnas). Actual va a ser para i<4 (4 filas de 0 a 3) y j<4 (4 columnas de 0 a 3) porque es una matriz 4x4, y actual va a ser el numVertice (de 0 a 15 que da 16 vertices en total, 4x4)
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                int actual = i * dimension + j;
+        for (int i = 0; i < tamanoiyj; i++) {
+            for (int j = 0; j < tamanoiyj; j++) {
+                int actual = i * tamanoiyj + j;
 
                 // direcciones de posibles adyacentes (el centro es donde iria el vertice actual) y se evaluan las diferentes posibles posiciones de los vertices adyacentes
                 // recordar que el par es: (i,j). Entonces, siendo que el actual es (i,j), por ej la posicion de justo arriba seria un (i-1, misma columna j) por lo que es (-1,0)
-                int[][] direcciones = {
+                int[][] posiblesPosiciones = {
                     {-1, -1}, {-1, 0}, {-1, 1},
-                    {0, -1},         {0, 1},
+                    {0, -1},            {0, 1},
                     {1, -1}, {1, 0}, {1, 1}
                 };
-
-                for (int[] d : direcciones) { //para cada subarray en el array doble "direcciones"...
-                    int nuevai = i + d[0]; //0 es la posicion de i, 1 es la posicion de j
-                    int nuevaj = j + d[1];
-                    int nuevoIndice = nuevai * dimension + nuevaj;
-
+                
+                for (int parIJ = 0; parIJ < posiblesPosiciones.length; parIJ++) {
+                    int[] subindices = posiblesPosiciones[parIJ];  //subindices i o j de una matriz, i es el elemento de fila y j el de columna
+                    int nuevai = i + subindices[0]; //0 es la posicion de i, 1 es la posicion de j
+                    int nuevaj = j + subindices[1]; 
+                    int nuevoDestinoArista = nuevai * tamanoiyj + nuevaj; //se llama asi porque es la posicion o numVertice de la arista destino nueva si pasa el if posterior
+                
                     // aqui se evalua que las posiciones adyacentes antes evaluadas sean posibles de una en una (que sean mayores o iguales a 0 y menores a 4 (i y j van de 0 a 3)
-                    if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
+                    if (nuevai >= 0 && nuevai < tamanoiyj && nuevaj >= 0 && nuevaj < tamanoiyj) {
                         //System.out.println("el actual es: "+ actual+"   y conecta con: "+nuevoIndice);  //para probar que sirva este metodo con lo q esta en el main
-                        agregarArista(actual, nuevoIndice);
+                        agregarArista(actual, nuevoDestinoArista);
                     }
                 }
             }
@@ -93,7 +92,7 @@ public class Grafo {
     }
 
     
-    public String mostrarGrafo(){
+    public String mostrarGrafoTablero(){  
         String tablero = "";
         for (int i = 0; i < 4; i++) {
             tablero += "  " + this.listaVertices[i].getLetra() + "  ";

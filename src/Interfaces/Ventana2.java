@@ -46,50 +46,60 @@ public class Ventana2 extends javax.swing.JFrame {
         mostrarTablero = new javax.swing.JButton();
         buscarPalabrasDiccionario = new javax.swing.JButton();
         exit = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(730, 490));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setPreferredSize(new java.awt.Dimension(730, 490));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        diccionario.setBackground(new java.awt.Color(255, 255, 255));
         diccionario.setColumns(20);
+        diccionario.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         diccionario.setRows(5);
         diccionario.setBorder(null);
         diccionario.setFocusable(false);
         jScrollPane1.setViewportView(diccionario);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 220, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 140, 160));
 
-        buscarPalabraNuevaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (4).png"))); // NOI18N
+        buscarPalabraNuevaBFS.setBackground(new java.awt.Color(255, 255, 255));
+        buscarPalabraNuevaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (17).png"))); // NOI18N
         buscarPalabraNuevaBFS.setBorder(null);
         buscarPalabraNuevaBFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarPalabraNuevaBFSActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarPalabraNuevaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 140, -1));
+        jPanel1.add(buscarPalabraNuevaBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 180, 40));
 
-        mostrarTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (2).png"))); // NOI18N
+        mostrarTablero.setBackground(new java.awt.Color(255, 255, 255));
+        mostrarTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (16).png"))); // NOI18N
         mostrarTablero.setBorder(null);
+        mostrarTablero.setBorderPainted(false);
         mostrarTablero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarTableroActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrarTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 110, -1));
+        jPanel1.add(mostrarTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 180, 40));
 
-        buscarPalabrasDiccionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (3).png"))); // NOI18N
+        buscarPalabrasDiccionario.setBackground(new java.awt.Color(255, 255, 255));
+        buscarPalabrasDiccionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (18).png"))); // NOI18N
         buscarPalabrasDiccionario.setBorder(null);
+        buscarPalabrasDiccionario.setBorderPainted(false);
+        buscarPalabrasDiccionario.setOpaque(false);
         buscarPalabrasDiccionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarPalabrasDiccionarioActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarPalabrasDiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 150, -1));
+        jPanel1.add(buscarPalabrasDiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 200, 40));
 
         exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit mas pequeno.png"))); // NOI18N
         exit.setBorder(null);
@@ -100,10 +110,13 @@ public class Ventana2 extends javax.swing.JFrame {
         });
         jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (1).png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 290));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (15).png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 430));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana v2 fondo.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,14 +125,13 @@ public class Ventana2 extends javax.swing.JFrame {
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
         Solucion sol = new Solucion();
         sol.mostrarGrafo(this.grafo);
-        
-        
+        this.setVisible(false);
     }//GEN-LAST:event_mostrarTableroActionPerformed
 
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
-             
-      Ventana4 v4 = new Ventana4(dic);
-      v4.setVisible(true);
+        Ventana4 v4 = new Ventana4(grafo,dic);
+        v4.setVisible(true);
+        this.setVisible(false);
     }                                                         
 
 
@@ -135,7 +147,7 @@ public class Ventana2 extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
 */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
     /**
@@ -181,6 +193,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JTextArea diccionario;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mostrarTablero;
