@@ -12,14 +12,14 @@ import pruebagrafo.Solucion;
 
 /**
  *
- * @author berna
+ * @author sofiagrateron
  */
 public class Ventana3 extends javax.swing.JFrame {
     static Grafo grafo;
     static Ventana2 v2;
     static Diccionario diccionario;
     /**
-     * Creates new form Ventana3
+     * Constructor
      */
     public Ventana3(Grafo grafo, Diccionario diccionario) {
         initComponents();
@@ -111,7 +111,11 @@ public class Ventana3 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo para buscar palabra por BFS
+     * 
+     * @param evt 
+     */
     private void buscarNuevaPalabraBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNuevaPalabraBFSActionPerformed
         
          String palabraBuscada = palabraABuscar.getText().toUpperCase();
@@ -160,11 +164,17 @@ public class Ventana3 extends javax.swing.JFrame {
     private void palabraABuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabraABuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_palabraABuscarActionPerformed
-
+    /**
+     * Metodo para cerrar la vetana 3
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Metodo para volver a la ventana anterior
+     * @param evt 
+     */
     private void atrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrásActionPerformed
         // TODO add your handling code here:
         v2.setVisible(true);

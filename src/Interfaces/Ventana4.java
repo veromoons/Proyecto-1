@@ -12,7 +12,7 @@ import pruebagrafo.Diccionario;
 import pruebagrafo.Main;
 /**
  *
- * @author verol
+ * @author veronicaluna
  */
 public class Ventana4 extends javax.swing.JFrame {
     private Solucion solucion;
@@ -21,7 +21,7 @@ public class Ventana4 extends javax.swing.JFrame {
     static Ventana2 v2;
 
     /**
-     * Creates new form VentanaInicio
+     * Constructor
      */
     public Ventana4(Diccionario dic) {
         initComponents();
@@ -94,7 +94,11 @@ public class Ventana4 extends javax.swing.JFrame {
     private void busquedaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaBFSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_busquedaBFSActionPerformed
-
+    /**
+     * Metodo para busqueda DFS
+     * @author veronicaluna
+     * @param evt 
+     */
     private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
         // TODO add your handling code here:
          Solucion solucion = new Solucion(Main.grafo);
@@ -110,6 +114,10 @@ public class Ventana4 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_busquedaDFSActionPerformed
 }
+    /**
+     * Metodo para regresar a la ventana anterior
+     * @param evt 
+     */
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

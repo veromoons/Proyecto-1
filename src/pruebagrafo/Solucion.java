@@ -9,7 +9,7 @@ import org.graphstream.ui.view.Viewer;
 
 
 /**
- *
+ * Clase para implementar procedimientos en la interfaz //no seee
  * 
  */
 
@@ -18,12 +18,23 @@ public class Solucion {
     private String[] palabraValidada;
     private int cantidadPalabras;
     private String palabrabfs;
-
+    
+    /**
+     * Constructor
+     * @param grafo 
+     */
     public Solucion(Grafo grafo) {
         palabraValidada = new String[0];
         cantidadPalabras = 0;
         this.palabrabfs = null;
     }
+    /**
+     * Metodo para implementar la busqueda BFS
+     * @param palabra, palabra a buscar
+     * @param verticeInicial
+     * @param grafo
+     * @return 
+     */
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
@@ -102,7 +113,11 @@ public class Solucion {
         return encontrada;
     }
 
-
+    /**
+     * 
+     * @param palabra
+     * @return 
+     */
     public boolean buscarPalabraDFS(String palabra) {
         boolean[][] visitado = new boolean[4][4];
         for (int i = 0; i < 4; i++) {
@@ -133,7 +148,10 @@ public class Solucion {
         visitado[i][j] = false;
         return false;
     }
-    
+    /**
+     * Metodo para mostrar el grafo en una ventana
+     * @param grafo
+     */
     public void mostrarGrafo(Grafo grafo){
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
@@ -199,6 +217,11 @@ public class Solucion {
         viewer.enableAutoLayout();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
+    /**
+     * Metodo para mostrar el recorrido de la palabra encontrada
+     * @param grafo
+     * @param verticesPalabra, string con los indices de las letras de la palabra encotrada
+     */
      public void mostrarRecorrido(Grafo grafo, String verticesPalabra){
          System.out.println(verticesPalabra);
         Graph grafo_mostrar = new MultiGraph("Grafo");
@@ -277,10 +300,6 @@ public class Solucion {
         
     }
 
-    public Solucion() {
-    }
-     
-
     private void agregarPalabraValidada(String palabra) {
         String[] nuevoDiccionario = new String[cantidadPalabras + 1];
         for (int i = 0; i < cantidadPalabras; i++) {
@@ -291,9 +310,6 @@ public class Solucion {
         cantidadPalabras++;
     }
 
-    public String[] getPalabraValidada() {
-        return palabraValidada;
-    }
 
     public void buscarPalabrasValidadasDFS(Diccionario diccionario) {
         NodoListaSimple palabraActual = diccionario.obtenerLista().getFirst();
@@ -302,13 +318,18 @@ public class Solucion {
             palabraActual = palabraActual.getNext();
         }
     }
-
+    
     public String getPalabrabfs() {
         return palabrabfs;
     }
-
     
+    public String[] getPalabraValidada() {
+        return palabraValidada;
+    }
     
+    public Solucion() {
+    }
+       
 }
 
    

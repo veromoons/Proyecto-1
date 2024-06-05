@@ -12,13 +12,13 @@ import pruebagrafo.Solucion;
 
 /**
  *
- * @author berna
+ * @author sofiagrateron
  */
 
 public class Ventana1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ventana1
+     * Constructor
      */
     public Ventana1() {
         initComponents();
@@ -100,7 +100,10 @@ public class Ventana1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo para escojer el archivo, guardar la informacion y crear el grafo
+     * @param evt 
+     */
     private void escogerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerarchivoActionPerformed
         // TODO add your handling code here:
         JFileChooser file=new JFileChooser();
@@ -129,7 +132,10 @@ public class Ventana1 extends javax.swing.JFrame {
 //            System.out.println();
 //        }
     }//GEN-LAST:event_escogerarchivoActionPerformed
-
+    /**
+     * Metodo para cerrar la ventana
+     * @param evt 
+     */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed

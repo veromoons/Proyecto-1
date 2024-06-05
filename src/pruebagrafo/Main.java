@@ -5,7 +5,7 @@ import Interfaces.Ventana1;
 
 /**
  *
- * @author verol
+ * @author veronicaluna
  */
 public class Main {
 
