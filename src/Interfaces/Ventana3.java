@@ -103,11 +103,11 @@ public class Ventana3 extends javax.swing.JFrame {
                 tEjecActionPerformed(evt);
             }
         });
-        jPanel1.add(tEjec, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 50, 30));
+        jPanel1.add(tEjec, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 50, 30));
 
         milisegs.setForeground(new java.awt.Color(0, 0, 0));
         milisegs.setText("ms");
-        jPanel1.add(milisegs, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
+        jPanel1.add(milisegs, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit mas pequeno.png"))); // NOI18N
         jButton2.setBorder(null);
@@ -135,11 +135,11 @@ public class Ventana3 extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 120, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 130, 40));
 
         tRecorridoTitulo.setForeground(new java.awt.Color(0, 0, 0));
         tRecorridoTitulo.setText("Tiempo de recorrido:");
-        jPanel1.add(tRecorridoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        jPanel1.add(tRecorridoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
 
         palabraBuscarTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (3).png"))); // NOI18N
         jPanel1.add(palabraBuscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 150, 30));
@@ -152,7 +152,7 @@ public class Ventana3 extends javax.swing.JFrame {
         jPanel1.add(introd1V3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 20));
 
         introd2V3.setForeground(new java.awt.Color(51, 51, 51));
-        introd2V3.setText("De ser una nueva palabra, tiene la opción de guardarla en el TXT");
+        introd2V3.setText("De ser una palabra nueva, tiene la opción de guardarla en el TXT");
         jPanel1.add(introd2V3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 20));
 
         introd3V3.setForeground(new java.awt.Color(51, 51, 51));
@@ -190,7 +190,7 @@ public class Ventana3 extends javax.swing.JFrame {
             return;
         }
        
-        Solucion solucion = new Solucion(grafo);
+        Solucion solucion = new Solucion();
 
         //aqui mide el tiempo de inicio
         long startTime = System.currentTimeMillis();
@@ -212,6 +212,7 @@ public class Ventana3 extends javax.swing.JFrame {
         }
 
         palabraABuscar.setText("");
+        tEjec.setText("");
     }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
 
     private void tEjecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEjecActionPerformed
@@ -222,7 +223,7 @@ public class Ventana3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_palabraABuscarActionPerformed
     /**
-     * Metodo para cerrar la vetana 3
+     * Metodo para cerrar la ventana 3
      * @param evt 
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

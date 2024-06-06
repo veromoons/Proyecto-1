@@ -15,18 +15,14 @@ import org.graphstream.ui.view.Viewer;
 
 
 public class Solucion { 
-    private String[] palabraValidada;
-    private int cantidadPalabras;
     private String palabrabfs;
 
     /**
      * Constructor
      * @param grafo 
      */
-    public Solucion(Grafo grafo) {
-
-        palabraValidada = new String[0];
-        cantidadPalabras = 0;
+       
+    public Solucion() {
         this.palabrabfs = null;   
     }
     /**
@@ -102,7 +98,7 @@ public class Solucion {
                     palabraFinal=puntero.getInfo().getNumVertice()+","+palabraFinal;
                     puntero=puntero.getAncestor();
                 }
-                //System.out.println("Recorrido: "+palabraFinal);
+                //System.out.println("Recorrido: "+palabraFinal);   //por si acaso se quiere ver los numVertice de los que se encontraron como letras de la palabra
                 this.palabrabfs = palabraFinal;
                 break;
             } else {
@@ -174,7 +170,7 @@ public class Solucion {
      * Metodo para mostrar el grafo en una ventana
      * @param grafo
      */
-    public void mostrarGrafo(Grafo grafo){
+    public void mostrarGrafo(Grafo grafo){                     //de nuevo, basandonos en el mismo codigo y logica que logramos en crearGrafo (que tambien usamos en DFS ya que sirvio la logica) 
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
         for (int i = 0; i < arrayNodos.length; i++) {
@@ -191,29 +187,30 @@ public class Solucion {
        
         }
       String sId = "";
-        int dimension = 4;     
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                int actual = i * dimension + j;
-                int[][] direcciones = {
+        int tamanoiyj = 4;     
+        for (int i = 0; i < tamanoiyj; i++) {
+            for (int j = 0; j < tamanoiyj; j++) {
+                int actual = i * tamanoiyj + j;
+                int[][] posiblesPosiciones = {
                     {-1, -1}, {-1, 0}, {-1, 1},
                     {0, -1},         {0, 1}, //0,0  
                     {1, -1}, {1, 0}, {1, 1}
                 };
 
-                for (int[] d : direcciones) { 
-                    int nuevai = i + d[0]; 
-                    int nuevaj = j + d[1];
-                    int nuevoIndice = nuevai * dimension + nuevaj;
+                for (int parIJ = 0; parIJ < posiblesPosiciones.length; parIJ++) {
+                    int[] subindices = posiblesPosiciones[parIJ];  //subindices i o j de una matriz, i es el elemento de fila y j el de columna
+                    int nuevai = i + subindices[0]; //0 es la posicion de i, 1 es la posicion de j
+                    int nuevaj = j + subindices[1]; 
+                    int nuevoDestino = nuevai * tamanoiyj + nuevaj;
 
                     
-                    if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
+                    if (nuevai >= 0 && nuevai < tamanoiyj && nuevaj >= 0 && nuevaj < tamanoiyj) {
                         //agregarArista(actual, nuevoIndice);  
                         sId += actual + "-";
-                        sId += nuevoIndice;
+                        sId += nuevoDestino;
                         //System.out.println(id);
                         try{
-                          grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoIndice]);  
+                          grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoDestino]);  
                         }
                         catch (Exception e){
                             
@@ -244,7 +241,7 @@ public class Solucion {
      * @param grafo
      * @param verticesPalabra, string con los indices de las letras de la palabra encotrada
      */
-     public void mostrarRecorrido(Grafo grafo, String verticesPalabra){
+     public void mostrarRecorrido(Grafo grafo, String verticesPalabra){             //aqui tambien nos basamos en la misma logica y codigo de crearGrafo al igual que en busqueda DFS y la funcion de arriba mostrarGrafo...
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
         for (int i = 0; i < arrayNodos.length; i++) {
@@ -261,27 +258,28 @@ public class Solucion {
        
         }
       String sId = "";
-        int dimension = 4;
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                int actual = i * dimension + j;
-                int[][] direcciones = {
+        int tamanoiyj = 4;
+        for (int i = 0; i < tamanoiyj; i++) {
+            for (int j = 0; j < tamanoiyj; j++) {
+                int actual = i * tamanoiyj + j;
+                int[][] posiblesPosiciones = {
                     {-1, -1}, {-1, 0}, {-1, 1},
-                    {0, -1},         {0, 1}, //0,0  
+                    {0, -1},         {0, 1}, 
                     {1, -1}, {1, 0}, {1, 1}
                 };
 
-                for (int[] d : direcciones) { 
-                    int nuevai = i + d[0]; 
-                    int nuevaj = j + d[1];
-                    int nuevoIndice = nuevai * dimension + nuevaj;
+                for (int parIJ = 0; parIJ < posiblesPosiciones.length; parIJ++) {
+                    int[] subindices = posiblesPosiciones[parIJ];  //subindices i o j de una matriz, i es el elemento de fila y j el de columna
+                    int nuevai = i + subindices[0]; //0 es la posicion de i, 1 es la posicion de j
+                    int nuevaj = j + subindices[1]; 
+                    int nuevoDestino = nuevai * tamanoiyj + nuevaj;
 
                     
-                    if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
+                    if (nuevai >= 0 && nuevai < tamanoiyj && nuevaj >= 0 && nuevaj < tamanoiyj) {
                         sId += actual + "-";
-                        sId += nuevoIndice;
+                        sId += nuevoDestino;
                         try{
-                          grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoIndice]);  
+                          grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoDestino]);  
                         }
                         catch (Exception e){
                             
@@ -318,37 +316,12 @@ public class Solucion {
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
         
     }
-
-    private void agregarPalabraValidada(String palabra) {
-        String[] nuevoDiccionario = new String[cantidadPalabras + 1];
-        for (int i = 0; i < cantidadPalabras; i++) {
-            nuevoDiccionario[i] = palabraValidada[i];
-        }
-        nuevoDiccionario[cantidadPalabras] = palabra;
-        palabraValidada = nuevoDiccionario;
-        cantidadPalabras++;
-    }
-
-
-    public void buscarPalabrasValidadasDFS(Diccionario diccionario) {
-        NodoListaSimple palabraActual = diccionario.obtenerLista().getFirst();
-        while (palabraActual != null) {
-            buscarPalabraDFS(palabraActual.getInfo().toString());
-            palabraActual = palabraActual.getNext();
-        }
-    }
     
     public String getPalabrabfs() {
         return palabrabfs;
     }
     
-    public String[] getPalabraValidada() {
-        return palabraValidada;
-    }
     
-    public Solucion() {
-    }
-       
 }
 
    

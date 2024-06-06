@@ -29,7 +29,7 @@ public class Ventana4 extends javax.swing.JFrame {
         this.diccionario = dic;
         this.setLocationRelativeTo(null); 
         this.grafo = grafo;
-        this.solucion = new Solucion(grafo); 
+        this.solucion = new Solucion(); 
         this.v2 = new Ventana2(diccionario, grafo);
         tEjecucion.setText("");
     }
