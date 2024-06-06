@@ -12,46 +12,63 @@ import pruebagrafo.Diccionario;
 import pruebagrafo.ListaSimple;
 
 /**
- *
- * @author berna
+ * Clase para extraer la informacion del txt y guardarla en el memoria
+ * @author sofiagrateron
  */
 public class LeerTxt {
     private ListaSimple lista;
     private Diccionario dic;
     private char [][] array;
     
-    
+    /**
+     * Constructor
+     */
+public LeerTxt(){
+    }
 
-public void crearLista(File abre){
-    this.setLista(new ListaSimple());
+    /**
+     * Metodo para extraer las palabras del txt y guardarlo en una lista
+     * @param abre, archivo escojido en el JFileChooser por el usuario
+     */
+    public boolean crearLista(File abre) {
+        this.setLista(new ListaSimple());
         String line;
         String palabras_txt = "";
         
         try{
             FileReader fr = new FileReader(abre);
             BufferedReader br = new BufferedReader(fr);
-            while((line = br.readLine()) != null && !line.equals("/dic")){
-                palabras_txt += line + "\n";
-                }           
+            while((line = br.readLine().toUpperCase()) != null && !line.equals("/DIC")){
+                if (line.length() > 2){
+                    palabras_txt += line + "\n";
+                }
+                else{
+                    return false;
+                }
+            }           
             if (!"".equals(palabras_txt)){
                 String [] palabras_split = palabras_txt.split("\n");
-                   for (int i = 1; i < palabras_split.length; i++) {
-                        lista.insertarUltimo(palabras_split[i]);  
-            }
+                for (int i = 1; i < palabras_split.length; i++) {
+                    lista.insertarUltimo(palabras_split[i]);
+                }
                 br.close();
-                //JOptionPane.showMessageDialog(null, "Informacion guardada");
-                //lista.imprimir_lista(); para probar si se estan guardando las palabras
                 // guardar diccionario
                 Diccionario dic = new Diccionario(this.lista);
                 setDic(dic);
             }
+            return true;
         }
-       catch (Exception err){
-           JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No es posible guardar las palabras");
-       }
-        
+        catch (Exception err){
+            JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No es posible guardar las palabras");
+        }
+        return false;
     }
-    public void crearArray(File abre){
+    /**
+     * Metodo para extraer las letras del txt y guardarlas en un array doble
+     * @param abre, archivo escojido en el JFileChooser por el usuario
+     */
+    public boolean crearArray(File abre){
+        String returnS = "";
         this.setArray(new char [4][4]);
         String line;
         String letras_txt = "";
@@ -69,6 +86,12 @@ public void crearLista(File abre){
                 }
             if (!"".equals(letras_txt)){
                 String [] letras_split = letras_txt.split(",");
+                for (int i = 0; i < letras_split.length; i++) {
+                    if (!letras_split[i].matches("[A-Z]+")){
+                        return false;
+                    }
+                            }
+                
                 int cont = 0;
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++){
@@ -80,16 +103,17 @@ public void crearLista(File abre){
                           
             }
                 br.close();
-                //JOptionPane.showMessageDialog(null, "Informacion guardada");
-                
+                return true;
+            
             }
         
        catch (Exception err){
            JOptionPane.showMessageDialog(null, "Ingrese un documento valido. No fue posible guardar las letras.");
        }
-        
+      return false;  
     }
     /**
+     * Metodo para obtener la lista de palabras
      * @return the lista
      */
     public ListaSimple getLista() {
@@ -97,6 +121,7 @@ public void crearLista(File abre){
     }
 
     /**
+     * Metodo para guardar la lista de palabras como atributo de la clase
      * @param lista the lista to set
      */
     public void setLista(ListaSimple lista) {
@@ -104,6 +129,7 @@ public void crearLista(File abre){
     }
 
     /**
+     * Metodo para obtener el array doble de letras
      * @return the array
      */
     public char[][] getArray() {
@@ -111,22 +137,23 @@ public void crearLista(File abre){
     }
 
     /**
+     * Metodo para guardar el array doble de letras como atributo de la clase
      * @param array the array to set
      */
     public void setArray(char[][] array) {
         this.array = array;
     }
-    public void imprimir_lista(){
-      
-    }
-
-    public LeerTxt() {
-    }
-
+    /**
+     * Metodo para guardar un el diccionario completo de palabras como atributo de la clase
+     * @param dic 
+     */
     public void setDic(Diccionario dic) {
         this.dic = dic;
     }
-
+    /**
+     * Metodo para obtener el diccionario completo de palabras
+     * @return 
+     */
     public Diccionario getDic() {
         return dic;
     }

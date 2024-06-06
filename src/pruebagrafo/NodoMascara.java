@@ -10,7 +10,7 @@ package pruebagrafo;
  * @author verol
  */
 public class NodoMascara {
-    private Vertice info;
+    private Vertice info;            //se le llamo nodo mascara ya que es como un nodo "externo" que guarda informacion expecial/adicional y temporal o momentanea para la funcion de busqueda BFS, no necesaria para el vertice en otro metodo o clase
     private NodoMascara next;
     private NodoMascara ancestor;
     private int contador;

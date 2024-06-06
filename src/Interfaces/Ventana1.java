@@ -6,6 +6,7 @@ package Interfaces;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import leertxt.LeerTxt;
 import static pruebagrafo.Main.grafo;
 
@@ -39,10 +40,11 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        gifClick = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
         escogerarchivo = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        instrucciones = new javax.swing.JButton();
+        fondoV1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -73,8 +75,8 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gif click (1).gif"))); // NOI18N
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, -1, -1));
+        gifClick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gif click (1).gif"))); // NOI18N
+        jPanel4.add(gifClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, -1, -1));
 
         exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit.png"))); // NOI18N
         exit.setBorder(null);
@@ -98,10 +100,20 @@ public class Ventana1 extends javax.swing.JFrame {
                 escogerarchivoActionPerformed(evt);
             }
         });
-        jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 190, 40));
+        jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 190, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 fondo.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
+        instrucciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton instrucciones.png"))); // NOI18N
+        instrucciones.setBorder(null);
+        instrucciones.setBorderPainted(false);
+        instrucciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instruccionesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(instrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, 40));
+
+        fondoV1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 fondo.png"))); // NOI18N
+        jPanel4.add(fondoV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 420));
 
@@ -139,6 +151,11 @@ public class Ventana1 extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
+
+    private void instruccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instruccionesActionPerformed
+        JOptionPane.showMessageDialog(null, "Bienvenidos a MetroSopa ☺ Para experimentar con la sopa de letras, debes seguir estas instrucciones:️\n\n✅ El programa debe poder leer un archivo de texto en donde las palabras del  diccionario se  encuentran\nseparadas por saltos de línea y encerradas entre las etiquetas “dic” y “/dic” y las 16 letras que conforman\nel tablero 4x4 se encuentran encerradas entre las etiquetas “tab” y “/tab”.\n\nUn desafío tanto para tu mente y como para el código  😈  ¡Crea y juega con MetroSopa! ");
+
+    }//GEN-LAST:event_instruccionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +195,9 @@ public class Ventana1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton escogerarchivo;
     private javax.swing.JButton exit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel fondoV1;
+    private javax.swing.JLabel gifClick;
+    private javax.swing.JButton instrucciones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

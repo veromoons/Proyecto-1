@@ -9,7 +9,7 @@ import org.graphstream.ui.view.Viewer;
 
 
 /**
- *
+ * Clase para implementar procedimientos en la interfaz //no seee
  * 
  */
 
@@ -19,17 +19,27 @@ public class Solucion {
     private int cantidadPalabras;
     private String palabrabfs;
 
-    public Solucion(Grafo grafo) {  //QUITAR este parametro pq no hace nada con el
+    /**
+     * Constructor
+     * @param grafo 
+     */
+    public Solucion(Grafo grafo) {
+
         palabraValidada = new String[0];
         cantidadPalabras = 0;
-        this.palabrabfs = null;
+        this.palabrabfs = null;   
     }
-    
-    
+    /**
+     * Metodo para implementar la busqueda BFS
+     * @param palabra, palabra a buscar
+     * @param verticeInicial
+     * @param grafo
+     * @return 
+     */
     public String busquedaDiccionarioBFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
         int contador=0;
-        NodoListaSimple aux=diccionario.primero();
+        NodoListaSimple aux=diccionario.getFirst();
         while(contador<diccionario.getiN() && aux !=null){
             if (bfs(aux.getInfo(),0,grafo)){
                 encontradas+= aux.getInfo()+"\n";
@@ -40,12 +50,23 @@ public class Solucion {
         return encontradas;
     }
     
-    //ERROR CON: TAMARA, repite una A ver el output o el recorrido en la interfaz, pero no falla con CHAOA por ej
+    public boolean trackValidation(NodoMascara nodoInicio, Vertice nodoBuscado){
+        boolean encontrado = false;
+        NodoMascara puntero=nodoInicio.getAncestor(); //el primero de la palabra nunca tiene ancestro, no entra en el while y ya pq apunta a null x default 
+        while(puntero!=null){
+            if( puntero.getInfo() == nodoBuscado) { //aqui va a comparar todos los ancestros por cada letra de la palabra que se hayan conseguido hasta ahora e ira por cada ancestro para comparar si es igual al posible nodoBuscado que se esta considerando (adyacente pAux de aux)
+               return true;                         //si es true significa que ya esta como ancestro, por lo que no lo va a repetir
+            }else{                              
+               puntero=puntero.getAncestor(); //y asi luego pasa al ancentro de nodoinicio consecutivamente hasta llegar al primer ancestro. Si no se consigue el nosoBuscado (pAux) entonces si es apto como siguiente letra
+            }                                   //cada ancestro tiene su ancestro, es como una cadena y vas iterando en la cadena al anterior (ancestro) con un estilo de apuntador al ancestro cada vez
+        }
+        return encontrado;  //si no se consigue un ancestro en toda la cola igual a nodoBuscado, entonces se considera apto
+    }
+    
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
-            NodoMascara[] visitados = new NodoMascara[grafo.getNumVertices()]; //todos empiezan en nulos, bo booleanos porque guardamos es mascara
-            ColaMascara cola = new ColaMascara(); 
+            ListaMascara cola = new ListaMascara(); //es una lista con atributos de listas enlazadas, NO de cola (por ej preinsertar, en una cola no es permitido esto)
             int capa = 0;  //FRONTERA
 
             if (grafo.getListaVertices()[v].getLetra()==palabra.charAt(0)){
@@ -55,52 +76,33 @@ public class Solucion {
             
             while (capa < palabra.length() && cola.getiN() != 0) {
                 NodoMascara aux = cola.primero();
-                cola.eliminarPrimero(); //aqui de una vez lo elimino
-                Nodo pAux = grafo.getListaVertices()[aux.getInfo().getNumVertice()].getListaAdy().getFirst();  //adyacente actual
+                cola.eliminarPrimero(); //aqui elimino el primero (aux) para evaluar el siguiente (adyacentes ingresados de haber coincidencias)
+                Nodo pAux = grafo.getListaVertices()[aux.getInfo().getNumVertice()].getListaAdy().getFirst();  //al inicio es el primer adyacente del aux, luego es el actual
                 
-                int contadorDeBuenas=0;
                 for (int ady = 0; ady < grafo.getListaVertices()[aux.getInfo().getNumVertice()].getListaAdy().getiN(); ady++) {
-                    if (pAux.getInfo().getLetraDestino()==palabra.charAt(capa) && (visitados[pAux.getInfo().getDestino()]==null || visitados[pAux.getInfo().getDestino()].getCapa()==capa)) { //buscando hermanitos en los visitados
+                    if (pAux.getInfo().getLetraDestino()==palabra.charAt(capa) && (!trackValidation(aux, grafo.getListaVertices()[pAux.getInfo().getDestino()]))) { //si es igual a la letra que sigue de aux (paux es adyacente) y no es ya ancestro de los ancestros de aux, entonces vas a buscarlo en la otra funcion
                         NodoMascara nuevo = new NodoMascara(grafo.getListaVertices()[pAux.getInfo().getDestino()]);
                         nuevo.setCapa(capa);
                         nuevo.setAncestor(aux);
-                        cola.insertarUltimoCreado(nuevo);
-                        contadorDeBuenas++; //los q anade a la cola, adyacentes q son iguales a la sig letra de la palabra
+                        cola.insertarUltimoCreado(nuevo);   //en cola se guardan los adyacentes de aux (si coincide con la letra de la palabra actual cada vez que se itera)
                     }
-                    pAux = pAux.getNext(); 
+                    pAux = pAux.getNext();    //pasas a evaluar a ver si hay algun adyacente que coincida o en otro caso, si hay mas adyacentes con la misma letra de la que viene en la palabra buscada ya que es BFS, va por fronteras
                 }
-                aux.setContador(contadorDeBuenas);
                 
-                if(contadorDeBuenas>=1){//AQUI haremos validacion para eliminar recorrido perdido. Aux es A en la primera ej si quieres ABgd
-                    visitados[aux.getInfo().getNumVertice()]=aux; //aqui es donde se guarda en visitados aux antes de pasar al siguiente y evaluar sus adyacentes igual
-                }else{                                              //en visitados se anaden en la posicion de su indice numvertice
-                    NodoMascara puntero=aux.getAncestor(); //el primero de la palabra nunca tiene ancestro, no entra en el while y ya pq apunta a null x default 
-                    while(puntero!=null){ //lo minimo que tenga es un hijo para no borrarle el camino por otro lado que si sea valido, ya ahi tendria 2 o mas
-                        if( puntero.getContador()<2) {
-                        visitados[puntero.getInfo().getNumVertice()]=null;
-                         puntero=puntero.getAncestor();
-                        }else{                              //si una bifurcacion no ocurre en el inicio de una rama, me va a descontar uno de ese contador por si otra ramificacion tambien necesita hacer el backtracking o devolverse
-                            int contadorActual = puntero.getContador();
-                            puntero.setContador(contadorActual-1);
-                        }   
-                    }
-                }
-              
                 if (cola.primero()==null || cola.primero().getCapa() >aux.getCapa()){ //NO AFECTA SI la cola esta vacia porque no entra al while aunque se sume a capa, es solo para wue no haya error de NPE
-                    capa++;                                               //esto sirve para cambiar de capa  al llegar al inicio de la siguiente frontera
+                    capa++;                                               //esto sirve para cambiar de capa  al llegar al inicio de la siguiente frontera porque al inicio es 0, consigue la primera igual que tiene capa 0 y luego la aumenta para los otros
                 }
-                
             }
                
-            if (cola.getiN()>0) {
-                encontrada=true;
-                NodoMascara puntero=cola.primero();
+            if (cola.getiN()>0) { //siempre quedan las ultimas letras de la palabra en la cola, si no quedan es porqu no esta la palabra. Si no encuentra la palabra, lista queda vacia ya que aux es ese ultimo nodomascara que quedaba en la lista y al entrar en el while de arriba, se elimina y no tiene adyacentes (se salta el for). Si consigue la ult letra, la convierte tambien en aux pero para porque se alcanzo el largo de la palabra
+                encontrada=true;                            //asi, no se necesito crear una estructura auxiliar como una lista sino ir iterando por el atributo getAncestro
+                NodoMascara puntero=cola.primero();   //de conseguirla, queda de primera la ultima letra de la palabra buscada (porque ahi paro la iteracion)
                 String palabraFinal="";
-                while(puntero!=null){
+                while(puntero!=null){                           // va iterando (igual que en trackValidation) en los ancestros
                     palabraFinal=puntero.getInfo().getNumVertice()+","+palabraFinal;
                     puntero=puntero.getAncestor();
                 }
-                //System.out.println(palabraFinal);
+                //System.out.println("Recorrido: "+palabraFinal);
                 this.palabrabfs = palabraFinal;
                 break;
             } else {
@@ -111,15 +113,15 @@ public class Solucion {
     }
     
     
-    
-    
-    
-    
-    
+    /**
+     * 
+     * @param palabra
+     * @return 
+     */
     public String busquedaDiccionarioDFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
         int contador=0;
-        NodoListaSimple aux=diccionario.primero();
+        NodoListaSimple aux=diccionario.getFirst();
         while(contador<diccionario.getiN() && aux !=null){
             if (buscarPalabraDFS(aux.getInfo())){
                 encontradas+= aux.getInfo()+"\n";
@@ -130,7 +132,6 @@ public class Solucion {
         return encontradas;
     }
  
-
     public boolean buscarPalabraDFS(String palabra) {
         boolean[][] visitado = new boolean[4][4]; //matriz bidimensional que simula el grafo, asi como se aplico en leerTXT
         for (int i = 0; i < 4; i++) {
@@ -168,14 +169,11 @@ public class Solucion {
         visitado[i][j] = false; //aqui hasta que se acabe el backtracking y haya marcado todos como T en visitados para que puedan volver a considerarse para la palabra
         return false; //esto es para la primera llamada que se hizo y se devuelve a buscarPalabraDFS que se quedo como pausado en esa primera llamada, y considera las siguientes letras
     }
-    
 
-    
-    
-    
-    
-    
-    
+    /**
+     * Metodo para mostrar el grafo en una ventana
+     * @param grafo
+     */
     public void mostrarGrafo(Grafo grafo){
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
@@ -193,7 +191,7 @@ public class Solucion {
        
         }
       String sId = "";
-        int dimension = 4;
+        int dimension = 4;     
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 int actual = i * dimension + j;
@@ -241,8 +239,12 @@ public class Solucion {
         viewer.enableAutoLayout();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
+    /**
+     * Metodo para mostrar el recorrido de la palabra encontrada
+     * @param grafo
+     * @param verticesPalabra, string con los indices de las letras de la palabra encotrada
+     */
      public void mostrarRecorrido(Grafo grafo, String verticesPalabra){
-         System.out.println(verticesPalabra);
         Graph grafo_mostrar = new MultiGraph("Grafo");
         Node[] arrayNodos = new Node[16];
         for (int i = 0; i < arrayNodos.length; i++) {
@@ -276,10 +278,8 @@ public class Solucion {
 
                     
                     if (nuevai >= 0 && nuevai < dimension && nuevaj >= 0 && nuevaj < dimension) {
-                        //agregarArista(actual, nuevoIndice);  
                         sId += actual + "-";
                         sId += nuevoIndice;
-                        //System.out.println(id);
                         try{
                           grafo_mostrar.addEdge(sId, arrayNodos[actual], arrayNodos[nuevoIndice]);  
                         }
@@ -319,10 +319,6 @@ public class Solucion {
         
     }
 
-    public Solucion() {
-    }
-     
-
     private void agregarPalabraValidada(String palabra) {
         String[] nuevoDiccionario = new String[cantidadPalabras + 1];
         for (int i = 0; i < cantidadPalabras; i++) {
@@ -333,9 +329,6 @@ public class Solucion {
         cantidadPalabras++;
     }
 
-    public String[] getPalabraValidada() {
-        return palabraValidada;
-    }
 
     public void buscarPalabrasValidadasDFS(Diccionario diccionario) {
         NodoListaSimple palabraActual = diccionario.obtenerLista().getFirst();
@@ -344,13 +337,18 @@ public class Solucion {
             palabraActual = palabraActual.getNext();
         }
     }
-
+    
     public String getPalabrabfs() {
         return palabrabfs;
     }
-
     
+    public String[] getPalabraValidada() {
+        return palabraValidada;
+    }
     
+    public Solucion() {
+    }
+       
 }
 
    
