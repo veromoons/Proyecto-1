@@ -12,7 +12,7 @@ import pruebagrafo.Diccionario;
 
 /**
  *
- * @author veronicaluna
+ * @author veronicaluna, ruthsenior
  */
 public class Ventana4 extends javax.swing.JFrame {
     static Solucion solucion;
@@ -171,7 +171,10 @@ public class Ventana4 extends javax.swing.JFrame {
         tEjecucion.setText(Long.toString(executionTime));
         
     }//GEN-LAST:event_busquedaBFSActionPerformed
-
+    /**
+     * Metodo para llamar a la funcion de busqueda DFS de todas las palabras y mostrar el resultado
+     * @param evt 
+     */                                         
     private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
         
         Solucion soluc2=new Solucion();
@@ -199,6 +202,11 @@ public class Ventana4 extends javax.swing.JFrame {
         this.setVisible(false);
         v2.setVisible(true);
     }//GEN-LAST:event_atrasActionPerformed
+
+    /**
+     * Metodo para cerrar el programa
+     * @param evt 
+     */
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);

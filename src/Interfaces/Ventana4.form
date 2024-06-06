@@ -39,9 +39,12 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="busquedaBFS">
           <Properties>
+<<<<<<< HEAD
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+=======
+>>>>>>> sofia
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/ventana 4 boton 1.png"/>
             </Property>
@@ -49,7 +52,10 @@
               <Border info="null"/>
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
+<<<<<<< HEAD
             <Property name="opaque" type="boolean" value="false"/>
+=======
+>>>>>>> sofia
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="busquedaBFSActionPerformed"/>
@@ -69,7 +75,10 @@
               <Border info="null"/>
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
+<<<<<<< HEAD
             <Property name="opaque" type="boolean" value="false"/>
+=======
+>>>>>>> sofia
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="busquedaDFSActionPerformed"/>
@@ -184,9 +193,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="tiempoRecorrTitulo">
           <Properties>
+<<<<<<< HEAD
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
+=======
+>>>>>>> sofia
             <Property name="text" type="java.lang.String" value="Tiempo de recorrido:"/>
           </Properties>
           <Constraints>

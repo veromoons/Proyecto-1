@@ -120,6 +120,10 @@ public class Ventana1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para escojer el archivo con la informacion con el JFileChooser
+     * @param evt 
+     */
     private void escogerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerarchivoActionPerformed
         // TODO add your handling code here:
         JFileChooser file=new JFileChooser();
@@ -148,10 +152,17 @@ public class Ventana1 extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_escogerarchivoActionPerformed
 
+    /**
+     * Metodo para cerrar el programa
+     * @param evt 
+     */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
-
+    /**
+     * Metodo para mostrar las instrucciones del programa
+     * @param evt 
+     */                                                                 
     private void instruccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instruccionesActionPerformed
         JOptionPane.showMessageDialog(null, "Bienvenidos a MetroSopa ☺ Para experimentar con la sopa de letras, debes seguir estas instrucciones:️\n\n✅ El programa debe poder leer un archivo de texto en donde las palabras del  diccionario se  encuentran\nseparadas por saltos de línea y encerradas entre las etiquetas “dic” y “/dic” y las 16 letras que conforman\nel tablero 4x4 se encuentran encerradas entre las etiquetas “tab” y “/tab”.\n\nUn desafío tanto para tu mente y como para el código  😈  ¡Crea y juega con MetroSopa! ");
 

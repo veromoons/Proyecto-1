@@ -1,6 +1,5 @@
 
 package pruebagrafo;
-import Interfaces.VentanaPrueba;
 import java.awt.Color;
 import javax.swing.text.View;
 import org.graphstream.graph.*;
@@ -10,7 +9,7 @@ import org.graphstream.ui.view.Viewer;
 
 /**
  * Clase para implementar procedimientos en la interfaz //no seee
- * 
+ * @author veronicaluna, sofiagrateron, ruthsenior
  */
 
 
@@ -58,7 +57,15 @@ public class Solucion {
         }
         return encontrado;  //si no se consigue un ancestro en toda la cola igual a nodoBuscado, entonces se considera apto
     }
-    
+
+    /**
+     * Metodo para hacer la busqueda BFS
+     * @param palabra
+     * @param verticeInicial
+     * @param grafo
+     * @return verdadero si la palabra fue encontrada
+     */
+
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
@@ -110,9 +117,9 @@ public class Solucion {
     
     
     /**
-     * 
+     * Metodo para buscar todas las palabras del diccionario en el tablero por DFS
      * @param palabra
-     * @return 
+     * @return string de las palabras encontradas
      */
     public String busquedaDiccionarioDFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
@@ -127,7 +134,11 @@ public class Solucion {
         }
         return encontradas;
     }
- 
+    /**
+     * Metodo para buscar una palabra por DFS
+     * @param palabra a buscar
+     * @return verdadero si encontrada la palabra
+     */
     public boolean buscarPalabraDFS(String palabra) {
         boolean[][] visitado = new boolean[4][4]; //matriz bidimensional que simula el grafo, asi como se aplico en leerTXT
         for (int i = 0; i < 4; i++) {
@@ -140,7 +151,15 @@ public class Solucion {
         return false;
     }
      
-
+    /**
+     * Metodo para buscar una palabra por DFS
+     * @param i
+     * @param j
+     * @param palabra
+     * @param posicionLetra
+     * @param visitado
+     * @return 
+     */
     private boolean dfs(int i, int j, String palabra, int posicionLetra, boolean[][] visitado) { 
         if (posicionLetra == palabra.length()) { 
             return true;
@@ -297,13 +316,22 @@ public class Solucion {
                 "    fill-mode: dyn-plain; \n" +
                 "    text-size: 40px; \n" +
                 "    shape: box; \n" +
-                "}");
+                "}" +
+        "edge {" +
+        "    fill-mode: dyn-plain;" +
+        "}");
         String [] arrayVertices = verticesPalabra.split(",");
         int numVertice;
-         for (int i = 0; i < arrayVertices.length; i++) {
+        for (int i = 0; i < arrayVertices.length; i++) {
              numVertice = Integer.parseInt(arrayVertices[i]);
              arrayNodos[numVertice].setAttribute("ui.color", Color.pink);
-         }         
+             String indice = "";
+             if (i != arrayVertices.length -1){
+             indice += arrayVertices[i] + "-";
+             indice += arrayVertices[i+1];
+             grafo_mostrar.getEdge(indice).setAttribute("ui.color", Color.pink);
+             }
+         }              
          for (int i = 0; i < arrayNodos.length; i++) {
              if (arrayNodos[i].getAttribute("ui.color") == null){
                  arrayNodos[i].setAttribute("ui.color", Color.white);
@@ -316,7 +344,12 @@ public class Solucion {
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
         
     }
-    
+
+    /**
+     * 
+     * @return 
+     */
+
     public String getPalabrabfs() {
         return palabrabfs;
     }

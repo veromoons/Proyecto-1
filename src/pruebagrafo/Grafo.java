@@ -3,7 +3,7 @@ package pruebagrafo;
 
 /**
  *
- * @author verol
+ * @author veronicaluna
  */
 public class Grafo {
     

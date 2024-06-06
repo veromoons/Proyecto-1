@@ -11,7 +11,7 @@ import pruebagrafo.Solucion;
 
 /**
  *
- * @author sofiagrateron
+ * @author sofiagrateron, veronicaluna
  */
 public class Ventana3 extends javax.swing.JFrame {
     static Grafo grafo;

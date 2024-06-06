@@ -10,7 +10,7 @@ import pruebagrafo.Solucion;
 
 /**
  *
- * @author berna
+ * @author veronicaluna, sofiagrateron
  */
 public class Ventana2 extends javax.swing.JFrame {
     static Diccionario dic;
@@ -124,21 +124,30 @@ public class Ventana2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+                                                       
 
-
+    /**
+     * Metodo que llama a la funcion para mostrar el tablero
+     * @param evt 
+     */
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
         Solucion sol = new Solucion();
         sol.mostrarGrafo(this.grafo);
-        this.setVisible(false);
     }//GEN-LAST:event_mostrarTableroActionPerformed
-
+    /**
+     * Metodo que lleva a la  ventana 4 para buscar todas palabras
+     * @param evt 
+     */
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
         Ventana4 v4 = new Ventana4(grafo,dic);
         v4.setVisible(true);
         this.setVisible(false);
     }                                                         
 
-
+    /**
+     * Metodo que lleva a la ventana 3 para buscar una sola palabra
+     * @param evt 
+     */
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
         Ventana3 v3=new Ventana3(grafo, dic);
         v3.setVisible(true);
@@ -149,7 +158,11 @@ public class Ventana2 extends javax.swing.JFrame {
                
        
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
+
 */
+    /**
+    Metodo para cerrar el programa
+    */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
