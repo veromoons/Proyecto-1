@@ -18,7 +18,7 @@ import static pruebagrafo.Main.grafo;
 public class Ventana1 extends javax.swing.JFrame {
 
     /**
-     * Constructor
+     * Creates new form Ventana1
      */
     public Ventana1() {
         initComponents();
@@ -40,9 +40,11 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        escogerarchivo = new javax.swing.JButton();
+        gifClick = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        escogerarchivo = new javax.swing.JButton();
+        instrucciones = new javax.swing.JButton();
+        fondoV1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -73,6 +75,19 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        gifClick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gif click (1).gif"))); // NOI18N
+        jPanel4.add(gifClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, -1, -1));
+
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit.png"))); // NOI18N
+        exit.setBorder(null);
+        exit.setBorderPainted(false);
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jPanel4.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
+
         escogerarchivo.setBackground(new java.awt.Color(255, 255, 255));
         escogerarchivo.setFont(new java.awt.Font("Eras Medium ITC", 0, 12)); // NOI18N
         escogerarchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 boton.png"))); // NOI18N
@@ -85,27 +100,27 @@ public class Ventana1 extends javax.swing.JFrame {
                 escogerarchivoActionPerformed(evt);
             }
         });
-        jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 190, 40));
+        jPanel4.add(escogerarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 190, 40));
 
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit.png"))); // NOI18N
-        exit.setBorder(null);
-        exit.setBorderPainted(false);
-        exit.addActionListener(new java.awt.event.ActionListener() {
+        instrucciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton instrucciones.png"))); // NOI18N
+        instrucciones.setBorder(null);
+        instrucciones.setBorderPainted(false);
+        instrucciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitActionPerformed(evt);
+                instruccionesActionPerformed(evt);
             }
         });
-        jPanel4.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
+        jPanel4.add(instrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 fondo.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
+        fondoV1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 1 fondo.png"))); // NOI18N
+        jPanel4.add(fondoV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Metodo para escojer el archivo, guardar la informacion y crear el grafo
+     * Metodo para escojer el archivo con la informacion con el JFileChooser
      * @param evt 
      */
     private void escogerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerarchivoActionPerformed
@@ -114,16 +129,9 @@ public class Ventana1 extends javax.swing.JFrame {
         file.showOpenDialog(this);
         File abre =file.getSelectedFile();
         LeerTxt txt = new LeerTxt();
-        boolean lista = txt.crearLista(abre);
-        if (!lista){
-            JOptionPane.showMessageDialog(this, "Las palabras no pueden tener acentos. Intente de nuevo");
-            return;
-        }
-        boolean array = txt.crearArray(abre);
-        if(!array){
-            JOptionPane.showMessageDialog(this, "El documento no debe contener numeros, acentos ni simbolos. Intente de nuevo");
-            return;
-        }
+        txt.crearLista(abre);
+        txt.crearArray(abre);
+        
         
         grafo.crearGrafo(txt.getArray());
         Ventana2 v2 = new Ventana2(txt.getDic(),grafo);
@@ -143,12 +151,20 @@ public class Ventana1 extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_escogerarchivoActionPerformed
     /**
-     * Metodo para cerrar la ventana
+     * Metodo para cerrar el programa
      * @param evt 
      */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
+    /**
+     * Metodo para mostrar las instrucciones del programa
+     * @param evt 
+     */
+    private void instruccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instruccionesActionPerformed
+        JOptionPane.showMessageDialog(null, "Bienvenidos a MetroSopa ☺ Para experimentar con la sopa de letras, debes seguir estas instrucciones:️\n\n✅ El programa debe poder leer un archivo de texto en donde las palabras del  diccionario se  encuentran\nseparadas por saltos de línea y encerradas entre las etiquetas “dic” y “/dic” y las 16 letras que conforman\nel tablero 4x4 se encuentran encerradas entre las etiquetas “tab” y “/tab”.\n\nUn desafío tanto para tu mente y como para el código  😈  ¡Crea y juega con MetroSopa! ");
+
+    }//GEN-LAST:event_instruccionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +204,9 @@ public class Ventana1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton escogerarchivo;
     private javax.swing.JButton exit;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel fondoV1;
+    private javax.swing.JLabel gifClick;
+    private javax.swing.JButton instrucciones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

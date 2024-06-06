@@ -9,13 +9,13 @@ package pruebagrafo;
  *
  * @author verol
  */
-public class ColaMascara {
+public class ListaMascara {
     //Atributos
-    private NodoMascara first;
+    private NodoMascara first;              
     private int iN;
 
     //Constructor
-    public ColaMascara() {             
+    public ListaMascara() {             
         this.first = null;
         this.iN = 0;
     }

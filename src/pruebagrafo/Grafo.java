@@ -3,7 +3,7 @@ package pruebagrafo;
 
 /**
  *
- * @author verol
+ * @author veronicaluna
  */
 public class Grafo {
     
@@ -79,12 +79,12 @@ public class Grafo {
                     int[] subindices = posiblesPosiciones[parIJ];  //subindices i o j de una matriz, i es el elemento de fila y j el de columna
                     int nuevai = i + subindices[0]; //0 es la posicion de i, 1 es la posicion de j
                     int nuevaj = j + subindices[1]; 
-                    int nuevoDestinoArista = nuevai * tamanoiyj + nuevaj; //se llama asi porque es la posicion o numVertice de la arista destino nueva si pasa el if posterior
+                    int nuevoDestino = nuevai * tamanoiyj + nuevaj; //se llama asi porque es la posicion o numVertice de la arista destino nueva si pasa el if posterior
                 
                     // aqui se evalua que las posiciones adyacentes antes evaluadas sean posibles de una en una (que sean mayores o iguales a 0 y menores a 4 (i y j van de 0 a 3)
                     if (nuevai >= 0 && nuevai < tamanoiyj && nuevaj >= 0 && nuevaj < tamanoiyj) {
                         //System.out.println("el actual es: "+ actual+"   y conecta con: "+nuevoIndice);  //para probar que sirva este metodo con lo q esta en el main
-                        agregarArista(actual, nuevoDestinoArista);
+                        agregarArista(actual, nuevoDestino);
                     }
                 }
             }

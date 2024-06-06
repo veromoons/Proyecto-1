@@ -6,18 +6,17 @@ package Interfaces;
 
 import pruebagrafo.Diccionario;
 import pruebagrafo.Grafo;
-import static pruebagrafo.Main.grafo;
 import pruebagrafo.Solucion;
 
 /**
  *
- * @author berna
+ * @author veronicaluna, sofiagrateron
  */
 public class Ventana2 extends javax.swing.JFrame {
     static Diccionario dic;
     static Grafo grafo;
     /**
-     * Constructor
+     * Creates new form Ventana2
      */
     public Ventana2(Diccionario dic, Grafo grafo) {
         initComponents();
@@ -42,12 +41,13 @@ public class Ventana2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         diccionario = new javax.swing.JTextArea();
+        gifMunecoLupa = new javax.swing.JLabel();
         buscarPalabraNuevaBFS = new javax.swing.JButton();
         mostrarTablero = new javax.swing.JButton();
         buscarPalabrasDiccionario = new javax.swing.JButton();
         exit = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        diccionarioTitulo = new javax.swing.JLabel();
+        fondoV2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -63,13 +63,17 @@ public class Ventana2 extends javax.swing.JFrame {
         diccionario.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         diccionario.setRows(5);
         diccionario.setBorder(null);
+        diccionario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         diccionario.setFocusable(false);
         jScrollPane1.setViewportView(diccionario);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 140, 160));
 
+        gifMunecoLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/muneco buscar.gif"))); // NOI18N
+        jPanel1.add(gifMunecoLupa, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+
         buscarPalabraNuevaBFS.setBackground(new java.awt.Color(255, 255, 255));
-        buscarPalabraNuevaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (17).png"))); // NOI18N
+        buscarPalabraNuevaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton3V2.png"))); // NOI18N
         buscarPalabraNuevaBFS.setBorder(null);
         buscarPalabraNuevaBFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +103,7 @@ public class Ventana2 extends javax.swing.JFrame {
                 buscarPalabrasDiccionarioActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarPalabrasDiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 200, 40));
+        jPanel1.add(buscarPalabrasDiccionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 200, -1));
 
         exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton exit mas pequeno.png"))); // NOI18N
         exit.setBorder(null);
@@ -110,11 +114,11 @@ public class Ventana2 extends javax.swing.JFrame {
         });
         jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (15).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
+        diccionarioTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar todas las palabras (15).png"))); // NOI18N
+        jPanel1.add(diccionarioTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana v2 fondo.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, -1));
+        fondoV2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana v2 fondo.png"))); // NOI18N
+        jPanel1.add(fondoV2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 310));
 
@@ -122,21 +126,25 @@ public class Ventana2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Metodo para mostrar el tablero completo
+     * Metodo que llama a la funcion para mostrar el tablero
      * @param evt 
      */
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
         Solucion sol = new Solucion();
-        sol.mostrarGrafo(this.grafo);                                           
+        sol.mostrarGrafo(this.grafo);
     }//GEN-LAST:event_mostrarTableroActionPerformed
-    private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {
-Ventana4 v4 = new Ventana4(grafo,dic);
+    /**
+     * Metodo que lleva a la  ventana 4 para buscar todas palabras
+     * @param evt 
+     */
+    private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
+        Ventana4 v4 = new Ventana4(grafo,dic);
         v4.setVisible(true);
-        this.setVisible(false);  
-}                                                          
+        this.setVisible(false);
+    }                                                         
 
     /**
-     * Metodo para abrir ventana 3
+     * Metodo que lleva a la ventana 3 para buscar una sola palabra
      * @param evt 
      */
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
@@ -149,10 +157,9 @@ Ventana4 v4 = new Ventana4(grafo,dic);
                
        
     }//GEN-LAST:event_buscarPalabrasDiccionarioActionPerformed
-*/  /**
- * Metodo para cerrar la ventana
- * @param evt 
- */
+    /**
+    Metodo para cerrar el programa
+    */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
@@ -198,9 +205,10 @@ Ventana4 v4 = new Ventana4(grafo,dic);
     private javax.swing.JButton buscarPalabrasDiccionario;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextArea diccionario;
+    private javax.swing.JLabel diccionarioTitulo;
     private javax.swing.JButton exit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel fondoV2;
+    private javax.swing.JLabel gifMunecoLupa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mostrarTablero;

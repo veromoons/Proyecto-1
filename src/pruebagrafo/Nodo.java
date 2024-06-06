@@ -7,7 +7,7 @@ package pruebagrafo;
  */
 public class Nodo {
     
-    private Arista info;
+    private Arista info;  //el nodo contiene objetos de tipo Arista que son a su vez enteros que indican el numero de vertice o indice (numVertice) del vertice adyacente (destino)
     private Nodo next;
 
     public Nodo(Arista info) {

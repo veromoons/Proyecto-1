@@ -8,7 +8,7 @@ package pruebagrafo;
 public class Lista {
     
     //Atributos
-    private Nodo first;
+    private Nodo first;  //lista de nodos que son los adyacentes (esta es clase de lista de adyacencia)
     private int iN;
 
     //Constructor
