@@ -16,6 +16,10 @@ public class Grafo {
         this.max = t; 
         this.listaVertices = new Vertice[t];
     }
+
+    public Grafo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public void agregarVertice(char letra){             
         Vertice v = new Vertice(letra); 

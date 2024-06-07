@@ -4,30 +4,36 @@
  */
 package Interfaces;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pruebagrafo.Diccionario;
 import pruebagrafo.Grafo;
+import pruebagrafo.PalabrasNuevas;
 import pruebagrafo.Solucion;
 
 /**
  *
- * @author sofiagrateron, veronicaluna
+ * @author sofiagrateron, veronicaluna, ruthsenior
  */
 public class Ventana3 extends javax.swing.JFrame {
-    static Grafo grafo;
+    private Grafo grafo;
     static Ventana2 v2;
-    static Diccionario diccionario;
+    private Diccionario diccionario;
+    private final PalabrasNuevas palabrasNuevas;
+
+  
     /**
      * Constructor
      */
-    public Ventana3(Grafo grafo, Diccionario diccionario) {
+     public Ventana3(Grafo grafo, Diccionario diccionario, PalabrasNuevas palabrasNuevas) {
         initComponents();
         this.setLocationRelativeTo(null); 
         this.setResizable(true);
         this.grafo = grafo;
-        this.tablero.setText(grafo.mostrarGrafoTablero());
-        this.v2 = new Ventana2(diccionario, grafo);
-        tEjec.setText("");
+        this.diccionario = diccionario;
+        this.palabrasNuevas = palabrasNuevas;
     }
 
     /**
@@ -65,7 +71,6 @@ public class Ventana3 extends javax.swing.JFrame {
 
         jScrollPane1.setHorizontalScrollBar(null);
 
-        tablero.setBackground(new java.awt.Color(255, 255, 255));
         tablero.setColumns(20);
         tablero.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         tablero.setRows(5);
@@ -76,7 +81,6 @@ public class Ventana3 extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, 180));
 
-        buscarNuevaPalabraBFS.setBackground(new java.awt.Color(255, 255, 255));
         buscarNuevaPalabraBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (7).png"))); // NOI18N
         buscarNuevaPalabraBFS.setBorder(null);
         buscarNuevaPalabraBFS.setBorderPainted(false);
@@ -87,7 +91,6 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         jPanel1.add(buscarNuevaPalabraBFS, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 130, 40));
 
-        palabraABuscar.setBackground(new java.awt.Color(255, 255, 255));
         palabraABuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 palabraABuscarActionPerformed(evt);
@@ -95,7 +98,6 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         jPanel1.add(palabraABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 130, 30));
 
-        tEjec.setBackground(new java.awt.Color(255, 255, 255));
         tEjec.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tEjec.setFocusable(false);
         tEjec.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +107,6 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         jPanel1.add(tEjec, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 50, 30));
 
-        milisegs.setForeground(new java.awt.Color(0, 0, 0));
         milisegs.setText("ms");
         jPanel1.add(milisegs, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
@@ -118,11 +119,9 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 0, 20, 20));
 
-        atrás.setBackground(new java.awt.Color(255, 255, 255));
         atrás.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/atras boton.png"))); // NOI18N
         atrás.setBorder(null);
         atrás.setBorderPainted(false);
-        atrás.setOpaque(false);
         atrás.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrásActionPerformed(evt);
@@ -130,14 +129,16 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         jPanel1.add(atrás, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 50, 20));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 3 fondo (8).png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
-        jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 130, 40));
 
-        tRecorridoTitulo.setForeground(new java.awt.Color(0, 0, 0));
         tRecorridoTitulo.setText("Tiempo de recorrido:");
         jPanel1.add(tRecorridoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
 
@@ -207,6 +208,8 @@ public class Ventana3 extends javax.swing.JFrame {
         if (encontrada) {
             JOptionPane.showMessageDialog(null, "La palabra indicada \"" + palabraBuscada + "\" se encontró en la sopa de letras.");
             solucion.mostrarRecorrido(grafo, solucion.getPalabrabfs());
+            palabrasNuevas.agregarPalabra(palabraBuscada);
+            
         } else {
             JOptionPane.showMessageDialog(null, "La palabra indicada \"" + palabraBuscada + "\" no se encuentra en la sopa de letras.");
         }
@@ -214,7 +217,7 @@ public class Ventana3 extends javax.swing.JFrame {
         palabraABuscar.setText("");
         tEjec.setText("");
     }//GEN-LAST:event_buscarNuevaPalabraBFSActionPerformed
-
+      
     private void tEjecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEjecActionPerformed
         
     }//GEN-LAST:event_tEjecActionPerformed
@@ -235,15 +238,36 @@ public class Ventana3 extends javax.swing.JFrame {
      */
     private void atrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrásActionPerformed
         // TODO add your handling code here:
+       
         v2.setVisible(true);
         this.setVisible(false);
-        
+          
     }//GEN-LAST:event_atrásActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       try {
+            String[] palabrasGuardadas = palabrasNuevas.guardarPalabrasNuevas("Palabras.txt");
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.append("Palabras guardadas:\n");
+            for (String palabra : palabrasGuardadas) {
+                mensaje.append(palabra).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensaje.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(Ventana3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Grafo grafo = new Grafo();
+        Diccionario diccionario = new Diccionario();
+        PalabrasNuevas palabrasNuevas = new PalabrasNuevas();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -266,11 +290,12 @@ public class Ventana3 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Ventana3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+    
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() { 
             public void run() {
-                new Ventana3(grafo, diccionario).setVisible(true);
+                new Ventana3(grafo, diccionario, palabrasNuevas).setVisible(true);
             }
         });
     }

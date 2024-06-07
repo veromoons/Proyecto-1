@@ -9,6 +9,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import leertxt.LeerTxt;
 import static pruebagrafo.Main.grafo;
+import pruebagrafo.PalabrasNuevas;
 
 /**
  *
@@ -135,7 +136,9 @@ public class Ventana1 extends javax.swing.JFrame {
         
         
         grafo.crearGrafo(txt.getArray());
-        Ventana2 v2 = new Ventana2(txt.getDic(),grafo);
+        
+        PalabrasNuevas palabras = new PalabrasNuevas(); // Crear una instancia de PalabrasNuevas
+        Ventana2 v2 = new Ventana2(txt.getDic(), grafo, palabras); // Pasar todas las instancias necesarias
         this.setVisible(false);
         v2.setVisible(true);
         
