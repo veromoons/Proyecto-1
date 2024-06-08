@@ -25,11 +25,11 @@ public class Solucion {
         this.palabrabfs = null;   
     }
     /**
-     * Metodo para implementar la busqueda BFS
+     * Metodo para buscar las palabras del diccionario encontradas y anadirlas a un string, le pasa cada palabra del diccionario al metodo bfs
      * @param palabra, palabra a buscar
      * @param verticeInicial
      * @param grafo
-     * @return 
+     * @return String
      */
     public String busquedaDiccionarioBFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
@@ -45,6 +45,12 @@ public class Solucion {
         return encontradas;
     }
     
+    /**
+     * Metodo para verificar que no se repita una letra (por su posicion, no por su letra en si) que ya se tomo en cuenta en la palabra
+     * @param nodoInicio
+     * @param nodoBuscado
+     * @return 
+     */
     public boolean trackValidation(NodoMascara nodoInicio, Vertice nodoBuscado){
         boolean encontrado = false;
         NodoMascara puntero=nodoInicio.getAncestor(); //el primero de la palabra nunca tiene ancestro, no entra en el while y ya pq apunta a null x default 
@@ -59,7 +65,7 @@ public class Solucion {
     }
 
     /**
-     * Metodo para hacer la busqueda BFS
+     * Metodo para hacer la busqueda BFS con una palabra ingresada, sea del dicciconario (se obtiene de busquedaSiccionarioBFS) o sea de una ingresada en ventana3
      * @param palabra
      * @param verticeInicial
      * @param grafo
@@ -69,7 +75,7 @@ public class Solucion {
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
         boolean encontrada = false;
         for (int v = 0; v < grafo.getNumVertices(); v++) {
-            ListaMascara cola = new ListaMascara(); //es una lista con atributos de listas enlazadas, NO de cola (por ej preinsertar, en una cola no es permitido esto)
+            ListaMascara cola = new ListaMascara(); //LEER!!! Se implementa una cola de clase Lista ya que es una lista que funciona como una cola,  esto es porque utiliza metodos como insertar ultimo y sacar el primero, al igual que se hace en una cola por teoria
             int capa = 0;  //FRONTERA
 
             if (grafo.getListaVertices()[v].getLetra()==palabra.charAt(0)){
@@ -117,7 +123,7 @@ public class Solucion {
     
     
     /**
-     * Metodo para buscar todas las palabras del diccionario en el tablero por DFS
+     * Metodo para buscar las palabras del diccionario encontradas y anadirlas a un string, le pasa cada palabra del diccionario al metodo dfs
      * @param palabra
      * @return string de las palabras encontradas
      */
