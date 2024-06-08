@@ -4,9 +4,10 @@
  */
 package Interfaces;
 
+import java.io.File;
+import leertxt.LeerTxt;
 import pruebagrafo.Diccionario;
 import pruebagrafo.Grafo;
-import pruebagrafo.PalabrasNuevas;
 import pruebagrafo.Solucion;
 
 /**
@@ -16,17 +17,19 @@ import pruebagrafo.Solucion;
 public class Ventana2 extends javax.swing.JFrame {
     static Diccionario dic;
     static Grafo grafo;
-    private PalabrasNuevas palabras;
+    static File abre;
+    static LeerTxt txt;
     /**
      * Creates new form Ventana2
      */
-    public Ventana2(Diccionario dic, Grafo grafo, PalabrasNuevas palabras) {
+    public Ventana2(Diccionario dic, Grafo grafo, File file, LeerTxt t) {
         initComponents();
         this.setLocationRelativeTo(null); 
         this.setResizable(true);
+        this.txt = t;
         this.dic = dic;
         this.grafo = grafo;
-        this.palabras = palabras;
+        this.abre = file;
         diccionario.setText(this.dic.getDiccionario().imprimir_lista());
         
     }
@@ -138,14 +141,16 @@ public class Ventana2 extends javax.swing.JFrame {
     private void mostrarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarTableroActionPerformed
         Solucion sol = new Solucion();
         sol.mostrarGrafo(this.grafo);
+        this.setVisible(false);
     }//GEN-LAST:event_mostrarTableroActionPerformed
     /**
      * Metodo que lleva a la  ventana 4 para buscar todas palabras
      * @param evt 
      */
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
-        Ventana4 v4 = new Ventana4(grafo,dic);
+        Ventana4 v4 = new Ventana4(grafo,dic, this.abre,txt);
         v4.setVisible(true);
+        this.setVisible(false);
         this.setVisible(false);
     }                                                         
 
@@ -154,7 +159,7 @@ public class Ventana2 extends javax.swing.JFrame {
      * @param evt 
      */
     private void buscarPalabraNuevaBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraNuevaBFSActionPerformed
-        Ventana3 v3=new Ventana3(grafo, dic, palabras);
+        Ventana3 v3=new Ventana3(grafo, dic, this.abre, txt);
         v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buscarPalabraNuevaBFSActionPerformed
@@ -198,12 +203,12 @@ public class Ventana2 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Ventana2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-PalabrasNuevas palabras = new PalabrasNuevas();
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
           
-            new Ventana2(dic, grafo, palabras).setVisible(true);
+            new Ventana2(dic, grafo, abre, txt).setVisible(true);
             }
         });
     }

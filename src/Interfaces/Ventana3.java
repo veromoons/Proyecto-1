@@ -4,13 +4,11 @@
  */
 package Interfaces;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.File;
 import javax.swing.JOptionPane;
 import pruebagrafo.Diccionario;
 import pruebagrafo.Grafo;
-import pruebagrafo.PalabrasNuevas;
+import leertxt.LeerTxt;
 import pruebagrafo.Solucion;
 
 /**
@@ -20,20 +18,25 @@ import pruebagrafo.Solucion;
 public class Ventana3 extends javax.swing.JFrame {
     private Grafo grafo;
     static Ventana2 v2;
-    private Diccionario diccionario;
-    private final PalabrasNuevas palabrasNuevas;
+    static Diccionario diccionario;
+    static File abre;
+    static LeerTxt txt;
 
   
     /**
      * Constructor
      */
-     public Ventana3(Grafo grafo, Diccionario diccionario, PalabrasNuevas palabrasNuevas) {
+     public Ventana3(Grafo grafo, Diccionario dic, File file, LeerTxt t) {
         initComponents();
         this.setLocationRelativeTo(null); 
         this.setResizable(true);
         this.grafo = grafo;
-        this.diccionario = diccionario;
-        this.palabrasNuevas = palabrasNuevas;
+        this.diccionario = dic;
+        this.abre = file;
+        this.txt = t;
+        this.tablero.setText(grafo.mostrarGrafoTablero());
+        this.v2 = new Ventana2 (diccionario, grafo, abre, txt);
+        palabraABuscar.setText("");
     }
 
     /**
@@ -208,7 +211,7 @@ public class Ventana3 extends javax.swing.JFrame {
         if (encontrada) {
             JOptionPane.showMessageDialog(null, "La palabra indicada \"" + palabraBuscada + "\" se encontró en la sopa de letras.");
             solucion.mostrarRecorrido(grafo, solucion.getPalabrabfs());
-            palabrasNuevas.agregarPalabra(palabraBuscada);
+            
             
         } else {
             JOptionPane.showMessageDialog(null, "La palabra indicada \"" + palabraBuscada + "\" no se encuentra en la sopa de letras.");
@@ -246,18 +249,25 @@ public class Ventana3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       try {
-            String[] palabrasGuardadas = palabrasNuevas.guardarPalabrasNuevas("Palabras.txt");
-            StringBuilder mensaje = new StringBuilder();
-            mensaje.append("Palabras guardadas:\n");
-            for (String palabra : palabrasGuardadas) {
-                mensaje.append(palabra).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, mensaje.toString());
-        } catch (IOException ex) {
-            Logger.getLogger(Ventana3.class.getName()).log(Level.SEVERE, null, ex);
+       String palabraNuevaAnadir = palabraABuscar.getText().toUpperCase().strip();
+       
+       if (palabraNuevaAnadir.length() == 0 || "".equals(palabraNuevaAnadir)){
+           JOptionPane.showMessageDialog (null, "Por favor, introduzca una palabra.");
+           
+       if (!palabraNuevaAnadir.matches("[A-Z]+")) {
+            JOptionPane.showMessageDialog(null, "❗ " +"La palabra no puede incluir símbolos, espacios, números o acentos.\nIntente de nuevo.");
+            return;
         }
     
+       if (palabraNuevaAnadir.length() >=1 && palabraNuevaAnadir.length()< 3) {
+            JOptionPane.showMessageDialog(null,"❗ "+ "La palabra debe tener al menos 3 letras.\nIntente de nuevo.");
+            return;
+        }
+        
+        txt.anadirPalabraNuevaTXT(palabraNuevaAnadir, this.diccionario.getDiccionario(), this.abre);
+           
+           
+       }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -265,14 +275,6 @@ public class Ventana3 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Grafo grafo = new Grafo();
-        Diccionario diccionario = new Diccionario();
-        PalabrasNuevas palabrasNuevas = new PalabrasNuevas();
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -289,15 +291,6 @@ public class Ventana3 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Ventana3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-    
-      
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() { 
-            public void run() {
-                new Ventana3(grafo, diccionario, palabrasNuevas).setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

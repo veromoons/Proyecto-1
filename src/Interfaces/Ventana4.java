@@ -6,6 +6,8 @@
 package Interfaces;
 
 
+import java.io.File;
+import leertxt.LeerTxt;
 import pruebagrafo.Grafo;
 import pruebagrafo.Solucion;
 import pruebagrafo.Diccionario;
@@ -30,8 +32,12 @@ public class Ventana4 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); 
         this.grafo = grafo;
         this.solucion = new Solucion(); 
-        this.v2 = new Ventana2(diccionario, grafo);
+       // this.v2 = new Ventana2(diccionario, grafo);
         tEjecucion.setText("");
+    }
+
+    Ventana4(Grafo grafo, Diccionario dic, File abre, LeerTxt txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
