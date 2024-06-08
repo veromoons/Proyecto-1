@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import leertxt.LeerTxt;
 import static pruebagrafo.Main.grafo;
-import pruebagrafo.PalabrasNuevas;
+
 
 /**
  *
@@ -131,16 +131,15 @@ public class Ventana1 extends javax.swing.JFrame {
         file.showOpenDialog(this);
         File abre =file.getSelectedFile();
         LeerTxt txt = new LeerTxt();
-        txt.crearLista(abre);
+        boolean listaCreada = txt.crearLista(abre);
         txt.crearArray(abre);
         
-        
-        grafo.crearGrafo(txt.getArray());
-        
-        PalabrasNuevas palabras = new PalabrasNuevas(); // Crear una instancia de PalabrasNuevas
-        Ventana2 v2 = new Ventana2(txt.getDic(), grafo, palabras); // Pasar todas las instancias necesarias
-        this.setVisible(false);
-        v2.setVisible(true);
+        if(listaCreada){
+            grafo.crearGrafo(txt.getArray());
+            Ventana2 v2 = new Ventana2(txt.getDic(), grafo, abre,txt); // Pasar todas las instancias necesarias
+            this.setVisible(false);
+            v2.setVisible(true);
+        }
         
         //prueba de si se anade bien todo al grafo
 //        for (int i = 0; i < 16; i++) {

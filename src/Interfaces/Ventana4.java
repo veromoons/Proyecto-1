@@ -6,6 +6,8 @@
 package Interfaces;
 
 
+import java.io.File;
+import leertxt.LeerTxt;
 import pruebagrafo.Grafo;
 import pruebagrafo.Solucion;
 import pruebagrafo.Diccionario;
@@ -20,22 +22,27 @@ public class Ventana4 extends javax.swing.JFrame {
     static Grafo grafo;
     static Diccionario diccionario;
     static Ventana2 v2;
-    static PalabrasNuevas palabras;
+    static File abre;
+    static LeerTxt txt;
 
     /**
      * Constructor
      */
-    public Ventana4(Grafo grafo,Diccionario dic,PalabrasNuevas palabras) {
+    public Ventana4(Grafo grafo,Diccionario dic, File abre, LeerTxt t) {
         initComponents();
         palabrasDiccionarioEncontradas.setText("");  
         this.diccionario = dic;
         this.setLocationRelativeTo(null); 
         this.grafo = grafo;
-        this.palabras = palabras;
+        this.txt=t;
         this.solucion = new Solucion(); 
-        this.v2 = new Ventana2(diccionario, grafo,palabras);
+        this.v2 = new Ventana2(diccionario, grafo,abre,txt);
         tEjecucion.setText("");
     }
+
+//    Ventana4(Grafo grafo, Diccionario dic, File abre, LeerTxt txt) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,11 +73,9 @@ public class Ventana4 extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        busquedaBFS.setBackground(new java.awt.Color(255, 255, 255));
         busquedaBFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 1.png"))); // NOI18N
         busquedaBFS.setBorder(null);
         busquedaBFS.setBorderPainted(false);
-        busquedaBFS.setOpaque(false);
         busquedaBFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedaBFSActionPerformed(evt);
@@ -81,7 +86,6 @@ public class Ventana4 extends javax.swing.JFrame {
         busquedaDFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventana 4 boton 2.png"))); // NOI18N
         busquedaDFS.setBorder(null);
         busquedaDFS.setBorderPainted(false);
-        busquedaDFS.setOpaque(false);
         busquedaDFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedaDFSActionPerformed(evt);
@@ -100,11 +104,9 @@ public class Ventana4 extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 150, 150));
 
-        atras.setBackground(new java.awt.Color(255, 255, 255));
         atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/atras boton.png"))); // NOI18N
         atras.setBorder(null);
         atras.setBorderPainted(false);
-        atras.setOpaque(false);
         atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasActionPerformed(evt);
@@ -126,11 +128,11 @@ public class Ventana4 extends javax.swing.JFrame {
         tEjecucion.setFocusable(false);
         jPanel1.add(tEjecucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 50, -1));
 
-        miliseg.setForeground(new java.awt.Color(0, 0, 0));
+        miliseg.setForeground(new java.awt.Color(51, 51, 51));
         miliseg.setText("ms");
         jPanel1.add(miliseg, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
-        tiempoRecorrTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        tiempoRecorrTitulo.setForeground(new java.awt.Color(51, 51, 51));
         tiempoRecorrTitulo.setText("Tiempo de recorrido:");
         jPanel1.add(tiempoRecorrTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
 
@@ -249,7 +251,7 @@ public class Ventana4 extends javax.swing.JFrame {
             public void run() {
             Diccionario dic = new Diccionario();
             
-            new Ventana4(grafo,dic,palabras).setVisible(true);    
+            new Ventana4(grafo,dic,abre,txt).setVisible(true);    
 
 }
                 

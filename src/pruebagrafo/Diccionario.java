@@ -40,4 +40,8 @@ public class Diccionario {
         return diccionario;
     }
     
+    public void agregarPalabraUltima(String palabra){
+      this.diccionario.insertarUltimo(palabra);
+    };
+    
 }
