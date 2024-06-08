@@ -144,7 +144,7 @@ public class Ventana2 extends javax.swing.JFrame {
      * @param evt 
      */
     private void buscarPalabrasDiccionarioActionPerformed(java.awt.event.ActionEvent evt) {                                                          
-        Ventana4 v4 = new Ventana4(grafo,dic);
+        Ventana4 v4 = new Ventana4(grafo,dic,palabras);
         v4.setVisible(true);
         this.setVisible(false);
     }                                                         

@@ -18,7 +18,7 @@ import pruebagrafo.Solucion;
  * @author sofiagrateron, veronicaluna, ruthsenior
  */
 public class Ventana3 extends javax.swing.JFrame {
-    private Grafo grafo;
+    static Grafo grafo;
     static Ventana2 v2;
     private Diccionario diccionario;
     private final PalabrasNuevas palabrasNuevas;

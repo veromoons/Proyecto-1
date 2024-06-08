@@ -9,6 +9,7 @@ package Interfaces;
 import pruebagrafo.Grafo;
 import pruebagrafo.Solucion;
 import pruebagrafo.Diccionario;
+import pruebagrafo.PalabrasNuevas;
 
 /**
  *
@@ -19,18 +20,20 @@ public class Ventana4 extends javax.swing.JFrame {
     static Grafo grafo;
     static Diccionario diccionario;
     static Ventana2 v2;
+    static PalabrasNuevas palabras;
 
     /**
      * Constructor
      */
-    public Ventana4(Grafo grafo,Diccionario dic) {
+    public Ventana4(Grafo grafo,Diccionario dic,PalabrasNuevas palabras) {
         initComponents();
         palabrasDiccionarioEncontradas.setText("");  
         this.diccionario = dic;
         this.setLocationRelativeTo(null); 
         this.grafo = grafo;
+        this.palabras = palabras;
         this.solucion = new Solucion(); 
-        this.v2 = new Ventana2(diccionario, grafo);
+        this.v2 = new Ventana2(diccionario, grafo,palabras);
         tEjecucion.setText("");
     }
 
@@ -174,7 +177,7 @@ public class Ventana4 extends javax.swing.JFrame {
     /**
      * Metodo para llamar a la funcion de busqueda DFS de todas las palabras y mostrar el resultado
      * @param evt 
-     */                                         
+     */
     private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
         
         Solucion soluc2=new Solucion();
@@ -202,12 +205,10 @@ public class Ventana4 extends javax.swing.JFrame {
         this.setVisible(false);
         v2.setVisible(true);
     }//GEN-LAST:event_atrasActionPerformed
-
     /**
      * Metodo para cerrar el programa
      * @param evt 
      */
-
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
@@ -248,7 +249,7 @@ public class Ventana4 extends javax.swing.JFrame {
             public void run() {
             Diccionario dic = new Diccionario();
             
-            new Ventana4(grafo,dic).setVisible(true);    
+            new Ventana4(grafo,dic,palabras).setVisible(true);    
 
 }
                 
