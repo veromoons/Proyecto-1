@@ -8,6 +8,7 @@ package pruebagrafo;
  * Clase para guardar listas de palabras
  * @author sofiagrateron
  */
+
 public class Diccionario {
     private ListaSimple diccionario;
     private ListaSimple listaPalabras;
@@ -34,12 +35,16 @@ public class Diccionario {
    
     /**
      * Metodo para obtener el diccionario
-     * @return the diccionario
+     * @return el diccionario
      */
     public ListaSimple getDiccionario() {
         return diccionario;
     }
     
+    /**
+     * Metodo para agregar una palabra tipo String de ultima al diccionario
+     *
+     */
     public void agregarPalabraUltima(String palabra){
       this.diccionario.insertarUltimo(palabra);
     };

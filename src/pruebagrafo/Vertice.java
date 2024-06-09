@@ -2,14 +2,21 @@
 package pruebagrafo;
 
 /**
- *
- * @author verol
+ * Clase para implementar metodos para la creacion de un vertice
+ * @author veronicaluna
  */
+
 public class Vertice {
+    
     
     private int numVertice; 
     private char letra;
     private Lista listaAdy;
+    
+    /**
+     * Constructor 
+     * @param caracter l que es la letra que va a tener ese vertice para la sopa de letras en el grafo que la simula
+     */
 
     public Vertice(char l) {
         this.numVertice = -1;
@@ -18,42 +25,42 @@ public class Vertice {
     }
 
     /**
-     * @return the numVertice
+     * @return la posicion de ese vertice 
      */
     public int getNumVertice() {
         return numVertice;
     }
 
     /**
-     * @param numVertice the numVertice to set
+     * @param numVertice la posicion a settear
      */
     public void setNumVertice(int numVertice) {
         this.numVertice = numVertice;
     }
 
     /**
-     * @return the letra
+     * @return la letra que tiene asignada este vertice
      */
     public char getLetra() {
         return letra;
     }
 
     /**
-     * @param letra the letra to set
+     * @param la letra a settear
      */
     public void setLetra(char letra) {
         this.letra = letra;
     }
 
     /**
-     * @return the listaAdy
+     * @return retorna la lista de adyacentes del vertice
      */
     public Lista getListaAdy() {
         return listaAdy;
     }
 
     /**
-     * @param listaAdy the listaAdy to set
+     * @param listaAdy la lista de adyacentes a settear
      */
     public void setListaAdy(Lista listaAdy) {
         this.listaAdy = listaAdy;

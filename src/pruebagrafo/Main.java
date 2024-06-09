@@ -11,7 +11,7 @@ public class Main {
 
     public static Grafo grafo = new Grafo(16);
     /**
-     * Metodo para incializar el programa, abriendo la primera ventana
+     * Metodo para incializar el programa, abriendo la primera ventana de la interfaz
      * @param args 
      */
     public static void main(String[] args) {

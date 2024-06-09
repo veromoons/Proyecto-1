@@ -11,7 +11,6 @@ import leertxt.LeerTxt;
 import pruebagrafo.Grafo;
 import pruebagrafo.Solucion;
 import pruebagrafo.Diccionario;
-import pruebagrafo.PalabrasNuevas;
 
 /**
  *
@@ -40,9 +39,6 @@ public class Ventana4 extends javax.swing.JFrame {
         tEjecucion.setText("");
     }
 
-//    Ventana4(Grafo grafo, Diccionario dic, File abre, LeerTxt txt) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,7 +150,7 @@ public class Ventana4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
                                          
     /**
-     * Metodo para busqueda DFS
+     * Metodo para llamar a la funcion de busqueda BFS de todas las palabras y mostrar el resultado junto con la medicion del tiempo de corrida
      * @author veronicaluna
      * @param evt 
      */
@@ -177,7 +173,7 @@ public class Ventana4 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_busquedaBFSActionPerformed
     /**
-     * Metodo para llamar a la funcion de busqueda DFS de todas las palabras y mostrar el resultado
+     * Metodo para llamar a la funcion de busqueda DFS de todas las palabras y mostrar el resultado junto con la medicion del tiempo de corrida
      * @param evt 
      */
     private void busquedaDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaDFSActionPerformed
@@ -199,7 +195,7 @@ public class Ventana4 extends javax.swing.JFrame {
     }//GEN-LAST:event_busquedaDFSActionPerformed
 
     /**
-     * Metodo para regresar a la ventana anterior
+     * Metodo para regresar a la ventana anterior ventana2
      * @param evt 
      */
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed

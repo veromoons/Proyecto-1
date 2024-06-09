@@ -2,8 +2,8 @@
 package pruebagrafo;
 
 /**
- *
- * @author verol
+ *Clase para implementar setters y getters del nodo que va a contener la lista de la clase Lista (lista de adyacencia, stos son los nodos adyacentes)
+ * @author veronicaluna
  */
 public class Nodo {
     
@@ -16,28 +16,28 @@ public class Nodo {
     }
 
     /**
-     * @return the next
+     * @return el nodo al cual apunta pNext del nodo actual
      */
     public Nodo getNext() {
         return next;
     }
 
     /**
-     * @param next the next to set
+     * @param next el nodo que se quiere settear al que apunta pNext del nodo actual
      */
     public void setNext(Nodo next) {
         this.next = next;
     }
 
     /**
-     * @return the info
+     * @return la informacion que contiene o que guarda el nodo
      */
     public Arista getInfo() {
         return info;
     }
 
     /**
-     * @param info the info to set
+     * @param info la informacion que se quiere cambiar que contiene o que guarda el nodo
      */
     public void setInfo(Arista info) {
         this.info = info;

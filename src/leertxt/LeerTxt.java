@@ -17,7 +17,7 @@ import pruebagrafo.NodoListaSimple;
 
 /**
  * Clase para extraer la informacion del txt y guardarla en el memoria
- * @author sofiagrateron
+ * @author sofiagrateron, veronicaluna
  */
 public class LeerTxt {
     private ListaSimple lista;
@@ -30,6 +30,15 @@ public class LeerTxt {
     public LeerTxt(){
         }
     
+    
+    /**
+    * Anade una nueva palabra a un archivo de texto y al diccionaro con verificacion antes de si la palabra ya existe ne el diciconario segun el txt ingresado
+    * Si ya existe en el diccionario, no la anade
+    * Su principal funcion es reescribir el archivo TXT ingresado para incluir la nueva palabra justo antes de la línea "/dic"
+    * @param palabraNueva la palabra que se quiere anadir
+    * @param diccion la lista enlazada simple (el diccionario) 
+    * @param abre el archivo TXT que contiene las palabras del diccionario
+    */
     public void anadirPalabraNuevaTXT(String palabraNueva, ListaSimple diccion, File abre){
         boolean encontrada = false;
         diccion.imprimir_lista();

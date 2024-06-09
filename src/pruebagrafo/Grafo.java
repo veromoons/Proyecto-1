@@ -2,14 +2,20 @@
 package pruebagrafo;
 
 /**
- *
- * @author veronicaluna
+ * Clase para implementar metodos relacionados a la creacion de un grafo, asi como su representacion en un tablero
+ * @author veronicaluna, sofiagrateron
  */
+
 public class Grafo {
     
     private int numVertices;
     private int max;
     private Vertice[] listaVertices;
+    
+    /**
+     * Constructor
+     * @param entero t, que es el maximo del array de vertices 
+     */
 
     public Grafo(int t) {
         this.numVertices = 0; 
@@ -21,12 +27,24 @@ public class Grafo {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    /**
+     * Metodo para crear un vertice, uno de los 16 que conforman el grafo 
+     * @param letra, que es la letra que se va a anadir en el vertice al ser una sopa de letras 
+     */
+    
     public void agregarVertice(char letra){             
         Vertice v = new Vertice(letra); 
         v.setNumVertice(getNumVertices());               //se hizo un id numerico para c/vertice (del 0 al 15)
         listaVertices[getNumVertices()] = v;
         numVertices++;                      //las posiciones entonces de listaVertices va de 0 al 15 para manejar crearGrafo tipo matriz con i y j
     }
+    
+    /**
+    * Metodo para verificar si existe una arista entre dos vértices en el grafo
+    * @param a el indice del vertice de origen
+    * @param b el indice del vertice de destino
+    * @return true si existe una arista entre el vertice a y el vertice b, y false en caso contrario
+    */
     
     public boolean existeArista(int a, int b){
         Nodo aux = this.listaVertices[a].getListaAdy().primero();
@@ -42,9 +60,14 @@ public class Grafo {
         return encontrado;
     }
     
+    /**
+    * Agrega una arista bidireccional entre dos vértices en el grafo, se verifica antes que si ya existe una arista entre los vertices, no se agrega una nueva arista
+    * @param origen el indice del vertice de origen
+    * @param destino el indice del vertice de destino
+    */
     public void agregarArista(int origen, int destino){
          if (origen < 0 || origen >= getNumVertices() || destino < 0 || destino >= getNumVertices()) { 
-            throw new IllegalArgumentException("Uno o ambos vértices no existen.");
+            return;
         }
         
         if (existeArista(origen,destino)==false){
@@ -56,6 +79,12 @@ public class Grafo {
         }
     }
     
+    /**
+    * Crea un grafo a partir de un tablero de letras representado como una matriz bidimensional, donde la matrix tiene el mismo numero de filas que columnas al ser 4X4 entonces el tamano es de 4
+    * Se crean vertices una por una y luego se anaden las aristas segun sea el caso
+    * Se conisdera que un vertice es adyacente a otro si esta  arriba, abajo, a la izquierda, a la derecha o en sus variantes diagonales
+    * @param tableroLetras una matriz bidimensional de caracteres representando el tablero de letras
+    */
     public void crearGrafo(char[][] tableroLetras) {
         int tamanoiyj = tableroLetras.length; //va a ser 4, ya que es 4x4 coinciden i y j o se puede poner 4 y ya, solo para generalizarlo y que sea mas friendly
 
@@ -94,8 +123,11 @@ public class Grafo {
             }
         }
     }
-
     
+    /**
+     * Imprime las letras de los vertices del grafo en forma de tablero de sopa de letras para luego mostrarlo en Ventana2
+     *@return un string de las letras separadas por saltos de lineas al llegar a 4 y con 2 espacios entre si
+     */
     public String mostrarGrafoTablero(){  
         String tablero = "";
         for (int i = 0; i < 4; i++) {

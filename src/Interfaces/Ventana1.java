@@ -13,7 +13,7 @@ import static pruebagrafo.Main.grafo;
 
 /**
  *
- * @author berna
+ * @author veronicaluna, sofiagrateron
  */
 
 public class Ventana1 extends javax.swing.JFrame {
@@ -122,7 +122,7 @@ public class Ventana1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Metodo para escojer el archivo con la informacion con el JFileChooser
+     * Metodo para escoger el archivo con la informacion con el JFileChooser
      * @param evt 
      */
     private void escogerarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerarchivoActionPerformed
@@ -141,17 +141,6 @@ public class Ventana1 extends javax.swing.JFrame {
             v2.setVisible(true);
         }
         
-        //prueba de si se anade bien todo al grafo
-//        for (int i = 0; i < 16; i++) {
-//            Vertice vertice = nuevoGrafo.getListaVertices()[i];
-//            System.out.print("Vertice " + vertice.getNumVertice() + " (" + vertice.getLetra() + "): ");
-//            Nodo aux = vertice.getListaAdy().primero();
-//            while (aux != null) {                       //iteramos en la lista de adyacentes (en los nodos que contienen aristas que son a su vez el numero del vertice adyacente o destino y la letra del mismo),
-//                System.out.print(aux.getInfo().getLetraDestino() + " "); 
-//                aux = aux.getNext();
-//            }
-//            System.out.println();
-//        }
     }//GEN-LAST:event_escogerarchivoActionPerformed
 
     /**

@@ -8,7 +8,7 @@ import org.graphstream.ui.view.Viewer;
 
 
 /**
- * Clase para implementar procedimientos en la interfaz //no seee
+ * Clase para implementar metodos relacionados a la solucion de los ejercicios planteados en el enunciado del proyecto
  * @author veronicaluna, sofiagrateron, ruthsenior
  */
 
@@ -27,9 +27,8 @@ public class Solucion {
     /**
      * Metodo para buscar las palabras del diccionario encontradas y anadirlas a un string, le pasa cada palabra del diccionario al metodo bfs
      * @param palabra, palabra a buscar
-     * @param verticeInicial
-     * @param grafo
-     * @return String
+     * @param grafo sobre el cual se va a buscar las letras a traves de sus verticee
+     * @return String, una cadena de las palabras encontradas del diccionario separadas por un salto de linea
      */
     public String busquedaDiccionarioBFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
@@ -47,9 +46,9 @@ public class Solucion {
     
     /**
      * Metodo para verificar que no se repita una letra (por su posicion, no por su letra en si) que ya se tomo en cuenta en la palabra
-     * @param nodoInicio
-     * @param nodoBuscado
-     * @return 
+     * @param nodoInicio, el nodo actual que es la letra actual que ya evaluamos de la palabra, a la cual le estamos evaluando los adyacentes uno por uno (nodobuscado)
+     * @param nodoBuscado, el nodo al cual buscamos si ya es ancestro de una de las letras que ya se han considerado validas para formar la palabra
+     * @return booleano, devuelve true si ya es un ancestro y false si no lo es
      */
     public boolean trackValidation(NodoMascara nodoInicio, Vertice nodoBuscado){
         boolean encontrado = false;
@@ -66,10 +65,10 @@ public class Solucion {
 
     /**
      * Metodo para hacer la busqueda BFS con una palabra ingresada, sea del dicciconario (se obtiene de busquedaSiccionarioBFS) o sea de una ingresada en ventana3
-     * @param palabra
-     * @param verticeInicial
-     * @param grafo
-     * @return verdadero si la palabra fue encontrada
+     * @param palabra, la palabra que estamos buscando
+     * @param verticeInicial, el vertice inicial por el cual comenzamos la busqueda, tiene que ser 0 para evaluar todas las letras de la sopa
+     * @param grafo, el grafo al cual le evaluaremos los vertices
+     * @return booleano, true si la palabra fue encontrada y false si no lo fue
      */
 
     public boolean bfs(String palabra, int verticeInicial, Grafo grafo) { 
@@ -124,8 +123,9 @@ public class Solucion {
     
     /**
      * Metodo para buscar las palabras del diccionario encontradas y anadirlas a un string, le pasa cada palabra del diccionario al metodo dfs
-     * @param palabra
-     * @return string de las palabras encontradas
+     * @param diccionanrio, la lista de palabras del diccionario segun el txt ingresado
+     * @param grafo,el grafo del cual obtendremos los vertices para evaluar si existe la palabra
+     * @return String, una cadena de las palabras encontradas del diccionario separadas por un salto de linea
      */
     public String busquedaDiccionarioDFS(ListaSimple diccionario, Grafo grafo){
         String encontradas="";
@@ -141,7 +141,7 @@ public class Solucion {
         return encontradas;
     }
     /**
-     * Metodo para buscar una palabra por DFS
+     * Metodo para buscar una palabra por DFS, pasandole al metodo de dfs cada posicion de cada vertice como si fuese una matriz el tablero
      * @param palabra a buscar
      * @return verdadero si encontrada la palabra
      */
@@ -158,12 +158,12 @@ public class Solucion {
     }
      
     /**
-     * Metodo para buscar una palabra por DFS
-     * @param i
-     * @param j
-     * @param palabra
-     * @param posicionLetra
-     * @param visitado
+     * Metodo para buscar una palabra por DFS, donde se recibe cada posicion y otros parametros para empezar a buscar la palabra desde la primera letray verifica si coincide, de ser asi empieza la recursividad
+     * @param i, la posicion i de la letra a evaluar
+     * @param j, la posicion j de la letra a evaluar
+     * @param palabra, la palabra a buscar
+     * @param posicionLetra, la posicion por la cual comenzaremos a evaluar el grafo, siempre es 0 porque queremos analizar todas desde la primera
+     * @param visitado, la posicion en una lista de booleanos que marca true si ya fue visitado para que no se repitan las letras por su numero de vertice en la palabra
      * @return 
      */
     private boolean dfs(int i, int j, String palabra, int posicionLetra, boolean[][] visitado) { 
@@ -192,8 +192,8 @@ public class Solucion {
     }
 
     /**
-     * Metodo para mostrar el grafo en una ventana
-     * @param grafo
+     * Procedimiento para mostrar el grafo en una ventana
+     * @param grafo, del cual obtendremos los vertices y letras con sus adyacentes a mostrar
      */
     public void mostrarGrafo(Grafo grafo){                     //de nuevo, basandonos en el mismo codigo y logica que logramos en crearGrafo (que tambien usamos en DFS ya que sirvio la logica) 
         Graph grafo_mostrar = new MultiGraph("Grafo");
@@ -262,8 +262,8 @@ public class Solucion {
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
     /**
-     * Metodo para mostrar el recorrido de la palabra encontrada
-     * @param grafo
+     * Procedimiento para mostrar el recorrido de la palabra encontrada por el metodo de busqueda BFS
+     * @param grafo, del cual obtendremos los vertices y sus adyacentes que conformen la letra buscada por BFS
      * @param verticesPalabra, string con los indices de las letras de la palabra encotrada
      */
      public void mostrarRecorrido(Grafo grafo, String verticesPalabra){             //aqui tambien nos basamos en la misma logica y codigo de crearGrafo al igual que en busqueda DFS y la funcion de arriba mostrarGrafo...
@@ -352,7 +352,7 @@ public class Solucion {
     }
 
     /**
-     * 
+     * Metodo para obtener la palabra buscada por BFS
      * @return 
      */
 

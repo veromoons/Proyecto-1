@@ -6,8 +6,8 @@
 package pruebagrafo;
 
 /**
- *
- * @author verol
+ *Clase para implementar setters y getters del nodo que va a contener la lista de la clase ListaNumVertices
+ * @author veronicaluna
  */
 public class NodoNumVertice {
     private int info;
@@ -19,28 +19,28 @@ public class NodoNumVertice {
     }
 
     /**
-     * @return the next
+     * @return el nodo al cual apunta pNext del nodo actual
      */
     public NodoNumVertice getNext() {
         return next;
     }
 
     /**
-     * @param next the next to set
+     * @param next el nodo que se quiere settear al que apunta pNext del nodo actual
      */
     public void setNext(NodoNumVertice next) {
         this.next = next;
     }
 
     /**
-     * @return the info
+     * @return la informacion que contiene o que guarda el nodo
      */
     public int getInfo() {
         return info;
     }
 
     /**
-     * @param info the info to set
+     * @param info la informacion que se quiere cambiar que contiene o que guarda el nodo
      */
     public void setInfo(int info) {
         this.info = info;

@@ -5,7 +5,7 @@
 package pruebagrafo;
 
 /**
- *
+ *Clase para implementar setters y getters del nodo que va a contener la lista de la clase ListaSimple
  * @author sofiagrateron
  */
 public class NodoListaSimple {
