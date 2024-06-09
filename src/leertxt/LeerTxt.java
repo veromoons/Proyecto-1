@@ -99,12 +99,23 @@ public class LeerTxt {
                 FileReader fr = new FileReader(abre);
                 BufferedReader br = new BufferedReader(fr);
                 while((line = br.readLine().toUpperCase()) != null && !line.equals("/DIC")){
-                    if (line.length() > 2){
-                        palabras_txt += line + "\n";
-                    }
-                    else{
+                    
+                    if (line.length() == 0 || line.equals("")) {
+                        JOptionPane.showMessageDialog(null, "No pueden haber espacios vacíos entre una palabra y otra. \nIntente de nuevo.");
                         return false;
                     }
+                    
+                    if (!line.matches("[A-Z]+")) {
+                        JOptionPane.showMessageDialog(null, "❗ Ninguna palabra del archivo TXT puede incluir símbolos, espacios, números o acentos.\nIntente de nuevo.");
+                        return false;
+                    }
+                    
+                    if (line.length() >= 1 && line.length() < 3) {
+                        JOptionPane.showMessageDialog(null, "❗ Las palabras del archivo TXT deben tener al menos 3 letras.\nIntente de nuevo.");
+                        return false;
+                    }
+
+                    palabras_txt += line + "\n";
                 }           
                 if (!"".equals(palabras_txt)){
                     String [] palabras_split = palabras_txt.split("\n");
@@ -134,7 +145,7 @@ public class LeerTxt {
         String line;
         String letras_txt = "";
         
-        try{
+        try{ 
             String tab = "tab";
             FileReader fr = new FileReader(abre);
             BufferedReader br = new BufferedReader(fr);
@@ -147,16 +158,27 @@ public class LeerTxt {
                 }
             if (!"".equals(letras_txt)){
                 String [] letras_split = letras_txt.split(",");
+                if (letras_split.length != 16) {
+                    JOptionPane.showMessageDialog(null, "❗ Debe haber 16 letras en el archivo TXT para completar el tablero 4x4.\nIntente de nuevo.");
+                    return false;
+                }
+
                 for (int i = 0; i < letras_split.length; i++) {
-                    if (!letras_split[i].matches("[A-Z]+")){
+                    if (letras_split[i].length() != 1) {
+                        JOptionPane.showMessageDialog(null, "❗ Debe ser un solo caracter en cada posicion del tablero.\nIntente de nuevo.");
                         return false;
                     }
-                            }
+                    
+                    if (!letras_split[i].toUpperCase().matches("[A-Z]")) {
+                        JOptionPane.showMessageDialog(null, "❗ Ningun caracter del archivo TXT puede incluir símbolos, espacios, números o acentos.\nIntente de nuevo.");
+                        return false;
+                    }
+                }
                 
                 int cont = 0;
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++){
-                        this.array[i][j] = letras_split[cont].charAt(0);
+                        this.array[i][j] = letras_split[cont].toUpperCase().charAt(0) ;
                         //System.out.println(letras_split[cont]); para probar si se estan guardando las letras
                         cont ++;
                     }

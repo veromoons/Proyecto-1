@@ -132,15 +132,14 @@ public class Ventana1 extends javax.swing.JFrame {
         File abre =file.getSelectedFile();
         LeerTxt txt = new LeerTxt();
         boolean listaCreada = txt.crearLista(abre);
-        txt.crearArray(abre);
+        boolean arrayCreado = txt.crearArray(abre);
         
-        if(listaCreada){
+        if(listaCreada && arrayCreado){
             grafo.crearGrafo(txt.getArray());
             Ventana2 v2 = new Ventana2(txt.getDic(), grafo, abre,txt); // Pasar todas las instancias necesarias
             this.setVisible(false);
             v2.setVisible(true);
         }
-        
     }//GEN-LAST:event_escogerarchivoActionPerformed
 
     /**
